@@ -11,3 +11,13 @@ About this site
 ```{r}
 runif(100)
 ```
+
+```{r}
+set.seed(123)
+plot(1:20, runif(20))
+
+```
+
+```{r}
+plot(1:40,runif(40))
+```

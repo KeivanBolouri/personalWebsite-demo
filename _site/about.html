@@ -181,23 +181,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] 0.185650104 0.589896496 0.201813587 0.739451298 0.411355030 0.568176225
-  [7] 0.009471145 0.905655275 0.307759845 0.317829677 0.702351201 0.903902113
- [13] 0.682287701 0.371689313 0.922782157 0.361286317 0.616489507 0.783576636
- [19] 0.073009305 0.105961767 0.006164579 0.686455857 0.585341437 0.970568576
- [25] 0.309250856 0.429082598 0.190449060 0.603524524 0.140826822 0.380104842
- [31] 0.057809366 0.709135416 0.765575987 0.454942427 0.408576990 0.628966024
- [37] 0.527981465 0.975940061 0.403210331 0.445985239 0.994563752 0.052425639
- [43] 0.578634512 0.506209931 0.564980614 0.068120946 0.211581389 0.783877520
- [49] 0.458755861 0.271681110 0.598625024 0.042784247 0.028766328 0.241342657
- [55] 0.957107874 0.483373446 0.264633031 0.210203955 0.475437290 0.583249958
- [61] 0.582268388 0.076873888 0.147848785 0.327589764 0.969451072 0.240621985
- [67] 0.396547729 0.359238709 0.224547782 0.565375064 0.666858525 0.496585696
- [73] 0.258997732 0.627089916 0.411664002 0.325729930 0.582325153 0.452298799
- [79] 0.391615730 0.280656519 0.909706289 0.514220721 0.627309554 0.091427297
- [85] 0.724195716 0.302781448 0.484416151 0.289551605 0.058542638 0.881175339
- [91] 0.013409681 0.562221395 0.122975266 0.022923585 0.917623162 0.949939904
- [97] 0.864863778 0.663390775 0.085589130 0.048445026</code></pre>
+<pre><code>  [1] 0.78185727 0.88751516 0.24701181 0.23536937 0.43364842 0.04744512
+  [7] 0.04107367 0.67200325 0.15196003 0.15915039 0.35129115 0.96631347
+ [13] 0.34968285 0.61759543 0.02534268 0.18240274 0.49646775 0.86965584
+ [19] 0.07925290 0.89002951 0.80208463 0.25983248 0.08116975 0.81706281
+ [25] 0.67228768 0.74614614 0.43301064 0.67898062 0.19849316 0.91870639
+ [31] 0.51744268 0.37376658 0.01423653 0.22369123 0.77661984 0.83347776
+ [37] 0.88272850 0.68164489 0.09334924 0.02207291 0.19527651 0.43245713
+ [43] 0.28598231 0.76765200 0.65897231 0.80135123 0.73949544 0.07915197
+ [49] 0.89881862 0.38094403 0.84556010 0.82832843 0.14185780 0.80716581
+ [55] 0.04701814 0.82058995 0.69314022 0.92676816 0.28957041 0.99790779
+ [61] 0.99749052 0.67438864 0.28662478 0.04172119 0.60394857 0.41602861
+ [67] 0.73641411 0.22464580 0.45602167 0.75285176 0.15139358 0.63157613
+ [73] 0.59021302 0.26614976 0.16985529 0.54108054 0.28951148 0.51593801
+ [79] 0.49941612 0.01570018 0.97181718 0.14107493 0.98235444 0.32743929
+ [85] 0.12663056 0.74586798 0.24035531 0.09277130 0.51147450 0.78180059
+ [91] 0.31786527 0.24602247 0.66785486 0.50885688 0.70030541 0.05398441
+ [97] 0.50175139 0.34057669 0.14422142 0.02099764</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="fu">runif</span>(<span class="dv">20</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="about_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>,<span class="fu">runif</span>(<span class="dv">40</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="about_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 

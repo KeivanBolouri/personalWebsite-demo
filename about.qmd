@@ -7,3 +7,7 @@ About this site
 ```{r}
 1 + 778
 ```
+
+```{r}
+runif(100)
+```

@@ -178,6 +178,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 779</code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 0.185650104 0.589896496 0.201813587 0.739451298 0.411355030 0.568176225
+  [7] 0.009471145 0.905655275 0.307759845 0.317829677 0.702351201 0.903902113
+ [13] 0.682287701 0.371689313 0.922782157 0.361286317 0.616489507 0.783576636
+ [19] 0.073009305 0.105961767 0.006164579 0.686455857 0.585341437 0.970568576
+ [25] 0.309250856 0.429082598 0.190449060 0.603524524 0.140826822 0.380104842
+ [31] 0.057809366 0.709135416 0.765575987 0.454942427 0.408576990 0.628966024
+ [37] 0.527981465 0.975940061 0.403210331 0.445985239 0.994563752 0.052425639
+ [43] 0.578634512 0.506209931 0.564980614 0.068120946 0.211581389 0.783877520
+ [49] 0.458755861 0.271681110 0.598625024 0.042784247 0.028766328 0.241342657
+ [55] 0.957107874 0.483373446 0.264633031 0.210203955 0.475437290 0.583249958
+ [61] 0.582268388 0.076873888 0.147848785 0.327589764 0.969451072 0.240621985
+ [67] 0.396547729 0.359238709 0.224547782 0.565375064 0.666858525 0.496585696
+ [73] 0.258997732 0.627089916 0.411664002 0.325729930 0.582325153 0.452298799
+ [79] 0.391615730 0.280656519 0.909706289 0.514220721 0.627309554 0.091427297
+ [85] 0.724195716 0.302781448 0.484416151 0.289551605 0.058542638 0.881175339
+ [91] 0.013409681 0.562221395 0.122975266 0.022923585 0.917623162 0.949939904
+ [97] 0.864863778 0.663390775 0.085589130 0.048445026</code></pre>
+</div>
+</div>
 
 
 
@@ -255,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/splendid-mochi-8519be\.netlify\.app");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

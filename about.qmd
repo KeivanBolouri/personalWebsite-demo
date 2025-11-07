@@ -21,3 +21,21 @@ plot(1:20, runif(20))
 ```{r}
 plot(1:40,runif(40))
 ```
+
+```{r}
+x <- seq(0, 2*pi, length.out = 100)  # 100 points from 0 to 2π
+y <- sin(x)                          # sine of each x
+plot(x, y, type = "l")               # 'l' means line plot
+plot(x, y, 
+     type = "l", 
+     col = "blue", 
+     lwd = 2,
+     main = "Plot of sin(x)",
+     xlab = "x (radians)",
+     ylab = "sin(x)")
+lines(x, cos(x), col = "red", lwd = 2)
+legend("topright", legend = c("sin(x)", "cos(x)"),
+       col = c("blue", "red"), lwd = 2)
+
+
+```

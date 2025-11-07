@@ -181,23 +181,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] 0.78185727 0.88751516 0.24701181 0.23536937 0.43364842 0.04744512
-  [7] 0.04107367 0.67200325 0.15196003 0.15915039 0.35129115 0.96631347
- [13] 0.34968285 0.61759543 0.02534268 0.18240274 0.49646775 0.86965584
- [19] 0.07925290 0.89002951 0.80208463 0.25983248 0.08116975 0.81706281
- [25] 0.67228768 0.74614614 0.43301064 0.67898062 0.19849316 0.91870639
- [31] 0.51744268 0.37376658 0.01423653 0.22369123 0.77661984 0.83347776
- [37] 0.88272850 0.68164489 0.09334924 0.02207291 0.19527651 0.43245713
- [43] 0.28598231 0.76765200 0.65897231 0.80135123 0.73949544 0.07915197
- [49] 0.89881862 0.38094403 0.84556010 0.82832843 0.14185780 0.80716581
- [55] 0.04701814 0.82058995 0.69314022 0.92676816 0.28957041 0.99790779
- [61] 0.99749052 0.67438864 0.28662478 0.04172119 0.60394857 0.41602861
- [67] 0.73641411 0.22464580 0.45602167 0.75285176 0.15139358 0.63157613
- [73] 0.59021302 0.26614976 0.16985529 0.54108054 0.28951148 0.51593801
- [79] 0.49941612 0.01570018 0.97181718 0.14107493 0.98235444 0.32743929
- [85] 0.12663056 0.74586798 0.24035531 0.09277130 0.51147450 0.78180059
- [91] 0.31786527 0.24602247 0.66785486 0.50885688 0.70030541 0.05398441
- [97] 0.50175139 0.34057669 0.14422142 0.02099764</code></pre>
+<pre><code>  [1] 0.106936604 0.256907269 0.664778017 0.372363088 0.294599133 0.790268010
+  [7] 0.983911097 0.848128462 0.625405489 0.650363787 0.836883487 0.451135939
+ [13] 0.392178088 0.264148716 0.832527749 0.126660293 0.946501329 0.643209181
+ [19] 0.750842743 0.843631300 0.130982673 0.356666893 0.988839913 0.060006631
+ [25] 0.603468028 0.362053517 0.121681717 0.219055599 0.498180079 0.543245476
+ [31] 0.947034254 0.351665674 0.555479150 0.800540896 0.935237577 0.485355341
+ [37] 0.458661305 0.224876788 0.139439078 0.615958172 0.388300205 0.136429939
+ [43] 0.027997444 0.051466210 0.127966708 0.784047996 0.371094534 0.766400464
+ [49] 0.686037843 0.930619982 0.831424329 0.835586354 0.767249160 0.038738528
+ [55] 0.733458373 0.310838595 0.021446331 0.265188474 0.964858164 0.753273080
+ [61] 0.337201824 0.550137118 0.683603025 0.915394340 0.528959710 0.940519645
+ [67] 0.478418946 0.376391136 0.274337678 0.921903597 0.990918945 0.529198275
+ [73] 0.801725793 0.027943099 0.876954320 0.118756384 0.639986355 0.745476242
+ [79] 0.276329129 0.363703189 0.124672848 0.413624247 0.643450982 0.196359516
+ [85] 0.941129897 0.708162486 0.763039410 0.947286300 0.228839096 0.407750534
+ [91] 0.622927849 0.317953596 0.787251652 0.003227407 0.184420361 0.756023165
+ [97] 0.570981293 0.334705839 0.197464743 0.208892037</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -217,6 +217,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <figure class="figure">
 <p><img src="about_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">length.out =</span> <span class="dv">100</span>)  <span class="co"># 100 points from 0 to 2π</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)                          <span class="co"># sine of each x</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">"l"</span>)               <span class="co"># 'l' means line plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="about_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"l"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Plot of sin(x)"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"x (radians)"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"sin(x)"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">cos</span>(x), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"sin(x)"</span>, <span class="st">"cos(x)"</span>),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="about_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

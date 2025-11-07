@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: cb25f656-3d9b-4819-b64e-f22c2002975d
+      url: https://splendid-mochi-8519be.netlify.app

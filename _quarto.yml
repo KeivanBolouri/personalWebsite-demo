@@ -9,13 +9,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
         text: About
       - href: research.qmd
         text: Research
-      
-format:
 
+format:
   html:
     theme:
       - cosmo
@@ -24,4 +23,3 @@ format:
     toc: true
 
 editor: visual
-

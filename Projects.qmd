@@ -9,15 +9,10 @@ listing:
     filter-ui: true
     categories: false
 ---
+
 ::: project-listings
 :::
 
 ## Project 1
 
-Here is my [project 1](projects/project1.html)
-Here is my [project 2](projects/project2.html)
-
-
-
-
-
+Here is my [project 1](projects/project1.html) Here is my [project 2](projects/project2.html)

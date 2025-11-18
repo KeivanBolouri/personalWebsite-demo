@@ -7,19 +7,24 @@ about:
   image-width: 15em
   image-shape: rounded
   links:
-    - icon: github
-      text: Github
-      href: "https://github.com/KeivanBolouri"
+  - icon: github
+    text: Github
+    href: "https://github.com/KeivanBolouri"
 
-    - icon: inbox-fill
-      text: Email
-      href: "mailto:keivanbolouri@ucla.edu"
+  - icon: inbox-fill
+    text: Email
+    href: "mailto:keivan.bolouri.78@gmail.com"
 
-    - icon: file-earmark-person
-      text: CV
-      href: "cv.pdf"
+  - icon: file-earmark-person
+    text: CV
+    href: "cv.pdf"
+
+  - icon: mortarboard-fill
+    text: Google Scholar
+    href: "https://scholar.google.com/citations?user=Dg2_Cy4AAAAJ&hl=en"
 
 toc: false
 ---
 
+\
 Welcome to my page!

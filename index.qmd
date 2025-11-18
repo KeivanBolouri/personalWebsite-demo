@@ -1,16 +1,25 @@
 ---
-title: "PersonalWebsite"
+title: "Keivan Bolouri"
+
+about:
+  template: trestles
+  image: "u.png"
+  image-width: 15em
+  image-shape: rounded
+  links:
+    - icon: github
+      text: Github
+      href: "https://github.com/KeivanBolouri"
+
+    - icon: inbox-fill
+      text: Email
+      href: "mailto:keivanbolouri@ucla.edu"
+
+    - icon: file-earmark-person
+      text: CV
+      href: "cv.pdf"
+
+toc: false
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1
-```
-
-```{r}
-x<-sample(1:100)
-x
-```
+Welcome to my page!

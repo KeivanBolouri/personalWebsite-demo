@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - cv.pdf
 
 website:
   title: "PersonalWebsite"

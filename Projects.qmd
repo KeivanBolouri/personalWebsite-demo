@@ -1,0 +1,17 @@
+---
+toc: false
+listing:
+  - id: project-listings
+    contents:
+      - "projects/*.qmd"
+    type: grid          # cards layout
+    sort-ui: false
+    filter-ui: true
+    categories: false
+---
+## project 1
+here is my [project 1](projects/project1.qmd)
+
+
+
+

@@ -11,4 +11,7 @@
   height: auto;          /* let height adjust to the image */
   object-fit: contain;   /* show the whole image */
 }
+.text-justify {
+  text-align: justify;
+}
 

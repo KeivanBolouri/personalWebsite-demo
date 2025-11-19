@@ -14,7 +14,6 @@ Abstract
 :::
 
 ::: text-justify
-
 \
 Cells are essential components of biological systems and are involved in various activities, such as interacting with the surrounding environment. Researchers are taking advantage of naturally derived cell membranes to enhance the bio-interfacing capabilities of nanoparticles. The use of cell membrane-coating technology represents an exciting breakthrough in the field of nanomedicine. This technique has the potential to enhance the ability of nanoparticles to interact with biological systems and deliver drugs or therapeutic agents more effectively in clinical settings. This chapter provides a comprehensive overview of the different types of cells used for membrane coating of nanoparticles, including red blood cells, platelets, white blood cells, stem cells, cancer cells, hybrid cells, and other specialized cell types like beta cells, endothelial cells, fibroblast cells, and bacterial cells. The chapter delves into the origin and function of each of these cell types and highlights the potential applications of cell membrane-coating technology for each.
 :::

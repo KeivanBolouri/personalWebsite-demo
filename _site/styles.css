@@ -153,24 +153,42 @@ ul, ol {
 /* -------------------------------------------------- */
 /*             OPTIONAL CONTENT WRAPPER               */
 /* -------------------------------------------------- */
+/* ------------------------------------------ */
+/*        STYLED TABLE: header + rows         */
+/* ------------------------------------------ */
 
-.main-content {
-  max-width: 850px;
-  padding: 5px 0;
-}
-.small-table table {
-  font-size: 0.80rem;       /* smaller table text */
+.styled-table table {
+  font-size: 0.80rem;        /* smaller text */
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.small-table th {
-  font-size: 0.82rem;       /* slightly larger header text */
+.styled-table th {
+  background-color: #e8eef7;   /* light blue shaded header */
+  color: #0b3d91;
   font-weight: 600;
+  text-align: left;
+  padding: 6px;
+  border-bottom: 2px solid #c8d4e3;
 }
 
-.small-table td {
-  padding: 4px 6px;         /* tighter spacing for compact tables */
+.styled-table td {
+  padding: 5px 6px;           /* compact spacing */
+  vertical-align: top;
 }
 
-.small-table thead tr {
-  background-color: #f1f4f8;   /* optional: light header shading */
+/* alternating background rows */
+.styled-table tr:nth-child(even) {
+  background-color: #f6f8fb;
+}
+
+.styled-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* center the No column */
+.styled-table td:first-child,
+.styled-table th:first-child {
+  text-align: center;
+  width: 40px;
 }

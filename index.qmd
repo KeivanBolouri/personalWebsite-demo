@@ -34,8 +34,6 @@ Welcome to my page!\
 Hello! My name is **Keivan Bolouri**. I am passionate about technology, data, and continuous learning.\
 I enjoy building projects, exploring new tools, and applying what I learn to real-world problems.
 
-Outside of academics, I enjoy **hiking**, **running**, and staying active outdoors.
-
 ------------------------------------------------------------------------
 
 ## Education
@@ -49,4 +47,5 @@ Outside of academics, I enjoy **hiking**, **running**, and staying active outdoo
 
 ------------------------------------------------------------------------
 
+Outside of academics, I enjoy **hiking**, **running**, and staying active outdoors.\
 Feel free to explore my links above to learn more about my work and interests. ✨ Result

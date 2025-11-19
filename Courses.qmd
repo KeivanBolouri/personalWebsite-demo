@@ -1,14 +1,17 @@
 ---
-title: "research"
+title: "Relevant Academic Coursework"
 format: html
 ---
 
 ## 
 
-## Upper Division and Graduate-Level Mathematics & Statistics Courses
+## Coursework Completed and In-Progress
 
+### Upper Division and Graduate-Level Mathematics & Statistics Courses
+
+::: styled-table
 | No. | Course (Number & Title) | Term | Textbook Ref |
-|----------:|---------------------------------------|-----------|-----------|
+|:----------:|-------------------------------------|------------|------------|
 | 1 | MATH 115A – Linear Algebra | Fall 2024 | \[5\] |
 | 2 | STATS 100A – Introduction to Probability | Fall 2024 | \[25\], \[26\] |
 | 3 | MATH 151A – Applied Numerical Methods | Winter 2025 | \[7\] |
@@ -24,46 +27,58 @@ format: html
 | 13 | MATH 171 – Stochastic Processes | Winter 2026 | \[30\] |
 | 14 | STATS 102B – Computation & Optimization for Statistics | Spring 2026 | \[18\] |
 | 15 | MATH 182 – Algorithms | Spring 2026 | \[29\] |
+:::
 
-### 
+\
 
 ## Lower Division Mathematics & Statistics Courses
 
+::: styled-table
 | No. | Course (Number & Title)                    | Term        | Textbook Ref |
-|-----------:|------------------------------------|------------|------------|
-|   1 | MATH-227 – Statistics                      | Winter 2022 | \[27\]       |
-|   2 | MATH-229 – Statistics for Data Science     | Summer 2024 | \[28\]       |
-|   3 | MATH 265 – Calculus I                      | Winter 2022 | \[1\]        |
-|   4 | MATH 266 – Calculus II                     | Spring 2022 | \[1\]        |
-|   5 | MATH 267 – Calculus III                    | Fall 2022   | \[1\]        |
-|   6 | MATH 270 – Linear Algebra                  | Fall 2022   | \[2\]        |
-|   7 | MATH 272 – Methods of Discrete Mathematics | Fall 2023   | \[3\]        |
-|   8 | MATH 275 – Ordinary Differential Equations | Spring 2023 | \[4\]        |
+|:----------:|------------------------------------|------------|------------|
+|  1  | MATH-227 – Statistics                      | Winter 2022 | \[27\]       |
+|  2  | MATH-229 – Statistics for Data Science     | Summer 2024 | \[28\]       |
+|  3  | MATH 265 – Calculus I                      | Winter 2022 | \[1\]        |
+|  4  | MATH 266 – Calculus II                     | Spring 2022 | \[1\]        |
+|  5  | MATH 267 – Calculus III                    | Fall 2022   | \[1\]        |
+|  6  | MATH 270 – Linear Algebra                  | Fall 2022   | \[2\]        |
+|  7  | MATH 272 – Methods of Discrete Mathematics | Fall 2023   | \[3\]        |
+|  8  | MATH 275 – Ordinary Differential Equations | Spring 2023 | \[4\]        |
+:::
 
-###   Textbook References
+::: {.callout-note collapse="true" title="Show Textbook References"}
+## References
 
-\[1\] Stewart. *Calculus: Early Transcendentals*, 8th ed.\
-\[2\] Larson. *Elementary Linear Algebra*, 8th ed.\
-\[3\] Epp. *Discrete Mathematics with Applications*, 5th ed.\
-\[4\] Zill. *Differential Equations*, 11th ed.\
-\[5\] Friedberg, Insel & Spence. *Linear Algebra*, 5th ed.\
-\[7\] Burden, Faires & Burden. *Numerical Analysis*, 10th ed.\
-\[8\] Rice. *Mathematical Statistics and Data Analysis*, 3rd ed.\
-\[9\] Sheather. *Regression with R* (2009).\
-\[10\] Kutner et al. *Applied Linear Statistical Models*, 5th ed.\
-\[11\] Abraham. *Introduction to Regression Modeling*.\
-\[12\] Montgomery. *Design and Analysis of Experiments*, 9th ed.\
-\[13\] Boyd & Vandenberghe. *Convex Optimization* (2004).\
-\[14\] James, Witten, Hastie, Tibshirani. *ISLR*, 2nd ed.\
-\[15\] Robert & Casella. *Introducing Monte Carlo Methods with R*.\
-\[16\] Bishop. *Pattern Recognition and Machine Learning* (2006).\
-\[18\] Qing Zhou. *Course Notes for 102B*.\
-\[21\] Wickham. *Advanced R* (2019).\
-\[22\] Jones, Maillardet & Robinson. *Scientific Programming in R* (2009).\
-\[23\] Chang. *R Graphics Cookbook* (2012).\
-\[24\] Zieffler et al. *Comparing Groups Using R* (2011).\
-\[25\] DeGroot & Schervish. *Probability and Statistics*, 4th ed.\
-\[26\] Hogg, Tanis & Zimmerman. *Probability and Statistical Inference*, 10th ed.\
-\[29\] Kleinberg & Tardos. *Algorithm Design*.\
-\[30\] Durrett. *Essentials of Stochastic Processes*, 2nd ed.\
-\[31\] UCLA Statistics 100C course handouts.
+\[1\] Stewart, James. *Calculus: Early Transcendentals*. 8th ed. Cengage, 2015.\
+\[2\] Larson, Ron. *Elementary Linear Algebra*. 8th ed. Cengage, 2017.\
+\[3\] Epp, Susanna S. *Discrete Mathematics with Applications*. 5th ed. Cengage, 2019.\
+\[4\] Zill, Dennis G. *A First Course in Differential Equations with Modeling Applications*. 11th ed. Cengage, 2018.\
+\[5\] Friedberg, Stephen H., Arnold J. Insel, and Lawrence E. Spence. *Linear Algebra*. 5th ed. Pearson, 2024.\
+\[6\] Ross, Sheldon M. *A First Course in Probability*. 10th ed. Pearson, 2019.\
+\[7\] Burden, Richard L., J. Douglas Faires, and Annette M. Burden. *Numerical Analysis*. 10th ed. Cengage, 2015.\
+\[8\] Rice, John A. *Mathematical Statistics and Data Analysis*. 3rd ed. Cengage, 2006.\
+\[9\] Sheather, Simon J. *A Modern Approach to Regression with R*. Springer, 2009.\
+\[10\] Kutner, Michael H., et al. *Applied Linear Statistical Models*. 5th ed. McGraw-Hill, 2005.\
+\[11\] Abraham, B., and J. Ledolter. *Introduction to Regression Modeling*. Duxbury, 2006.\
+\[12\] Montgomery, Douglas C. *Design and Analysis of Experiments*. 9th ed. Wiley, 2017.\
+\[13\] Boyd, Stephen, and Lieven Vandenberghe. *Convex Optimization*. Cambridge UP, 2004.\
+\[14\] James, Gareth, et al. *An Introduction to Statistical Learning with R*. 2nd ed., Springer, 2021.\
+\[15\] Robert, Christian P., and George Casella. *Introducing Monte Carlo Methods with R*. Springer, 2010.\
+\[16\] Bishop, Christopher M. *Pattern Recognition and Machine Learning*. Springer, 2006.\
+\[17\] Durrett, Rick. *Essentials of Stochastic Processes*. 2nd ed. Springer, 2012.\
+\[18\] Zhou, Qing. *Course Notes for STATS 102B*. UCLA.\
+\[19\] Isaaks, Edward H., and R. Mohan Srivastava. *An Introduction to Applied Geostatistics*. Oxford UP, 1989.\
+\[20\] UCLA Statistics 100C course handouts.\
+<http://www.stat.ucla.edu/~nchristo/statistics100C/>\
+\[21\] Wickham, Hadley. *Advanced R*. 2nd ed. Chapman & Hall/CRC, 2019.\
+\[22\] Jones, O., R. Maillardet, and A. Robinson. *Introduction to Scientific Programming and Simulation Using R*. CRC Press, 2009.\
+\[23\] Chang, Winston. *R Graphics Cookbook*. O’Reilly, 2012.\
+\[24\] Zieffler, Andrew, et al. *Comparing Groups Using R*. Wiley, 2011.\
+\[25\] DeGroot, Morris H., and Mark J. Schervish. *Probability and Statistics*. 4th ed. Pearson, 2012.\
+\[26\] Hogg, Robert V., et al. *Probability and Statistical Inference*. 10th ed. Pearson, 2019.\
+\[27\] Illowsky, Barbara, and Susan Dean. *Introductory Statistics*. 2nd ed. OpenStax, 2022.\
+\[28\] Adhikari, Ani, et al. *Computational and Inferential Thinking*. 2nd ed., 2022.\
+\[29\] Kleinberg, Jon, and Éva Tardos. *Algorithm Design*. Addison-Wesley.\
+\[30\] Durrett, Rick. *Essentials of Stochastic Processes*. 2nd ed. Springer, 2012.\
+\[31\] UCLA Statistics 100C handouts.
+:::

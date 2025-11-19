@@ -14,4 +14,163 @@
 .text-justify {
   text-align: justify;
 }
+/* Header background color */
+.navbar {
+  background-color: #0b3d91 !important; /* Deep academic blue */
+  border-bottom: 2px solid #072c6b;
+}
 
+/* Navbar brand / name */
+.navbar-brand {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+/* Navbar links (Home, About, Research…) */
+.navbar-nav .nav-link {
+  color: #e6e6e6 !important;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hover effect */
+.navbar-nav .nav-link:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+}
+
+/* Active page highlight */
+.navbar-nav .nav-link.active {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+}
+
+/* ----------------------------- */
+/*   RIGHT SIDE HEADER LINKS     */
+/* (GitHub – Email – CV – GS)    */
+/* ----------------------------- */
+
+.header-links a {
+  color: #e6e6e6 !important;
+  margin-left: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.header-links a:hover {
+  color: #ffffff !important;
+}
+
+/* Optional: Add slight spacing below header */
+header.navbar {
+  margin-bottom: 25px;
+}
+
+
+/* Global body text */
+body {
+  font-family: "Merriweather", "Georgia", serif;   /* formal academic feel */
+  font-size: 0.95rem;                              /* smaller and cleaner */
+  line-height: 1.65;
+  color: #1f1f1f;
+}
+
+/* -------------------------------------------------- */
+/*                     HEADINGS                       */
+/* -------------------------------------------------- */
+
+/* Main page title */
+h1 {
+  font-family: "Merriweather", "Georgia", serif;
+  font-size: 1.8rem;            /* smaller than before */
+  font-weight: 700;
+  color: #0b3d91;
+  margin-bottom: 0.75rem;
+}
+
+/* Section headers */
+h2 {
+  font-family: "Merriweather", "Georgia", serif;
+  font-size: 1.35rem;           /* more formal, not oversized */
+  font-weight: 600;
+  color: #0b3d91;
+  margin-top: 1.6rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #d7d7d7;
+  padding-bottom: 3px;
+}
+
+/* Sub-sections */
+h3 {
+  font-family: "Merriweather", "Georgia", serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #0b3d91;
+}
+
+/* -------------------------------------------------- */
+/*                PARAGRAPH TEXT                      */
+/* -------------------------------------------------- */
+
+p {
+  font-size: 0.95rem;        /* smaller */
+  color: #2a2a2a;
+  margin-bottom: 0.7rem;
+  max-width: 800px;
+}
+
+/* -------------------------------------------------- */
+/*                     LINKS                           */
+/* -------------------------------------------------- */
+
+a {
+  color: #0b3d91;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #072c6b;
+}
+
+/* -------------------------------------------------- */
+/*                   LIST STYLING                      */
+/* -------------------------------------------------- */
+
+ul, ol {
+  font-size: 0.95rem;
+  padding-left: 1.2rem;
+  line-height: 1.55;
+}
+
+/* -------------------------------------------------- */
+/*             OPTIONAL CONTENT WRAPPER               */
+/* -------------------------------------------------- */
+
+.main-content {
+  max-width: 850px;
+  padding: 5px 0;
+}
+.small-table table {
+  font-size: 0.80rem;       /* smaller table text */
+}
+
+.small-table th {
+  font-size: 0.82rem;       /* slightly larger header text */
+  font-weight: 600;
+}
+
+.small-table td {
+  padding: 4px 6px;         /* tighter spacing for compact tables */
+}
+
+.small-table thead tr {
+  background-color: #f1f4f8;   /* optional: light header shading */
+}

@@ -3,7 +3,7 @@ title: "Keivan Bolouri"
 
 about:
   template: trestles
-  image: "u.png"
+  image: "ke.jpg"
   image-width: 15em
   image-shape: rounded
   links:

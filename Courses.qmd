@@ -1,0 +1,54 @@
+---
+title: "research"
+format: html
+---
+
+## 
+
+## Upper Division and Graduate-Level Mathematics & Statistics Courses
+
+| No. | Course (Number & Title) | Term | Textbook Ref |
+|----------:|---------------------------------------|-----------|-----------|
+| 1 | MATH 115A – Linear Algebra | Fall 2024 | \[5\] |
+| 2 | STATS 100A – Introduction to Probability | Fall 2024 | \[25\], \[26\] |
+| 3 | MATH 151A – Applied Numerical Methods | Winter 2025 | \[7\] |
+| 4 | STATS 100B – Mathematical Statistics | Winter 2025 | \[8\] |
+| 5 | STATS 101A – Data Analysis & Regression | Winter 2025 | \[9\], \[10\] |
+| 6 | STATS 100C – Linear Models | Spring 2025 | \[11\], \[31\] |
+| 7 | STATS 101B – Design & Analysis of Experiments | Spring 2025 | \[12\] |
+| 8 | STATS 102A – Intro to Computational Statistics (R) | Summer 2025 | \[21\], \[22\], \[23\], \[24\] |
+| 9 | MATH 164 – Optimization | Fall 2025 | \[13\] |
+| 10 | STATS 101C – Statistical Models & Data Mining | Fall 2025 | \[14\] |
+| 11 | STATS 102C – Monte Carlo Methods | Fall 2025 | \[15\] |
+| 12 | MATH 156 – Machine Learning | Winter 2026 | \[16\] |
+| 13 | MATH 171 – Stochastic Processes | Winter 2026 | \[30\] |
+| 14 | STATS 102B – Computation & Optimization for Statistics | Spring 2026 | \[18\] |
+| 15 | MATH 182 – Algorithms | Spring 2026 | \[29\] |
+
+### Textbook References
+
+\[1\] Stewart. *Calculus: Early Transcendentals*, 8th ed.\
+\[2\] Larson. *Elementary Linear Algebra*, 8th ed.\
+\[3\] Epp. *Discrete Mathematics with Applications*, 5th ed.\
+\[4\] Zill. *Differential Equations*, 11th ed.\
+\[5\] Friedberg, Insel & Spence. *Linear Algebra*, 5th ed.\
+\[7\] Burden, Faires & Burden. *Numerical Analysis*, 10th ed.\
+\[8\] Rice. *Mathematical Statistics and Data Analysis*, 3rd ed.\
+\[9\] Sheather. *Regression with R* (2009).\
+\[10\] Kutner et al. *Applied Linear Statistical Models*, 5th ed.\
+\[11\] Abraham. *Introduction to Regression Modeling*.\
+\[12\] Montgomery. *Design and Analysis of Experiments*, 9th ed.\
+\[13\] Boyd & Vandenberghe. *Convex Optimization* (2004).\
+\[14\] James, Witten, Hastie, Tibshirani. *ISLR*, 2nd ed.\
+\[15\] Robert & Casella. *Introducing Monte Carlo Methods with R*.\
+\[16\] Bishop. *Pattern Recognition and Machine Learning* (2006).\
+\[18\] Qing Zhou. *Course Notes for 102B*.\
+\[21\] Wickham. *Advanced R* (2019).\
+\[22\] Jones, Maillardet & Robinson. *Scientific Programming in R* (2009).\
+\[23\] Chang. *R Graphics Cookbook* (2012).\
+\[24\] Zieffler et al. *Comparing Groups Using R* (2011).\
+\[25\] DeGroot & Schervish. *Probability and Statistics*, 4th ed.\
+\[26\] Hogg, Tanis & Zimmerman. *Probability and Statistical Inference*, 10th ed.\
+\[29\] Kleinberg & Tardos. *Algorithm Design*.\
+\[30\] Durrett. *Essentials of Stochastic Processes*, 2nd ed.\
+\[31\] UCLA Statistics 100C course handouts.

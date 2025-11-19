@@ -4,15 +4,15 @@ project:
     - cv.pdf
 
 website:
-  title: "PersonalWebsite"
+  
   navbar:
     left:
       - href: index.qmd
         text: Home
       - href: about.qmd
         text: About
-      - href: research.qmd
-        text: Research
+      - href: Courses.qmd
+        text: Coursework 
       - href: Projects.qmd
         text: Projects
 

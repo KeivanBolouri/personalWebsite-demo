@@ -25,7 +25,22 @@ format: html
 | 14 | STATS 102B – Computation & Optimization for Statistics | Spring 2026 | \[18\] |
 | 15 | MATH 182 – Algorithms | Spring 2026 | \[29\] |
 
-### Textbook References
+### 
+
+## Lower Division Mathematics & Statistics Courses
+
+| No. | Course (Number & Title)                    | Term        | Textbook Ref |
+|-----------:|------------------------------------|------------|------------|
+|   1 | MATH-227 – Statistics                      | Winter 2022 | \[27\]       |
+|   2 | MATH-229 – Statistics for Data Science     | Summer 2024 | \[28\]       |
+|   3 | MATH 265 – Calculus I                      | Winter 2022 | \[1\]        |
+|   4 | MATH 266 – Calculus II                     | Spring 2022 | \[1\]        |
+|   5 | MATH 267 – Calculus III                    | Fall 2022   | \[1\]        |
+|   6 | MATH 270 – Linear Algebra                  | Fall 2022   | \[2\]        |
+|   7 | MATH 272 – Methods of Discrete Mathematics | Fall 2023   | \[3\]        |
+|   8 | MATH 275 – Ordinary Differential Equations | Spring 2023 | \[4\]        |
+
+###   Textbook References
 
 \[1\] Stewart. *Calculus: Early Transcendentals*, 8th ed.\
 \[2\] Larson. *Elementary Linear Algebra*, 8th ed.\

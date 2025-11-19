@@ -1,5 +1,7 @@
 ---
 title: "Project2"
+image: "Images/OIP.jpg"
 format: html
 ---
 
+![](Images/OIP.jpg)

@@ -27,4 +27,26 @@ toc: false
 ---
 
 \
-Welcome to my page!
+Welcome to my page!\
+
+## About me
+
+Hello! My name is **Keivan Bolouri**. I am passionate about technology, data, and continuous learning.\
+I enjoy building projects, exploring new tools, and applying what I learn to real-world problems.
+
+Outside of academics, I enjoy **hiking**, **running**, and staying active outdoors.
+
+------------------------------------------------------------------------
+
+## Education
+
+-   **University of California, Los Angeles (UCLA)**\
+    *Bachelor of Science (in progress)*\
+    Focus areas: computer science, data analysis, and applied problem-solving.
+
+-   **Additional coursework and self-study:**\
+    Programming, research, and independent technical projects.
+
+------------------------------------------------------------------------
+
+Feel free to explore my links above to learn more about my work and interests. ✨ Result

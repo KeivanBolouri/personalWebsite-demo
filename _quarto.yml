@@ -13,6 +13,12 @@ website:
         text: About
       - href: research.qmd
         text: Research
+      - href: Projects.qmd
+        text: Projects
+
+  page-footer:
+    right: "&copy;© 2025 Keivan Bolouri"
+    
 
 format:
   html:

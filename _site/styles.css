@@ -1,1 +1,14 @@
-/* css styles */
+/* Quarto footer styling */
+.footer, .nav-footer {
+  font-size: 0.8rem !important;
+  color: #2774AE !important;  /* UCLA blue */
+  text-align: right !important;
+  padding: 1rem 0 !important;
+}
+
+.quarto-grid .card-img-top {
+  width: 100%;
+  height: auto;          /* let height adjust to the image */
+  object-fit: contain;   /* show the whole image */
+}
+

@@ -1,18 +1,25 @@
 ---
+title: "Projects"
 toc: false
+page-layout: full
 listing:
   - id: project-listings
-    contents:
-      - "projects/*.qmd"
-    type: grid          # cards layout
+    contents: "Projects/*.qmd"
+    type: grid
+    sort: false
     sort-ui: false
     filter-ui: true
-    categories: false
+    categories: true
+    fields:
+      - image
+      - title
+      - subtitle
+      - description
+      - author
+      - date
 ---
 
-::: project-listings
+## 
+
+::: listing-display
 :::
-
-## Project 1
-
-Here is my [project 1](projects/project1.html) Here is my [project 2](projects/project2.html)

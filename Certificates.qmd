@@ -1,0 +1,77 @@
+---
+title: "Certificates"
+format: html
+---
+
+::: {.slideshow-container}
+<div class="slideshow">
+
+  <div class="slide">
+    <img src="Supervise.jpg">
+  </div>
+
+  <div class="slide">
+    <img src="Machin.jpg">
+  </div>
+
+  <div class="slide">
+    <img src="Advan.jpg">
+  </div>
+
+  <div class="slide">
+    <img src="Unsup.jpg">
+  </div>
+
+  <div class="slide">
+    <img src="Supervise.jpg">
+  </div>
+
+</div>
+:::
+
+<style>
+/* LARGE slideshow container */
+.slideshow {
+  position: relative;
+  width: 900px;    /* large width */
+  height: 650px;   /* large height */
+  overflow: hidden;
+  margin: auto;    /* centers on page */
+}
+
+/* Each slide */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 900px;
+  height: 650px;
+  opacity: 0;
+  animation: fade 15s infinite;  /* 5 images × 3 seconds = 15 seconds total */
+}
+
+/* Large certificate images */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* keeps certificate readable */
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Animation delays for each slide */
+.slide:nth-child(1) { animation-delay: 0s; }
+.slide:nth-child(2) { animation-delay: 3s; }
+.slide:nth-child(3) { animation-delay: 6s; }
+.slide:nth-child(4) { animation-delay: 9s; }
+.slide:nth-child(5) { animation-delay: 12s; }
+
+/* Fade animation */
+@keyframes fade {
+  0% { opacity: 1; }
+  18% { opacity: 1; }
+  20% { opacity: 0; }
+  100% { opacity: 0; }
+}
+</style>

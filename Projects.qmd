@@ -15,11 +15,11 @@ listing:
       - title
       - subtitle
       - description
-      - author
       - date
 ---
 
-## 
+```         
+```
 
 ::: listing-display
 :::

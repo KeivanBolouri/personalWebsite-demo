@@ -13,9 +13,11 @@ website:
         text: Coursework 
       - href: Projects.qmd
         text: Projects
+      - href: Certificates.qmd
+        text: Certificates
 
   page-footer:
-    right: "&copy;© 2025 Keivan Bolouri"
+    right: "© 2025 Keivan Bolouri"
     
 
 format:

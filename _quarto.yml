@@ -16,6 +16,7 @@ website:
       - href: Certificates.qmd
         text: Certificates
 
+
   page-footer:
     right: "© 2025 Keivan Bolouri"
     

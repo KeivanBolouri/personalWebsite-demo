@@ -7,12 +7,18 @@ image: "Images/colid.jpg"  # for listings
 
 ![](Images/Colid.jpg){width="185"}
 
-::: text-justify
+<div>
+
+<div>
+
 Abstract
-:::
+
+</div>
 
 ::: text-justify
 \
 \
 Tissue engineering and regenerative medicine have solved numerous problems related to the repair and regeneration of damaged organs and tissues arising from aging, illnesses, and injuries. Nanotechnology has further aided tissue regeneration science and has provided outstanding opportunities to help disease diagnosis as well as treat damaged tissues. Based on the most recent findings, magnetic nanostructures (MNSs), in particular, have emerged as promising materials for detecting, directing, and supporting tissue regeneration. There have been many reports concerning the role of these nano-building blocks in the regeneration of both soft and hard tissues, but the subject has not been extensively reviewed. Here, we review, classify, and discuss various synthesis strategies for novel MNSs used in medicine. Advanced applications of magnetic nanocomposites (MG-NCs), specifically magnetic nanostructures, are further systematically reviewed. In addition, the scientific and technical aspects of MG-NC used in medicine are discussed considering the requirements for the field. In summary, this review highlights the numerous opportunities and challenges associated with the use of MG-NCs as smart nanocomposites (NCs) in tissue engineering and regenerative medicine.
 :::
+
+</div>

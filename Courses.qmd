@@ -11,7 +11,7 @@ format: html
 
 ::: styled-table
 | No. | Course (Number & Title) | Term | Textbook Ref |
-|:--------------:|-------------------------|----------------|----------------|
+|:--:|----|----|----|
 | 1 | MATH 115A – Linear Algebra | Fall 2024 | \[5\] |
 | 2 | STATS 100A – Introduction to Probability | Fall 2024 | \[25\], \[26\] |
 | 3 | MATH 151A – Applied Numerical Methods | Winter 2025 | \[7\] |
@@ -35,7 +35,7 @@ format: html
 
 ::: styled-table
 | No. | Course (Number & Title)                    | Term        | Textbook Ref |
-|:--------------:|-------------------------|----------------|----------------|
+|:---:|--------------------------------------------|-------------|--------------|
 |  1  | MATH-227 – Statistics                      | Winter 2022 | \[27\]       |
 |  2  | MATH-229 – Statistics for Data Science     | Summer 2024 | \[28\]       |
 |  3  | MATH 265 – Calculus I                      | Winter 2022 | \[1\]        |
@@ -45,10 +45,6 @@ format: html
 |  7  | MATH 272 – Methods of Discrete Mathematics | Fall 2023   | \[3\]        |
 |  8  | MATH 275 – Ordinary Differential Equations | Spring 2023 | \[4\]        |
 :::
-
-<div>
-
-</div>
 
 ::: {.callout-note collapse="true" title="Show Textbook References"}
 ## References

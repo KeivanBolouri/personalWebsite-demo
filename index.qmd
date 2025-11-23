@@ -38,14 +38,15 @@ I enjoy building projects, exploring new tools, and applying what I learn to rea
 
 ## Education
 
--   **University of California, Los Angeles (UCLA)**\
-    *Bachelor of Science (in progress)*\
-    Focus areas: computer science, data analysis, and applied problem-solving.
+-   **University of California, Los Angeles (UCLA)**
 
--   **Additional coursework and self-study:**\
-    Programming, research, and independent technical projects.
+    ::: text-justify
+
+    I’m currently pursuing a B.S. in Statistics and Data Science at UCLA, where I focus on turning complex data into clear, actionable insights. Alongside core training in statistical modeling and algorithmic thinking, I’m especially interested in **statistical genetics** and **computational biology**—fields that let me explore how data can reveal the patterns and mechanisms behind biological systems.
+
+    :::
 
 ------------------------------------------------------------------------
 
 Outside of academics, I enjoy **hiking**, **running**, and staying active outdoors.\
-Feel free to explore my links above to learn more about my work and interests. ✨ Result
+Feel free to explore my links above to learn more about my work and interests. ✨

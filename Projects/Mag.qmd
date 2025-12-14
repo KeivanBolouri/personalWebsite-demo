@@ -1,8 +1,10 @@
 ---
 title: "Magnetic nanocomposites for biomedical applications"
-subtitle: "01/01/2022"
-authors: "Mina Naghdi, Mahsa Ghovvati, Navid Rabiee, Sepideh Ahmadi, Nikzad Abbariki, Soheil Sojdeh, Amirhossein Ojaghi, Mojtaba Bagherzadeh, Omid Akhavan, Esmaeel Sharifi, Mohammad Rabiee, Mohammad Reza Saeb, Keivan Bolouri, Thomas J Webster, Ehsan Nazarzadeh Zare, Ali Zarrabi"
-image: "Images/colid.jpg"  # for listings
+description: "A comprehensive review of magnetic nanocomposites and their biomedical applications, including diagnostics, drug delivery, and tissue engineering."
+author: "Mina Naghdi, Mahsa Ghovvati, Navid Rabiee, Sepideh Ahmadi, Nikzad Abbariki, Soheil Sojdeh, Amirhossein Ojaghi, Mojtaba Bagherzadeh, Omid Akhavan, Esmaeel Sharifi, Mohammad Rabiee, Mohammad Reza Saeb, Keivan Bolouri, Thomas J. Webster, Ehsan Nazarzadeh Zare, Ali Zarrabi"
+date: 2022-01-01
+categories: [Nanocomposites, Biomaterials, Biomedical Applications]
+image: "Images/colid.jpg"
 ---
 
 ![](Images/Colid.jpg){width="185"}

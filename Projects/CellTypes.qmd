@@ -1,8 +1,10 @@
 ---
 title: "Cell Types: Origin and Function"
-subtitle: "01/01/2024"
-authors: "Mahsa Ghovvati, Masoumeh Alsadat Hosseini, Mahshid Kharaziha, Naoki Kaneko, Keivan Bolouri"
-image: "Images/Cell.jpg"  # for listings
+description: "An overview of cell types, their origins, and functional roles in biological systems, with relevance to tissue engineering and regenerative medicine."
+author: "Mahsa Ghovvati, Masoumeh Alsadat Hosseini, Mahshid Kharaziha, Naoki Kaneko, Keivan Bolouri"
+date: 2024-01-01
+categories: [Cell Biology, Tissue Engineering, Regenerative Medicine]
+image: "Images/Cell.jpg"
 ---
 
 ![](Images/Cell.jpg){width="176"}

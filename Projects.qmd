@@ -1,21 +1,21 @@
 ---
-title: " Research Projects"
-toc: false
-page-layout: full
+title: "My Projects"
+format:
+  html:
+    include-after-body: shorten-authors.html
 listing:
-  - id: project-listings
-    contents: "Projects/*.qmd"
-    type: default
+  - id: projects-listing
+    contents:
+      - "Metal.qmd"
+      - "Mag.qmd"
+      - "Harness.qmd"
+      - "CellTypes.qmd"
+      - "Ad.qmd"
+    type: grid
     sort: false
-    sort-ui: false
+    sort-ui: true
     filter-ui: true
-    categories: true
-    fields:
-      - image
-      - title
-      - subtitle
-      - description
-      - date
+    fields: [image, title, categories, description, author, date]
 ---
 
 ```         

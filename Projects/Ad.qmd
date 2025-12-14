@@ -1,8 +1,14 @@
 ---
 title: "Advances in electroconductive polymers for biomedical sector: structure and properties"
-subtitle: "01/05/2023"
-authors: "Mahsa Ghovvati, Lea Guo, Keivan Bolouri, Naoki Kaneko"
-image: "Images/Ad.jpg"  # for listings
+description: "A review of electroconductive polymers used in biomedical applications, focusing on structure–property relationships and recent advances."
+author: "Mahsa Ghovvati, Lea Guo, Keivan Bolouri, Naoki Kaneko"
+date: 2023-01-05
+categories: [Biomaterials, Polymers, Biomedical]
+image: "Images/Ad.jpg"
+
+format:
+  html:
+    date-format: "MMM D, YYYY"
 ---
 
 ![](Images/Ad.jpg){width="189"}

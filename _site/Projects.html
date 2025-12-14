@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Research Projects</title>
+<title>My Projects</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,20 +73,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-project-listings .list');
+    const listingTargetEl = window.document.querySelector('#listing-projects-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-image','listing-title','listing-subtitle','listing-description','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-title','listing-categories','listing-description','listing-author','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-project-listings'] = new List('listing-project-listings', options);
+    window['quarto-listings']['listing-projects-listing'] = new List('listing-projects-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -173,22 +173,29 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Research Projects</h1>
+<h1 class="title">My Projects</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta">
 
     
   
@@ -208,128 +215,203 @@ window.Quarto = {
 
 </section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-project-listings">
+<div class="quarto-listing quarto-listing-container-grid" id="listing-projects-listing">
 <div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-projects-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-projects-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title" data-direction="asc">
+        Title
+      </option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+      <option value="listing-author" data-direction="asc">
+        Author
+      </option>
+    </select>
+  </div>
     <div class="input-group input-group-sm quarto-listing-filter">
       <span class="input-group-text"><i class="bi bi-search"></i></span>
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1763928106633" data-listing-reading-time-sort="2" data-listing-word-count-sort="203">
-<div class="thumbnail"><a href="./Projects/Ad.html" class="no-external">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="QmlvbWF0ZXJpYWxzJTJDVGlzc3VlJTIwRW5naW5lZXJpbmclMkNSZWdlbmVyYXRpdmUlMjBNZWRpY2luZQ==" data-listing-date-sort="1704096000000" data-listing-file-modified-sort="1765702997197" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="228">
+<a href="./Projects/Metal.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./Projects/Images/Me.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Metal-Organic Frameworks in Bone Regeneration
+</h5>
+<div class="listing-categories">
 
-<img loading="lazy" src="./Projects/Images/Ad.jpg" class="thumbnail-image">
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvbWF0ZXJpYWxz'); return false;">Biomaterials</div>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Projects/Ad.html" class="no-external">Advances in electroconductive polymers for biomedical sector: structure and properties</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Projects/Ad.html" class="no-external">01/05/2023</a>
-</div>
-<div class="delink listing-description"><a href="./Projects/Ad.html" class="no-external">
-Abstract
-</a></div>
-</div>
-<div class="metadata">
-<a href="./Projects/Ad.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1763929150493" data-listing-reading-time-sort="1" data-listing-word-count-sort="158">
-<div class="thumbnail"><a href="./Projects/CellTypes.html" class="no-external">
+<div class="listing-category" onclick="window.quartoListingCategory('VGlzc3VlJTIwRW5naW5lZXJpbmc='); return false;">Tissue Engineering</div>
 
-<img loading="lazy" src="./Projects/Images/Cell.jpg" class="thumbnail-image">
+<div class="listing-category" onclick="window.quartoListingCategory('UmVnZW5lcmF0aXZlJTIwTWVkaWNpbmU='); return false;">Regenerative Medicine</div>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Projects/CellTypes.html" class="no-external">Cell Types: Origin and Function</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Projects/CellTypes.html" class="no-external">01/01/2024</a>
 </div>
-<div class="delink listing-description"><a href="./Projects/CellTypes.html" class="no-external">
-Abstract
-</a></div>
+<div class="card-text listing-description delink">
+<p>An overview of metal-organic frameworks and their applications in bone regeneration and tissue engineering.</p>
 </div>
-<div class="metadata">
-<a href="./Projects/CellTypes.html" class="no-external">
-</a>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Mahsa Ghovvati, Keivan Bolouri, Naoki Kaneko, Ehsan Nazarzadeh Zare
+</div>
+<div class="listing-date">
+Jan 1, 2024
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1763928968396" data-listing-reading-time-sort="1" data-listing-word-count-sort="187">
-<div class="thumbnail"><a href="./Projects/Harness.html" class="no-external">
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="TmFub2NvbXBvc2l0ZXMlMkNCaW9tYXRlcmlhbHMlMkNCaW9tZWRpY2FsJTIwQXBwbGljYXRpb25z" data-listing-date-sort="1641024000000" data-listing-file-modified-sort="1765703284130" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="181">
+<a href="./Projects/Mag.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./Projects/Images/colid.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Magnetic nanocomposites for biomedical applications
+</h5>
+<div class="listing-categories">
 
-<img loading="lazy" src="./Projects/Images/Ha.jpg" class="thumbnail-image">
+<div class="listing-category" onclick="window.quartoListingCategory('TmFub2NvbXBvc2l0ZXM='); return false;">Nanocomposites</div>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Projects/Harness.html" class="no-external">Harnessing the Power of Electroconductive Polymers for Breakthroughs in Tissue Engineering and Regenerative Medicine</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Projects/Harness.html" class="no-external">01/09/2023</a>
-</div>
-<div class="delink listing-description"><a href="./Projects/Harness.html" class="no-external">
-<strong><br>
-Abstract</strong>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./Projects/Harness.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1763928615910" data-listing-reading-time-sort="1" data-listing-word-count-sort="181">
-<div class="thumbnail"><a href="./Projects/Mag.html" class="no-external">
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvbWF0ZXJpYWxz'); return false;">Biomaterials</div>
 
-<img loading="lazy" src="./Projects/Images/colid.jpg" class="thumbnail-image">
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvbWVkaWNhbCUyMEFwcGxpY2F0aW9ucw=='); return false;">Biomedical Applications</div>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Projects/Mag.html" class="no-external">Magnetic nanocomposites for biomedical applications</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Projects/Mag.html" class="no-external">01/01/2022</a>
 </div>
-<div class="delink listing-description"><a href="./Projects/Mag.html" class="no-external">
-Abstract
-</a></div>
+<div class="card-text listing-description delink">
+<p>A comprehensive review of magnetic nanocomposites and their biomedical applications, including diagnostics, drug delivery, and tissue engineering.</p>
 </div>
-<div class="metadata">
-<a href="./Projects/Mag.html" class="no-external">
-</a>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Mina Naghdi, Mahsa Ghovvati, Navid Rabiee, Sepideh Ahmadi, Nikzad Abbariki, Soheil Sojdeh, Amirhossein Ojaghi, Mojtaba Bagherzadeh, Omid Akhavan, Esmaeel Sharifi, Mohammad Rabiee, Mohammad Reza Saeb, Keivan Bolouri, Thomas J. Webster, Ehsan Nazarzadeh Zare, Ali Zarrabi
+</div>
+<div class="listing-date">
+Jan 1, 2022
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1763929161113" data-listing-reading-time-sort="2" data-listing-word-count-sort="228">
-<div class="thumbnail"><a href="./Projects/Metal.html" class="no-external">
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="RWxlY3Ryb2NvbmR1Y3RpdmUlMjBQb2x5bWVycyUyQ1Rpc3N1ZSUyMEVuZ2luZWVyaW5nJTJDUmVnZW5lcmF0aXZlJTIwTWVkaWNpbmU=" data-listing-date-sort="1693551600000" data-listing-file-modified-sort="1765703650362" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="187">
+<a href="./Projects/Harness.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./Projects/Images/Ha.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Harnessing the Power of Electroconductive Polymers for Breakthroughs in Tissue Engineering and Regenerative Medicine
+</h5>
+<div class="listing-categories">
 
-<img loading="lazy" src="./Projects/Images/Me.jpg" class="thumbnail-image">
+<div class="listing-category" onclick="window.quartoListingCategory('RWxlY3Ryb2NvbmR1Y3RpdmUlMjBQb2x5bWVycw=='); return false;">Electroconductive Polymers</div>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Projects/Metal.html" class="no-external">Metal-Organic Frameworks in Bone Regeneration</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Projects/Metal.html" class="no-external">01/01/2024</a>
+<div class="listing-category" onclick="window.quartoListingCategory('VGlzc3VlJTIwRW5naW5lZXJpbmc='); return false;">Tissue Engineering</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVnZW5lcmF0aXZlJTIwTWVkaWNpbmU='); return false;">Regenerative Medicine</div>
+
 </div>
-<div class="delink listing-description"><a href="./Projects/Metal.html" class="no-external">
-Abstract
-</a></div>
+<div class="card-text listing-description delink">
+<p>An in-depth review of electroconductive polymers and their transformative role in tissue engineering and regenerative medicine.</p>
 </div>
-<div class="metadata">
-<a href="./Projects/Metal.html" class="no-external">
-</a>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Mahsa Ghovvati, Keivan Bolouri, Lea Guo, Naoki Kaneko, Xuru Jin, Yi Xu, Zhidan Hua, Ying Lei
 </div>
+<div class="listing-date">
+Sep 1, 2023
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="Q2VsbCUyMEJpb2xvZ3klMkNUaXNzdWUlMjBFbmdpbmVlcmluZyUyQ1JlZ2VuZXJhdGl2ZSUyME1lZGljaW5l" data-listing-date-sort="1704096000000" data-listing-file-modified-sort="1765704596810" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="158">
+<a href="./Projects/CellTypes.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./Projects/Images/Cell.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Cell Types: Origin and Function
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2VsbCUyMEJpb2xvZ3k='); return false;">Cell Biology</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VGlzc3VlJTIwRW5naW5lZXJpbmc='); return false;">Tissue Engineering</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVnZW5lcmF0aXZlJTIwTWVkaWNpbmU='); return false;">Regenerative Medicine</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>An overview of cell types, their origins, and functional roles in biological systems, with relevance to tissue engineering and regenerative medicine.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Mahsa Ghovvati, Masoumeh Alsadat Hosseini, Mahshid Kharaziha, Naoki Kaneko, Keivan Bolouri
+</div>
+<div class="listing-date">
+Jan 1, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="QmlvbWF0ZXJpYWxzJTJDUG9seW1lcnMlMkNCaW9tZWRpY2Fs" data-listing-date-sort="1672905600000" data-listing-file-modified-sort="1765702309512" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="203">
+<a href="./Projects/Ad.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./Projects/Images/Ad.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Advances in electroconductive polymers for biomedical sector: structure and properties
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvbWF0ZXJpYWxz'); return false;">Biomaterials</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9seW1lcnM='); return false;">Polymers</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvbWVkaWNhbA=='); return false;">Biomedical</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>A review of electroconductive polymers used in biomedical applications, focusing on structure–property relationships and recent advances.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Mahsa Ghovvati, Lea Guo, Keivan Bolouri, Naoki Kaneko
+</div>
+<div class="listing-date">
+Jan 5, 2023
+</div>
+</div>
+</div>
+</div></a>
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div></main> <!-- /main -->
+<script src="shorten-authors.js"></script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

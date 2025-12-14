@@ -1,4 +1,7 @@
-/* Quarto footer styling */
+/* ============================= */
+/*        FOOTER STYLING         */
+/* ============================= */
+
 .footer, .nav-footer {
   font-size: 0.8rem !important;
   color: #2774AE !important;  /* UCLA blue */
@@ -6,28 +9,29 @@
   padding: 1rem 0 !important;
 }
 
-.quarto-grid .card-img-top {
-  width: 100%;
-  height: auto;          /* let height adjust to the image */
-  object-fit: contain;   /* show the whole image */
-}
+/* ============================= */
+/*        GENERAL HELPERS        */
+/* ============================= */
+
 .text-justify {
   text-align: justify;
 }
-/* Header background color */
+
+/* ============================= */
+/*             NAVBAR            */
+/* ============================= */
+
 .navbar {
   background-color: #0b3d91 !important; /* Deep academic blue */
   border-bottom: 2px solid #072c6b;
 }
 
-/* Navbar brand / name */
 .navbar-brand {
   color: #ffffff !important;
   font-weight: 600;
   font-size: 1.15rem;
 }
 
-/* Navbar links (Home, About, Research…) */
 .navbar-nav .nav-link {
   color: #e6e6e6 !important;
   font-weight: 500;
@@ -35,25 +39,19 @@
   transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-/* Hover effect */
 .navbar-nav .nav-link:hover {
   color: #ffffff !important;
   background-color: rgba(255, 255, 255, 0.15);
   border-radius: 6px;
 }
 
-/* Active page highlight */
 .navbar-nav .nav-link.active {
   color: #ffffff !important;
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: 6px;
 }
 
-/* ----------------------------- */
-/*   RIGHT SIDE HEADER LINKS     */
-/* (GitHub – Email – CV – GS)    */
-/* ----------------------------- */
-
+/* Right-side header links (GitHub – Email – CV – GS) */
 .header-links a {
   color: #e6e6e6 !important;
   margin-left: 1rem;
@@ -66,37 +64,33 @@
   color: #ffffff !important;
 }
 
-/* Optional: Add slight spacing below header */
+/* Optional: spacing below header */
 header.navbar {
   margin-bottom: 25px;
 }
 
+/* ============================= */
+/*         TYPOGRAPHY            */
+/* ============================= */
 
-/* Global body text */
 body {
-  font-family: "Merriweather", "Georgia", serif;   /* formal academic feel */
-  font-size: 0.95rem;                              /* smaller and cleaner */
+  font-family: "Merriweather", "Georgia", serif;
+  font-size: 0.95rem;
   line-height: 1.65;
   color: #1f1f1f;
 }
 
-/* -------------------------------------------------- */
-/*                     HEADINGS                       */
-/* -------------------------------------------------- */
-
-/* Main page title */
 h1 {
   font-family: "Merriweather", "Georgia", serif;
-  font-size: 1.8rem;            /* smaller than before */
+  font-size: 1.8rem;
   font-weight: 700;
   color: #0b3d91;
   margin-bottom: 0.75rem;
 }
 
-/* Section headers */
 h2 {
   font-family: "Merriweather", "Georgia", serif;
-  font-size: 1.35rem;           /* more formal, not oversized */
+  font-size: 1.35rem;
   font-weight: 600;
   color: #0b3d91;
   margin-top: 1.6rem;
@@ -105,7 +99,6 @@ h2 {
   padding-bottom: 3px;
 }
 
-/* Sub-sections */
 h3 {
   font-family: "Merriweather", "Georgia", serif;
   font-size: 1.15rem;
@@ -114,20 +107,12 @@ h3 {
   color: #0b3d91;
 }
 
-/* -------------------------------------------------- */
-/*                PARAGRAPH TEXT                      */
-/* -------------------------------------------------- */
-
 p {
-  font-size: 0.95rem;        /* smaller */
+  font-size: 0.95rem;
   color: #2a2a2a;
   margin-bottom: 0.7rem;
   max-width: 800px;
 }
-
-/* -------------------------------------------------- */
-/*                     LINKS                           */
-/* -------------------------------------------------- */
 
 a {
   color: #0b3d91;
@@ -140,31 +125,24 @@ a:hover {
   color: #072c6b;
 }
 
-/* -------------------------------------------------- */
-/*                   LIST STYLING                      */
-/* -------------------------------------------------- */
-
 ul, ol {
   font-size: 0.95rem;
   padding-left: 1.2rem;
   line-height: 1.55;
 }
 
-/* -------------------------------------------------- */
-/*             OPTIONAL CONTENT WRAPPER               */
-/* -------------------------------------------------- */
-/* ------------------------------------------ */
-/*        STYLED TABLE: header + rows         */
-/* ------------------------------------------ */
+/* ============================= */
+/*        TABLE STYLING          */
+/* ============================= */
 
 .styled-table table {
-  font-size: 0.80rem;        /* smaller text */
+  font-size: 0.80rem;
   border-collapse: collapse;
   width: 100%;
 }
 
 .styled-table th {
-  background-color: #e8eef7;   /* light blue shaded header */
+  background-color: #e8eef7;
   color: #0b3d91;
   font-weight: 600;
   text-align: left;
@@ -173,11 +151,10 @@ ul, ol {
 }
 
 .styled-table td {
-  padding: 5px 6px;           /* compact spacing */
+  padding: 5px 6px;
   vertical-align: top;
 }
 
-/* alternating background rows */
 .styled-table tr:nth-child(even) {
   background-color: #f6f8fb;
 }
@@ -186,9 +163,166 @@ ul, ol {
   background-color: #ffffff;
 }
 
-/* center the No column */
 .styled-table td:first-child,
 .styled-table th:first-child {
   text-align: center;
   width: 40px;
+}
+
+/* ============================= */
+/*      GRID CARD IMAGES         */
+/* (general quarto-grid cards)   */
+/* ============================= */
+
+.quarto-grid .card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ============================= */
+/*   PROJECT LISTING CARD TUNING */
+/* ============================= */
+
+.quarto-listing .card {
+  height: 100%;
+}
+
+/* Listing card image area */
+.quarto-listing .card-img-top {
+  width: 100%;
+  height: 180px;          /* adjust 160–220 */
+  object-fit: contain;    /* change to cover if you want crop */
+  background: #fff;
+}
+
+/* Clamp long titles */
+.quarto-listing .card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Clamp long descriptions */
+.quarto-listing .card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Footer layout: author left, date right */
+.quarto-listing .card-footer {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  font-size: 0.75rem;
+  color: #6b6b6b;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+/* Author (left) truncate */
+.quarto-listing .card-footer > *:first-child {
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Date (right) never wrap */
+.quarto-listing .card-footer > *:last-child {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* If Quarto inserts <br> in the date, remove them */
+.quarto-listing .card-footer br {
+  display: none !important;
+}
+
+/* If date is made of multiple spans/divs, force them inline */
+.quarto-listing .card-footer > *:last-child * {
+  display: inline !important;
+  white-space: nowrap !important;
+}
+
+
+/* ========================================= */
+/*  Hover Effects POLISHED PROJECT CARDS (IMAGE + MOTION) */
+/* ========================================= */
+
+/* Make card feel like one clickable unit */
+.quarto-listing .card {
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  overflow: hidden; /* important: keeps image zoom inside the card */
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Lift + shadow + border color on hover */
+.quarto-listing .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(11, 61, 145, 0.22);
+  border-color: #0b3d91;
+  cursor: pointer;
+}
+
+/* FIXED IMAGE AREA: same height for all cards */
+.quarto-listing .card-img-top {
+  width: 100%;
+  height: 190px;          /* change 170–230 if you want */
+  object-fit: cover;      /* use cover for clean cards like your example */
+  display: block;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+/* Image motion on hover */
+.quarto-listing .card:hover .card-img-top {
+  transform: scale(1.06);
+  filter: saturate(1.08);
+}
+
+/* Animate title + description slightly */
+.quarto-listing .card-title,
+.quarto-listing .card-text {
+  transition: transform 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+}
+
+.quarto-listing .card:hover .card-title {
+  transform: translateY(-2px);
+  color: #0b3d91;
+}
+
+.quarto-listing .card:hover .card-text {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* Categories "pills" motion (if present) */
+.quarto-listing .listing-categories,
+.quarto-listing .listing-category {
+  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.quarto-listing .card:hover .listing-categories,
+.quarto-listing .card:hover .listing-category {
+  transform: translateY(-1px);
+}
+
+/* Footer motion (author/date line) */
+.quarto-listing .card-footer {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.quarto-listing .card:hover .card-footer {
+  transform: translateY(-1px);
+  opacity: 0.95;
 }

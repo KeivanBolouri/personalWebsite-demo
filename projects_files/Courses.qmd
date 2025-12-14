@@ -1,5 +1,6 @@
 ---
 title: "Relevant Academic Coursework"
+format: html
 ---
 
 ## 

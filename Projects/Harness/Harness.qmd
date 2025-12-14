@@ -7,7 +7,7 @@ categories: [Electroconductive Polymers, Tissue Engineering, Regenerative Medici
 image: "Ha.jpg"
 ---
 
-[![](Images/Ha.jpg){fig-align="left" width="185"}](https://mch.du.ac.ir/article_335.html)
+[![](Ha.jpg){fig-align="left" width="4cm" height="4cm"}](https://mch.du.ac.ir/article_335.html)
 
 **\
 Abstract**

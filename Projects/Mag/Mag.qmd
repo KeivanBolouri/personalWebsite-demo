@@ -7,7 +7,7 @@ categories: [Nanocomposites, Biomaterials, Biomedical Applications]
 image: "colid.jpg"
 ---
 
-![](Images/Colid.jpg){width="185"}
+![](Colid.jpg){width="4cm" height="4cm"}
 
 <div>
 

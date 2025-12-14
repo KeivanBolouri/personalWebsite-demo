@@ -7,7 +7,7 @@ categories: [Cell Biology, Tissue Engineering, Regenerative Medicine]
 image: "Cell.jpg"
 ---
 
-![](Images/Cell.jpg){width="176"}
+![](Cell.jpg){width="4cm" height="4cm"}
 
 ## 
 

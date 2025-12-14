@@ -11,7 +11,7 @@ format:
     date-format: "MMM D, YYYY"
 ---
 
-![](Images/Ad.jpg){width="189"}
+![](Ad.jpg){width="4cm"}
 
 ## 
 

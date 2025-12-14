@@ -3,6 +3,7 @@ title: "My Projects"
 format:
   html:
     include-after-body: shorten-authors.html
+
 listing:
   - id: projects-listing
     contents:
@@ -11,10 +12,12 @@ listing:
       - "Harness.qmd"
       - "CellTypes.qmd"
       - "Ad.qmd"
+      - "Stat140.qmd"
     type: grid
     sort: false
     sort-ui: true
     filter-ui: true
+    date-format: "MMM D, YYYY"
     fields: [image, title, categories, description, author, date]
 ---
 

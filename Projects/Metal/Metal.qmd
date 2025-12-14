@@ -4,7 +4,7 @@ description: "An overview of metal-organic frameworks and their applications in 
 author: "Mahsa Ghovvati, Keivan Bolouri, Naoki Kaneko, Ehsan Nazarzadeh Zare"
 date: 2024-01-01
 categories: [Biomaterials, Tissue Engineering, Regenerative Medicine]
-image: "Images/Me.jpg"
+image: "Me.jpg"
 ---
 
 ![](Images/Me.jpg){fig-align="left" width="209"}

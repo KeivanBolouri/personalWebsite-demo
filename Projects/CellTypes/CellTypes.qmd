@@ -4,7 +4,7 @@ description: "An overview of cell types, their origins, and functional roles in 
 author: "Mahsa Ghovvati, Masoumeh Alsadat Hosseini, Mahshid Kharaziha, Naoki Kaneko, Keivan Bolouri"
 date: 2024-01-01
 categories: [Cell Biology, Tissue Engineering, Regenerative Medicine]
-image: "Images/Cell.jpg"
+image: "Cell.jpg"
 ---
 
 ![](Images/Cell.jpg){width="176"}

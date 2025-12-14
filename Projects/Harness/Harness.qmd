@@ -4,7 +4,7 @@ description: "An in-depth review of electroconductive polymers and their transfo
 author: "Mahsa Ghovvati, Keivan Bolouri, Lea Guo, Naoki Kaneko, Xuru Jin, Yi Xu, Zhidan Hua, Ying Lei"
 date: 2023-09-01
 categories: [Electroconductive Polymers, Tissue Engineering, Regenerative Medicine]
-image: "Images/Ha.jpg"
+image: "Ha.jpg"
 ---
 
 [![](Images/Ha.jpg){fig-align="left" width="185"}](https://mch.du.ac.ir/article_335.html)

@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Shanmei Wanyan, Daniel Dai, Keivan Bolouri, Itaru Fukushima, Linxue Guo, Evelyn Isaka">
+<meta name="dcterms.date" content="2025-12-14">
+<meta name="description" content="A comparative analysis of U.S. counterterrorism strikes in Somalia and Yemen, examining strike characteristics, civilian casualties, and reporting uncertainty using open-source data and negative binomial regression.">
+
+<title>How Do the Characteristics and Humanitarian Impacts of U.S. Counterterrorism Strikes Differ Between Somalia and Yemen?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Courses.html"> 
+<span class="menu-text">Coursework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Certificates.html"> 
+<span class="menu-text">Certificates</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#hypothesis-1-civilian-harm-difference" id="toc-hypothesis-1-civilian-harm-difference" class="nav-link" data-scroll-target="#hypothesis-1-civilian-harm-difference">1.Hypothesis 1: Civilian Harm Difference</a></li>
+  <li><a href="#hypothesis-2-drone-effectiveness-across-countries" id="toc-hypothesis-2-drone-effectiveness-across-countries" class="nav-link" data-scroll-target="#hypothesis-2-drone-effectiveness-across-countries">2.Hypothesis 2: Drone Effectiveness Across Countries</a></li>
+  <li><a href="#hypothesis-3-reporting-uncertainty" id="toc-hypothesis-3-reporting-uncertainty" class="nav-link" data-scroll-target="#hypothesis-3-reporting-uncertainty">3.Hypothesis 3: Reporting Uncertainty</a></li>
+  </ul></li>
+  <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">Literature Review</a>
+  <ul class="collapse">
+  <li><a href="#statistical-methods" id="toc-statistical-methods" class="nav-link" data-scroll-target="#statistical-methods">Statistical Methods</a></li>
+  <li><a href="#hypothesis-tests" id="toc-hypothesis-tests" class="nav-link" data-scroll-target="#hypothesis-tests">Hypothesis Tests</a>
+  <ul class="collapse">
+  <li><a href="#hypothesis-1-civilian-harm-difference-1" id="toc-hypothesis-1-civilian-harm-difference-1" class="nav-link" data-scroll-target="#hypothesis-1-civilian-harm-difference-1">Hypothesis 1: Civilian Harm Difference</a></li>
+  <li><a href="#hypothesis-2-drone-effectiveness-across-countries-1" id="toc-hypothesis-2-drone-effectiveness-across-countries-1" class="nav-link" data-scroll-target="#hypothesis-2-drone-effectiveness-across-countries-1">Hypothesis 2: Drone Effectiveness Across Countries</a></li>
+  <li><a href="#hypothesis-3-reporting-uncertainty-differenc" id="toc-hypothesis-3-reporting-uncertainty-differenc" class="nav-link" data-scroll-target="#hypothesis-3-reporting-uncertainty-differenc">Hypothesis 3: Reporting Uncertainty Differenc</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model selection</a>
+  <ul class="collapse">
+  <li><a href="#poisson-dispersion-test" id="toc-poisson-dispersion-test" class="nav-link" data-scroll-target="#poisson-dispersion-test">Poisson dispersion test</a></li>
+  <li><a href="#statistical-method-for-civilian-harm-difference" id="toc-statistical-method-for-civilian-harm-difference" class="nav-link" data-scroll-target="#statistical-method-for-civilian-harm-difference">1.Statistical Method for Civilian Harm Difference:</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#statistical-method-for-drone-effectiveness-across-countries" id="toc-statistical-method-for-drone-effectiveness-across-countries" class="nav-link" data-scroll-target="#statistical-method-for-drone-effectiveness-across-countries">2.Statistical Method for Drone Effectiveness Across Countries:</a></li>
+  <li><a href="#statistical-method-for-reporting-uncertainty-differenc" id="toc-statistical-method-for-reporting-uncertainty-differenc" class="nav-link" data-scroll-target="#statistical-method-for-reporting-uncertainty-differenc">3.Statistical Method for Reporting Uncertainty Differenc:</a></li>
+  </ul></li>
+  <li><a href="#statistical-testing" id="toc-statistical-testing" class="nav-link" data-scroll-target="#statistical-testing">Statistical Testing</a>
+  <ul class="collapse">
+  <li><a href="#rsult-for-hypothesis-1-civilian-harm-differences" id="toc-rsult-for-hypothesis-1-civilian-harm-differences" class="nav-link" data-scroll-target="#rsult-for-hypothesis-1-civilian-harm-differences">Rsult for Hypothesis 1: Civilian Harm Differences</a></li>
+  <li><a href="#test-for-hypothesis-2" id="toc-test-for-hypothesis-2" class="nav-link" data-scroll-target="#test-for-hypothesis-2">Test for Hypothesis 2</a></li>
+  <li><a href="#result-for-hypothesis-2-drone-effectiveness-by-country" id="toc-result-for-hypothesis-2-drone-effectiveness-by-country" class="nav-link" data-scroll-target="#result-for-hypothesis-2-drone-effectiveness-by-country">Result for Hypothesis 2: Drone Effectiveness by Country</a></li>
+  <li><a href="#test-for-hypothesis-3" id="toc-test-for-hypothesis-3" class="nav-link" data-scroll-target="#test-for-hypothesis-3">Test for Hypothesis 3</a>
+  <ul class="collapse">
+  <li><a href="#result-for-hypothesis-3-reporting-uncertainty" id="toc-result-for-hypothesis-3-reporting-uncertainty" class="nav-link" data-scroll-target="#result-for-hypothesis-3-reporting-uncertainty">Result for Hypothesis 3: Reporting Uncertainty</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">Visualizations</a></li>
+  <li><a href="#hypothesis-test-1" id="toc-hypothesis-test-1" class="nav-link" data-scroll-target="#hypothesis-test-1">Hypothesis Test 1</a></li>
+  <li><a href="#hypothesis-test-2" id="toc-hypothesis-test-2" class="nav-link" data-scroll-target="#hypothesis-test-2">Hypothesis Test 2</a></li>
+  <li><a href="#hypothesis-test-3" id="toc-hypothesis-test-3" class="nav-link" data-scroll-target="#hypothesis-test-3">Hypothesis Test 3</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How Do the Characteristics and Humanitarian Impacts of U.S. Counterterrorism Strikes Differ Between Somalia and Yemen?</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Counterterrorism</div>
+    <div class="quarto-category">Humanitarian Impact</div>
+    <div class="quarto-category">Conflict Studies</div>
+    <div class="quarto-category">Data Analysis</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A comparative analysis of U.S. counterterrorism strikes in Somalia and Yemen, examining strike characteristics, civilian casualties, and reporting uncertainty using open-source data and negative binomial regression.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Shanmei Wanyan, Daniel Dai, Keivan Bolouri, Itaru Fukushima, Linxue Guo, Evelyn Isaka </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 14, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Since 2002, the United States has waged a clandestine drone war in countries like Yemen and Somalia, often far from the public eye [1]. While these counterterrorism strikes aim to eliminate militant targets with minimal risk to U.S. forces, their humanitarian impacts remain a source of urgent concern. The cost to civilian lives can be high – for example, an investigation found that roughly one-third of those killed by U.S. drone strikes in Yemen in 2018 were likely civilians or pro-government allies [2].</p>
+<p>This research addresses a critical problem: <strong>do the patterns and human costs of U.S. strikes differ between Somalia and Yemen, and if so, how?</strong> Understanding this is important both theoretically and practically.</p>
+<p>Theoretically, comparing two distinct theaters of drone warfare can reveal how local context (from insurgent group dynamics to intelligence quality) influences strike outcomes. Practically, such analysis informs policy by identifying where drone operations are less effective in sparing civilians, guiding improvements to minimize collateral harm.</p>
+<p>These strikes are carried out “out of sight,” but their consequences are very real [1]. Official accounts have often underestimated civilian casualties, prompting independent organizations to step in [2]. For instance, the U.S. government once claimed only 64–116 civilian deaths in all drone strikes outside warzones from 2009–2015, whereas independent monitors estimated several times higher [2].</p>
+<p>Efforts to document the drone war’s toll have proliferated:<br>
+- Pitch Interactive’s <em>Out of Sight, Out of Mind</em> visualization illustrated every CIA drone strike and casualty in Pakistan [1].<br>
+- <em>The Economist</em> published infographics showing discrepancies between official and independent death counts.<br>
+- UCLA’s Drone Wars project created a comparative dataset across Afghanistan, Pakistan, Somalia, and Yemen using Bureau of Investigative Journalism (BIJ) data [3,4].</p>
+<p>These initiatives underscore the need for rigorous comparative analysis — yet <strong>no study has systematically compared Somalia and Yemen in terms of strike characteristics and humanitarian outcomes.</strong> This paper fills that gap by leveraging detailed open-source strike records from both countries to quantitatively examine differences in civilian impact.</p>
+<p>We explicitly test three hypotheses:</p>
+<section id="hypothesis-1-civilian-harm-difference" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-1-civilian-harm-difference">1.Hypothesis 1: Civilian Harm Difference</h3>
+<p>To test whether Somalia and Yemen differ in civilian casualty rates.<br>
+</p>
+</section>
+<section id="hypothesis-2-drone-effectiveness-across-countries" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-2-drone-effectiveness-across-countries">2.Hypothesis 2: Drone Effectiveness Across Countries</h3>
+<p>To test whether the impact of drone strikes differs between Somalia and Yemen, we estimate an interaction model:<br>
+</p>
+</section>
+<section id="hypothesis-3-reporting-uncertainty" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-3-reporting-uncertainty">3.Hypothesis 3: Reporting Uncertainty</h3>
+<p>To assess whether casualty reporting uncertainty differs between regions.</p>
+<p>To investigate these hypotheses, we assemble a comprehensive dataset of U.S. counterterrorism strikes in Yemen and Somalia, drawn from independent monitoring organizations such as the Bureau of Investigative Journalism [1]. Because casualty counts are uncertain, our data use minimum–maximum ranges [1]. Given that casualty outcomes are over-dispersed count data, we employ <strong>negative binomial regression</strong> to model civilian casualties while controlling for strike features. This approach allows us to test whether “country” remains a significant factor in humanitarian outcomes once strike type and context are accounted for.</p>
+<p>In the following section, we describe the data sources and methodology used in this analysis, before presenting results and implications for policy and scholarship.</p>
+</section>
+</section>
+<section id="literature-review" class="level1">
+<h1>Literature Review</h1>
+<p>Researchers and monitoring groups have spent many years examining how many people are killed in U.S. drone strikes, but most work focuses on one country at a time rather than comparing Somalia and Yemen directly.</p>
+<p>Columbia Law School’s Human Rights Clinic, in <em>Counting Drone Strike Deaths</em>, shows that official U.S. numbers often underestimate civilian deaths. They recommend using casualty ranges (minimum–maximum) because information from the ground is often unclear [3].</p>
+<p>The Bureau of Investigative Journalism (BIJ) collected open-source reports for every known strike in Yemen, Somalia, Pakistan, and Afghanistan. Their database records both minimum and maximum death counts and distinguishes civilians from militants when possible, noting that reports are often uncertain or contradictory [5].</p>
+<p>New America’s <em>Counterterrorism Wars</em> project compiles strike data from Yemen and Somalia, listing total strikes and casualty ranges and explaining how they classify victims when reports are vague or disputed [6].</p>
+<p>Together, these sources show that:<br>
+1. Independent groups usually find more civilian deaths than official U.S. reports.<br>
+2. Although detailed data exist for Yemen and Somalia, most previous analyses summarize each country separately rather than compare them statistically.</p>
+<p>Our study fits into this work by using open-source strike records to conduct a direct, quantitative comparison between Somalia and Yemen. Using negative binomial regression, we test whether the countries differ in civilian casualty rates and the uncertainty of reported casualties, controlling for strike characteristics.</p>
+<section id="statistical-methods" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-methods">Statistical Methods</h2>
+</section>
+<section id="hypothesis-tests" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-tests">Hypothesis Tests</h2>
+<section id="hypothesis-1-civilian-harm-difference-1" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-1-civilian-harm-difference-1">Hypothesis 1: Civilian Harm Difference</h3>
+<p><span class="math display">\[
+\begin{aligned}
+H_{0}: &amp;\ \text{Drone strikes have the same civilian impact in Somalia and Yemen.} \\
+H_{1}: &amp;\ \text{Drone strikes have different civilian impacts across the two regions.}
+\end{aligned}
+\]</span></p>
+<p>To test whether Somalia and Yemen differ in civilian casualty rates, we estimate:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Variable Definitions</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Civilian casualties</td>
+<td style="text-align: left;">Number of civilians reported killed in the strike (outcome variable).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Region</td>
+<td style="text-align: left;">Country where the strike occurred (Somalia or Yemen).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Drone</td>
+<td style="text-align: left;">Indicates whether the strike was carried out by a drone (1 = drone).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">US confirmed</td>
+<td style="text-align: left;">Whether the strike was officially confirmed by the U.S. government.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Minimum strikes</td>
+<td style="text-align: left;">Minimum number of strike events associated with the record.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total killed</td>
+<td style="text-align: left;">Minimum number of total fatalities (civilians + militants).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="height:0.1in;">
+
+</div>
+</section>
+<section id="hypothesis-2-drone-effectiveness-across-countries-1" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-2-drone-effectiveness-across-countries-1">Hypothesis 2: Drone Effectiveness Across Countries</h3>
+<p><span class="math display">\[
+\begin{aligned}
+H_{0}: &amp;\ \text{Drone use affects civilian casualties in the same way in both Somalia and Yemen.} \\
+H_{1}: &amp;\ \text{Drone use affects civilian casualties differently across Somalia and Yemen.}
+\end{aligned}
+\]</span></p>
+<p>To evaluate whether drones behave differently across countries, we added an interaction term (<code>drone × region</code>).</p>
+<div style="height:0.1in;">
+
+</div>
+</section>
+<section id="hypothesis-3-reporting-uncertainty-differenc" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-3-reporting-uncertainty-differenc">Hypothesis 3: Reporting Uncertainty Differenc</h3>
+<p><span class="math display">\[
+\begin{aligned}
+H_{0}: &amp;\ \text{Reporting uncertainty does not differ between Somalia and Yemen.} \\
+H_{1}: &amp;\ \text{Reporting uncertainty differs between Somalia and Yemen.}
+\end{aligned}
+\]</span></p>
+<p><br>
+To assess whether casualty reporting uncertainty differs between regions, we model the uncertainty metric. We modeled casualty reporting uncertainty (defined as <code>max_killed - min_killed</code>) region and strike characteristics as predictors.</p>
+<p><span class="math display">\[
+\text{Uncertainty in casualties} =
+\text{Maximum killed} - \text{Minimum killed}
+\]</span></p>
+<div style="height:0.1in;">
+
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="model-selection" class="level1">
+<h1>Model selection</h1>
+<p>Because our prediction variable is a count—specifically, the number of civilians killed in each strike—we use statistical models designed for count data. A natural starting point is the <strong>Poisson regression</strong>, which assumes that the mean and variance of the outcome are equal <span class="math inline">\(E(x) = \mathrm{Var}(x)\)</span>. However, in our dataset the variance is much larger than the mean, a condition known as <strong>overdispersion</strong>. When overdispersion is present, Poisson regression underestimates the true variability and produces misleadingly small standard errors. To address this, we use a <strong>negative binomial regression</strong>, which adds a dispersion parameter that allows the variance to exceed the mean. This makes the negative binomial model much better suited for modeling drone-strike casualty counts and provides more reliable estimates of how factors such as region, drone use, and confirmation status relate to civilian harm.</p>
+<p><br>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mean_civ <span class="ot">&lt;-</span> <span class="fu">mean</span>(combined_model<span class="sc">$</span>civilian_casualties)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>var_civ  <span class="ot">&lt;-</span> <span class="fu">var</span>(combined_model<span class="sc">$</span>civilian_casualties)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">mean =</span> mean_civ, <span class="at">variance =</span> var_civ)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean  variance 
+0.4338521 8.0043879 </code></pre>
+</div>
+</div>
+<p><br>
+<br>
+Showt that our data is overdispersion: <span class="math inline">\(E(x) &lt; \mathrm{Var}(x)\)</span></p>
+<p>In our combined Somalia–Yemen dataset, civilian casualties have a mean of <strong>0.43</strong> and a variance of <strong>8.00</strong>, so the variance is about <strong>18 times</strong> larger than the mean. This large variance-to-mean ratio indicates substantial overdispepersion.</p>
+<p><br>
+To verify whether a Poisson model was appropriate for our outcome variable, we formally tested for overdispersion. We first fit a Poisson regression using civilian casualties as the count outcome and calculated the dispersion statistic by dividing the residual deviance by the residual degrees of freedom.</p>
+<section id="poisson-dispersion-test" class="level3">
+<h3 class="anchored" data-anchor-id="poisson-dispersion-test">Poisson dispersion test</h3>
+<p><span class="math display">\[
+\begin{aligned}
+H_0 &amp;: \text{dispersion} = 1 \quad (\text{Poisson adequate})\\
+H_a &amp;: \text{dispersion} &gt; 1 \quad (\text{overdispersion})
+\end{aligned}
+\]</span></p>
+<p><strong><br>
+</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)   <span class="co"># for dispersiontest</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Poisson version of H1 model</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>pois_h1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  civilian_casualties <span class="sc">~</span> region <span class="sc">+</span> drone <span class="sc">+</span> us_confirmed <span class="sc">+</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    min_strikes <span class="sc">+</span> total_killed,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> combined_model</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3a. Quick dispersion estimate: residual deviance / df</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>dispersion_est <span class="ot">&lt;-</span> pois_h1<span class="sc">$</span>deviance <span class="sc">/</span> pois_h1<span class="sc">$</span>df.residual</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>dispersion_est</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.945971</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3b. Formal test</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dispersiontest</span>(pois_h1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Overdispersion test
+
+data:  pois_h1
+z = 2.3989, p-value = 0.008222
+alternative hypothesis: true dispersion is greater than 1
+sample estimates:
+dispersion 
+  11.36617 </code></pre>
+</div>
+</div>
+<p><strong><br>
+</strong>The resulting value of approximately <strong>1.95</strong> already suggested that the variance in the data was nearly twice as large as the Poisson model allows. We then conducted a formal <strong>overdispersion test</strong> using <code>dispersiontest()</code> from the <em>AER</em> package. The test returned a z-value of <strong>2.40</strong> with a p-value of <strong>0.008</strong>, indicating statistically significant overdispersion. In other words, the Poisson assumption that the mean equals the variance is violated. Because the data exhibit much greater variability than the Poisson model can accommodate, this test confirms that a negative binomial regression—which includes an additional dispersion parameter—is more appropriate.</p>
+<p><strong><br>
+Consequently, we use negative binomial regression, which relaxes the equidispersion assumption and is more appropriate for these data.</strong></p>
+</section>
+<section id="statistical-method-for-civilian-harm-difference" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-method-for-civilian-harm-difference">1.Statistical Method for Civilian Harm Difference:</h3>
+</section>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1"></h3>
+<p><span class="math display">\[
+\begin{aligned}
+\eta \;=\;&amp;
+\beta_0
++ \beta_1(\text{drone})
++ \beta_2(\text{region})
++ \beta_3(\text{US confirmed}) \\
+&amp;\quad
++ \beta_4(\text{minimum strikes})
++ \beta_5(\text{total killed})
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+E(\text{civilian casualties}) = e^{\eta}
+\]</span></p>
+</section>
+<section id="statistical-method-for-drone-effectiveness-across-countries" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-method-for-drone-effectiveness-across-countries">2.Statistical Method for Drone Effectiveness Across Countries:</h3>
+<p><span class="math display">\[
+\begin{aligned}
+\eta \;=\;&amp;
+\beta_0
++ \beta_1(\text{drone})
++ \beta_2(\text{region})
++ \beta_3(\text{drone} \times \text{region}) \\
+&amp;\quad
++ \beta_4(\text{US confirmed})
++ \beta_5(\text{minimum strikes})
++ \beta_6(\text{total killed})
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+E(\text{civilian casualties}) = e^{\eta}
+\]</span></p>
+</section>
+<section id="statistical-method-for-reporting-uncertainty-differenc" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-method-for-reporting-uncertainty-differenc">3.Statistical Method for Reporting Uncertainty Differenc:</h3>
+<p><span class="math display">\[
+\begin{aligned}
+\eta \;=\;&amp;
+\beta_0
++ \beta_1(\text{region})
++ \beta_2(\text{drone})
++ \beta_3(\text{US confirmed}) \\
+&amp;\quad
++ \beta_4(\text{minimum strikes})
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+E(\text{uncertainty in casualties}) = e^{\eta}
+\]</span></p>
+</section>
+</section>
+<section id="statistical-testing" class="level1">
+<h1>Statistical Testing</h1>
+<p><strong>Hypothesis Test 1</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">###############################################</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 4. Negative binomial models for hypotheses</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">###############################################</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: we are using negative binomial ONLY .</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">################################</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Hypothesis 1: Civilian Harm ##</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="do">################################</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: Somalia and Yemen do not have significantly different civilian casualty rates,</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#     controlling for strike characteristics.</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># H1: They do differ.</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>model_h1 <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  civilian_casualties <span class="sc">~</span> region <span class="sc">+</span> drone <span class="sc">+</span> us_confirmed <span class="sc">+</span> min_strikes <span class="sc">+</span> total_killed,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> combined_model</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_h1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm.nb(formula = civilian_casualties ~ region + drone + us_confirmed + 
+    min_strikes + total_killed, data = combined_model, init.theta = 0.04945140151, 
+    link = log)
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  -2.08959    1.02564  -2.037   0.0416 *  
+regionYemen   1.59150    0.64403   2.471   0.0135 *  
+drone        -0.00298    0.58431  -0.005   0.9959    
+us_confirmed -0.19350    0.56118  -0.345   0.7302    
+min_strikes  -1.02747    0.68030  -1.510   0.1310    
+total_killed  0.14571    0.01948   7.481 7.39e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for Negative Binomial(0.0495) family taken to be 1)
+
+    Null deviance: 143.44  on 513  degrees of freedom
+Residual deviance: 107.17  on 508  degrees of freedom
+AIC: 469.8
+
+Number of Fisher Scoring iterations: 1
+
+              Theta:  0.0495 
+          Std. Err.:  0.0102 
+Warning while fitting theta: alternation limit reached 
+
+ 2 x log-likelihood:  -455.8010 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_h1, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)  <span class="co"># IRR-style output</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  term         estimate std.error statistic  p.value conf.low conf.high
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)     0.124    1.03    -2.04    4.16e- 2   0.0185      1.21
+2 regionYemen     4.91     0.644    2.47    1.35e- 2   1.57       15.6 
+3 drone           0.997    0.584   -0.00510 9.96e- 1   0.326       2.80
+4 us_confirmed    0.824    0.561   -0.345   7.30e- 1   0.246       2.40
+5 min_strikes     0.358    0.680   -1.51    1.31e- 1   0.0657      1.03
+6 total_killed    1.16     0.0195   7.48    7.39e-14  NA          NA   </code></pre>
+</div>
+</div>
+<section id="rsult-for-hypothesis-1-civilian-harm-differences" class="level3">
+<h3 class="anchored" data-anchor-id="rsult-for-hypothesis-1-civilian-harm-differences">Rsult for Hypothesis 1: Civilian Harm Differences</h3>
+<p>Strikes in <strong>Yemen</strong> show significantly higher civilian casualties than those in Somalia.<br>
+The coefficient for Yemen is <strong>1.59</strong> (<em>p</em> = 0.0135), corresponding to an IRR of <strong>4.9</strong>, meaning Yemen strikes produce nearly <strong>5×</strong> the civilian casualties of Somalia.<br>
+Total fatalities are also positively associated with civilian casualties (coef = <strong>0.146</strong>, <em>p</em> &lt; 0.001).<br>
+<strong>Conclusion:</strong> Civilian harm is significantly higher in Yemen → <em>H1 supported</em></p>
+</section>
+<section id="test-for-hypothesis-2" class="level2" style="height:0.1in;">
+<h2 class="anchored" data-anchor-id="test-for-hypothesis-2">Test for Hypothesis 2</h2>
+</section>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Hypothesis 2: Drone Effectiveness ##</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: The effect of drone strikes on civilian casualties does NOT differ between Somalia and Yemen.</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># H1: The effect of drone strikes DOES differ between Somalia and Yemen.</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -&gt; Include interaction term drone:region</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>model_h2 <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  civilian_casualties <span class="sc">~</span> drone <span class="sc">*</span> region <span class="sc">+</span> us_confirmed <span class="sc">+</span> min_strikes <span class="sc">+</span> total_killed,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> combined_model</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_h2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm.nb(formula = civilian_casualties ~ drone * region + us_confirmed + 
+    min_strikes + total_killed, data = combined_model, init.theta = 0.04963878986, 
+    link = log)
+
+Coefficients:
+                  Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)       -2.15732    1.03711  -2.080   0.0375 *  
+drone              0.33091    1.00164   0.330   0.7411    
+regionYemen        1.80725    0.83212   2.172   0.0299 *  
+us_confirmed      -0.21220    0.55986  -0.379   0.7047    
+min_strikes       -1.02119    0.66922  -1.526   0.1270    
+total_killed       0.14319    0.01965   7.288 3.14e-13 ***
+drone:regionYemen -0.49367    1.22774  -0.402   0.6876    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for Negative Binomial(0.0496) family taken to be 1)
+
+    Null deviance: 143.81  on 513  degrees of freedom
+Residual deviance: 107.26  on 507  degrees of freedom
+AIC: 471.63
+
+Number of Fisher Scoring iterations: 1
+
+              Theta:  0.0496 
+          Std. Err.:  0.0103 
+Warning while fitting theta: alternation limit reached 
+
+ 2 x log-likelihood:  -455.6270 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_h2, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 7
+  term              estimate std.error statistic  p.value conf.low conf.high
+  &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)          0.116    1.04      -2.08  3.75e- 2   0.0171      1.14
+2 drone                1.39     1.00       0.330 7.41e- 1   0.215      11.5 
+3 regionYemen          6.09     0.832      2.17  2.99e- 2   1.38       32.8 
+4 us_confirmed         0.809    0.560     -0.379 7.05e- 1   0.241       2.36
+5 min_strikes          0.360    0.669     -1.53  1.27e- 1   0.0671      1.02
+6 total_killed         1.15     0.0196     7.29  3.14e-13  NA          NA   
+7 drone:regionYemen    0.610    1.23      -0.402 6.88e- 1   0.0500      5.87</code></pre>
+</div>
+</div>
+<section id="result-for-hypothesis-2-drone-effectiveness-by-country" class="level3">
+<h3 class="anchored" data-anchor-id="result-for-hypothesis-2-drone-effectiveness-by-country">Result for Hypothesis 2: Drone Effectiveness by Country</h3>
+<p>The key interaction term <strong>drone × region (Yemen)</strong> is <strong>not significant</strong> (coef = −0.49, <em>p</em> = 0.688).<br>
+Drone use alone is also not significant (coef = 0.33, <em>p</em> = 0.741).<br>
+<strong>Conclusion:</strong> Drones do not affect civilian casualties differently across countries → <em>H2 not supported</em>.</p>
+<div style="height:0.1in;">
+
+</div>
+</section>
+<section id="test-for-hypothesis-3" class="level2">
+<h2 class="anchored" data-anchor-id="test-for-hypothesis-3">Test for Hypothesis 3</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Hypothesis 3: Reporting Uncertainty ##</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">##################################</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: The level of uncertainty in casualty reporting does not differ between Somalia and Yemen.</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># H1: It does differ.</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Outcome: uncertainty_killed</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>model_h3 <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  uncertainty_killed <span class="sc">~</span> region <span class="sc">+</span> drone <span class="sc">+</span> us_confirmed <span class="sc">+</span> min_strikes,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> combined_model</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_h3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm.nb(formula = uncertainty_killed ~ region + drone + us_confirmed + 
+    min_strikes, data = combined_model, init.theta = 0.2157180244, 
+    link = log)
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)   
+(Intercept)   0.64763    0.30943   2.093  0.03635 * 
+regionYemen  -0.16294    0.26446  -0.616  0.53781   
+drone         0.61827    0.24966   2.476  0.01327 * 
+us_confirmed -0.69343    0.25255  -2.746  0.00604 **
+min_strikes   0.08520    0.05284   1.612  0.10687   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for Negative Binomial(0.2157) family taken to be 1)
+
+    Null deviance: 400.69  on 513  degrees of freedom
+Residual deviance: 385.48  on 509  degrees of freedom
+AIC: 1571.1
+
+Number of Fisher Scoring iterations: 1
+
+              Theta:  0.2157 
+          Std. Err.:  0.0218 
+
+ 2 x log-likelihood:  -1559.1480 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_h3, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 7
+  term         estimate std.error statistic p.value conf.low conf.high
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)     1.91     0.309      2.09  0.0363     1.13      3.34 
+2 regionYemen     0.850    0.264     -0.616 0.538      0.536     1.33 
+3 drone           1.86     0.250      2.48  0.0133     1.18      2.91 
+4 us_confirmed    0.500    0.253     -2.75  0.00604    0.305     0.793
+5 min_strikes     1.09     0.0528     1.61  0.107      0.990     1.28 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">###############################################</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 5. Optional: quick descriptive checks</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="do">###############################################</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean civilian casualties by region &amp; drone status</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>combined_model <span class="sc">%&gt;%</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region, drone) <span class="sc">%&gt;%</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_civilian_casualties =</span> <span class="fu">mean</span>(civilian_casualties, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  region  drone mean_civilian_casualties     n
+  &lt;fct&gt;   &lt;int&gt;                    &lt;dbl&gt; &lt;int&gt;
+1 Somalia     0                   0.0753   146
+2 Somalia     1                   0.114     44
+3 Yemen       0                   1.38      76
+4 Yemen       1                   0.411    248</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean uncertainty by region</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>combined_model <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_uncertainty =</span> <span class="fu">mean</span>(uncertainty_killed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  region  mean_uncertainty     n
+  &lt;fct&gt;              &lt;dbl&gt; &lt;int&gt;
+1 Somalia             1.56   190
+2 Yemen               1.84   324</code></pre>
+</div>
+</div>
+<section id="result-for-hypothesis-3-reporting-uncertainty" class="level3">
+<h3 class="anchored" data-anchor-id="result-for-hypothesis-3-reporting-uncertainty">Result for Hypothesis 3: Reporting Uncertainty</h3>
+<p>Reporting uncertainty does <strong>not</strong> differ between regions (Yemen coef = −0.16, <em>p</em> = 0.538).<br>
+However, drone strikes show <strong>higher uncertainty</strong> (coef = 0.62, IRR = <strong>1.86</strong>, <em>p</em> = 0.013), while confirmed U.S. strikes show <strong>lower uncertainty</strong> (coef = −0.69, IRR = <strong>0.50</strong>, <em>p</em> = 0.006).<br>
+<strong>Conclusion:</strong> No regional difference in uncertainty → <em>H3 not supported</em>, though uncertainty varies by strike type.</p>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Our analysis shows clear and meaningful differences in the humanitarian impact of U.S. counterterrorism strikes in Somalia and Yemen. Using negative binomial regression to account for overdispersed count data, we find that strikes in Yemen are associated with nearly five times the civilian casualties of those in Somalia, even after controlling for drone use, confirmation status, and strike characteristics. Contrary to expectations, drone strikes do not have significantly different effects across the two countries, suggesting that broader regional factors—not simply weapon type—shape civilian outcomes. We also find no regional difference in reporting uncertainty, although uncertainty is higher for drone and unconfirmed strikes. Together, these results highlight the importance of transparent casualty reporting and the need to consider local conflict conditions when evaluating the effectiveness and humanitarian cost of U.S. strikes.</p>
+<section id="visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
+</section>
+<section id="hypothesis-test-1" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-test-1">Hypothesis Test 1</h2>
+<p><span class="math display">\[
+\begin{aligned}
+H_{0}: &amp;\ \text{Drone strikes have the same civilian impact in Somalia and Yemen.} \\
+H_{1}: &amp;\ \text{Drone strikes have different civilian impacts across the two regions.}
+\end{aligned}
+\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Stat140_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Stat140_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hypothesis-test-2" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-test-2">Hypothesis Test 2</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Stat140_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Stat140_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hypothesis-test-3" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-test-3">Hypothesis Test 3</h2>
+<p><span class="math display">\[
+\begin{aligned}
+H_{0}: &amp;\ \text{Reporting uncertainty does not differ between Somalia and Yemen.} \\
+H_{1}: &amp;\ \text{Reporting uncertainty differs between Somalia and Yemen.}
+\end{aligned}
+\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Stat140_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Stat140_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>© 2025 Keivan Bolouri</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

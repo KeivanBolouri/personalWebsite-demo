@@ -2,11 +2,12 @@
   {
     "listing": "/Projects.html",
     "items": [
-      "/Projects/Metal.html",
-      "/Projects/Mag.html",
-      "/Projects/Harness.html",
-      "/Projects/CellTypes.html",
-      "/Projects/Ad.html"
+      "/Projects/Metal/Metal.html",
+      "/Projects/Mag/Mag.html",
+      "/Projects/Harness/Harness.html",
+      "/Projects/CellTypes/CellTypes.html",
+      "/Projects/Add/Ad.html",
+      "/Projects/stat140/Stat140.html"
     ]
   }
 ]

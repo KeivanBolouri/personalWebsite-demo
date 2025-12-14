@@ -4,7 +4,7 @@ description: "A review of electroconductive polymers used in biomedical applicat
 author: "Mahsa Ghovvati, Lea Guo, Keivan Bolouri, Naoki Kaneko"
 date: 2023-01-05
 categories: [Biomaterials, Polymers, Biomedical]
-image: "Images/Ad.jpg"
+image: "Ad.jpg"
 
 format:
   html:

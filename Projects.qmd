@@ -13,6 +13,7 @@ listing:
       - "CellTypes.qmd"
       - "Ad.qmd"
       - "Stat140.qmd"
+      - "SkinCancer.qmd"
     type: grid
     sort: false
     sort-ui: true

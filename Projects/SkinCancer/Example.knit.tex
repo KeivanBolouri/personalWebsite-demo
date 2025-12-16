@@ -1,0 +1,898 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  oneside,
+  open=any]{scrbook}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage{titling}
+\usepackage{placeins}
+\pretitle{\vspace*{-3cm}\begin{center}\bfseries\Huge}
+\posttitle{\end{center}}
+\predate{\begin{center}\large}
+\postdate{\end{center}}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\usepackage{hyphenat}
+\usepackage{ifthen}
+\usepackage{calc}
+\usepackage{calculator}
+
+
+
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{fadings}
+\usepackage[pagecolor=none]{pagecolor}
+
+
+% Set the titlepage font families
+
+
+
+
+
+
+
+% Set the coverpage font families
+
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Predicting Skin Cancer Using Statistical Learning Models},
+  pdfauthor={Franklin Truong; Jason Li; Roy Cheng; Felipe Duenas; Keivan Bolouri},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Predicting Skin Cancer Using Statistical Learning Models}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{A Comparative Analysis of Logistic, LASSO, and Elastic Net
+Regression on Structured Clinical Data}
+\author{Franklin Truong \and Jason Li \and Roy Cheng \and Felipe
+Duenas \and Keivan Bolouri}
+\date{Invalid Date}
+\begin{document}
+%%%%% begin titlepage extension code
+
+  \begin{frontmatter}
+
+\begin{titlepage}
+
+%%% TITLE PAGE START
+
+% Set up alignment commands
+%Page
+\newcommand{\titlepagepagealign}{
+\ifthenelse{\equal{left}{right}}{\raggedleft}{}
+\ifthenelse{\equal{left}{center}}{\centering}{}
+\ifthenelse{\equal{left}{left}}{\raggedright}{}
+}
+
+
+\newcommand{\titleandsubtitle}{
+% Title and subtitle
+{{\Large{\nohyphens{Predicting Skin Cancer Using Statistical Learning
+Models}}}\par
+}%
+
+\vspace{\betweentitlesubtitle}
+{
+{\textit{\nohyphens{A Comparative Analysis of Logistic, LASSO, and
+Elastic Net Regression on Structured Clinical Data}}}\par
+}}
+\newcommand{\titlepagetitleblock}{
+\titleandsubtitle
+}
+
+\newcommand{\authorstyle}[1]{{#1}}
+
+\newcommand{\affiliationstyle}[1]{{#1}}
+
+\newcommand{\titlepageauthorblock}{
+{\authorstyle{\nohyphens{Franklin
+Truong}{\textsuperscript{1}},  \nohyphens{Jason
+Li}{\textsuperscript{1}},  \nohyphens{Roy
+Cheng}{\textsuperscript{1}},  \nohyphens{Felipe
+Duenas}{\textsuperscript{1}} and \nohyphens{Keivan
+Bolouri}{\textsuperscript{1}}}}}
+
+\newcommand{\titlepageaffiliationblock}{
+\hangindent=1em
+\hangafter=1
+{\affiliationstyle{
+{1}.~University of California, Los Angeles,~Department of Statistics and
+Data Science,~8125 Math Sciences Bldg, Los Angeles, CA 90095
+
+
+\vspace{1\baselineskip} 
+}}
+}
+\newcommand{\headerstyled}{%
+{}
+}
+\newcommand{\footerstyled}{%
+{Stats 101C --- Lecture 2, Fall 2025
+\url{https://keivanbolouri.github.io/finalProject140XP/}\\}
+}
+\newcommand{\datestyled}{%
+{Invalid Date}
+}
+
+
+\newcommand{\titlepageheaderblock}{\headerstyled}
+
+\newcommand{\titlepagefooterblock}{
+\footerstyled
+}
+
+\newcommand{\titlepagedateblock}{
+\datestyled
+}
+
+%set up blocks so user can specify order
+\newcommand{\titleblock}{\newlength{\betweentitlesubtitle}
+\setlength{\betweentitlesubtitle}{1pt}
+{
+
+{\titlepagetitleblock}
+}
+
+\vspace{4\baselineskip}
+}
+
+\newcommand{\authorblock}{{\titlepageauthorblock}
+
+\vspace{2\baselineskip}
+}
+
+\newcommand{\affiliationblock}{{\titlepageaffiliationblock}
+
+\vspace{2\baselineskip}
+}
+
+\newcommand{\logoblock}{{\includegraphics[width=0.1\textheight]{logo.png}}
+
+\vspace{1\baselineskip}
+}
+
+\newcommand{\footerblock}{{\titlepagefooterblock}
+
+\vspace{1pt}
+}
+
+\newcommand{\dateblock}{{\titlepagedateblock}
+
+\vspace{0pt}
+}
+
+\newcommand{\headerblock}{}
+
+\thispagestyle{empty} % no page numbers on titlepages
+
+
+\newlength{\minipagewidth}
+\setlength{\minipagewidth}{\textwidth}
+\raggedright % single minipage
+% [position of box][box height][inner position]{width}
+% [s] means stretch out vertically; assuming there is a vfill
+\begin{minipage}[b][\textheight][s]{\minipagewidth}
+\titlepagepagealign
+\headerblock
+
+\titleblock
+
+\authorblock
+
+\affiliationblock
+
+\vfill
+
+\logoblock
+
+\footerblock
+\par
+
+\end{minipage}\ifthenelse{\equal{}{right} \OR \equal{}{leftright} }{
+\hspace{\B}
+\vrulecode}{}
+\clearpage
+%%% TITLE PAGE END
+\end{titlepage}
+\setcounter{page}{1}
+\end{frontmatter}
+
+%%%%% end titlepage extension code
+
+\renewcommand*\contentsname{Table of contents}
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\listoffigures
+\listoftables
+
+\mainmatter
+\chapter{Abstract}\label{abstract}
+
+This project develops and evaluates statistical learning models to
+classify skin lesions as benign or malignant using structured
+(non-image) predictors. Using a skin cancer dataset with 50,000 training
+observations and 20,000 test observations, we performed exploratory
+analysis, handled missing values via median (numeric) and mode
+(categorical) imputation, standardized numerical features, and reduced
+dimensionality through association-based feature screening. We then
+trained and compared a baseline logistic regression model with
+regularized variants (LASSO and elastic net logistic regression), tuning
+hyperparameters via cross-validation to balance generalization and
+performance under slight class imbalance.
+
+The final model was an elastic net logistic regression with mixing
+parameter \(\alpha = 0.7\) and 34 predictors, selected based on
+leaderboard performance. On the held-out test set, the model achieved
+60.508\% accuracy, outperforming naive baselines but remaining modest
+for a diagnostic setting. Overall, results suggest that structured
+demographic, behavioral, environmental, and clinical variables provide
+limited discriminative signal without lesion imaging features,
+highlighting both the potential utility of tabular predictors and the
+limitations of relying on them alone for skin cancer detection.
+
+\chapter{Introduction}\label{introduction}
+
+Skin cancer is one of the most common and preventable forms of cancer in
+the United
+States\href{https://www.hhs.gov/surgeongeneral/reports-and-publications/skin-cancer/fact-sheet/index.html}{{[}1{]}},
+yet early detection remains crucial for improving survival outcomes. In
+the U.S. alone, nearly six million individuals are treated for skin
+cancer
+annually\href{https://www.cdc.gov/nccdphp/priorities/skin-cancer.html\#:~:text=,and\%20improve\%20quality\%20of\%20life}{{[}2{]}},
+with melanoma accounting for approximately 97,000 new cases and over
+8,000 deaths each
+year\href{https://www.cdc.gov/nccdphp/priorities/skin-cancer.html\#:~:text=,in\%20recent\%20years\%2C\%20about\%20900\%2C000}{{[}2{]}}.
+Early detection greatly improves patient prognosis -- for example, the
+five-year survival rate for melanoma is over 99\% when detected at an
+early stage, compared to much lower survival if the cancer has
+advanced\href{https://www.skincancer.org/skin-cancer-information/skin-cancer-facts/\#:~:text=,2}{{[}3{]}}.
+While skin cancer can often be identified visually or through clinical
+examination, early diagnosis remains challenging due to the wide range
+of risk factors and lesion characteristics that must be considered.
+
+In this project, we analyze a skin cancer dataset containing 50,000
+training observations and 20,000 test observations, with a binary
+response variable (Cancer) indicating whether a lesion is benign or
+malignant. The dataset includes 50 predictor variables representing a
+broad range of factors, including demographic information, environmental
+measures, behavioral and lifestyle factors, and clinical attributes.
+These predictors provide a structured, non-image-based view of potential
+skin cancer risk factors.
+
+The goal of this project is to determine whether structured (tabular)
+data can be used to distinguish between benign and malignant skin
+lesions. By applying statistical learning methods, we aim to identify
+which predictors are most informative and to evaluate how well different
+classification models perform on this task. We seek to select an
+approach that balances interpretability, generalization, and predictive
+accuracy, while also discussing the limitations of using only structured
+predictors for skin cancer classification
+
+\chapter{Literature Review}\label{literature-review}
+
+Recent studies have demonstrated the potential of machine learning
+models applied to structured clinical and demographic data (non-image
+features) for skin cancer risk prediction. For example, an XGBoost-based
+model using electronic health records and genetic/lifestyle factors from
+a 400,000-patient cohort achieved high accuracy in identifying skin
+cancer cases (\(F_1 \approx 0.90\) in European-ancestry patients) and
+leveraged SHAP values to interpret nonlinear risk factor effects
+\href{http://dx.doi.org/10.3390/ijerph17217919}{{[}4{]}}. Another
+approach employed logistic regression to develop a nomogram with eight
+behavioral and dietary risk factors, showing good discrimination
+(\(\text{AUC} \approx 0.8\)) and clinical utility for head and neck skin
+cancer
+prevention\href{https://www.semanticscholar.org/paper/Novel-nomogram-and-decision-curve-analysis-for-head-Zou-Lin/d154c2b0a1b1e8c0b949b287562c223e09e9e3ad}{{[}5{]}}.
+In melanoma-specific research, a new 16-factor risk model (MP16) was
+trained on a 41,000-person cohort and improved predictive accuracy
+(\(\text{C-index} \approx 0.74\)) compared to earlier tools, capturing
+\(\sim 74\%\) of of future melanomas by targeting the top 40\% high-risk
+group\href{https://pubmed.ncbi.nlm.nih.gov/40928797/}{{[}6{]}}).
+Finally, a large 2021 study combined survey-derived risk variables with
+polygenic risk scores to create composite risk metrics for melanoma and
+non-melanoma skin cancers, identifying top-percentile individuals with
+over tenfold higher risk to inform targeted screening
+\href{https://www.nature.com/articles/s41467-020-20246-5}{{[}7{]}}).
+
+\chapter{Data Analysis}\label{data-analysis}
+
+\section{Exploratory Data Analysis}\label{exploratory-data-analysis}
+
+We began by examining the overall structure and distributions in the
+training dataset. The response variable (Cancer) is binary (Benign or
+Malignant), and we observed a slight class imbalance: benign lesions
+were more frequent than malignant lesions in the training data. This
+imbalance means that a naive classifier that predicts all cases as
+benign would achieve a non-trivial accuracy, so careful model evaluation
+is necessary. We also inspected the distribution of key predictors. For
+example, the average age of patients with malignant lesions appeared
+higher than that of patients with benign lesions, consistent with the
+fact that skin cancer risk increases with age. We explored categorical
+risk factors as well: certain exposure-related factors (such as
+indicators of high UV exposure or tanning habits) were somewhat more
+prevalent in malignant cases, though there was significant overlap
+between the benign and malignant groups for most individual predictors.
+Overall, no single predictor showed a dramatic separation between
+malignant and benign lesions in isolation, suggesting that multiple
+factors in combination would be needed for effective prediction. In
+addition, we checked for missing data and outliers during the
+exploratory phase. We found that the dataset's overall quality was high,
+with only a moderate amount of missing values (on the order of 7--8\%
+missing per predictor). There was no evidence of extreme outliers that
+would require removal or transformation beyond standardization. The
+presence of some missing values and the lack of obvious one-variable
+predictors of cancer underlined the need for a robust modeling approach
+with proper data preprocessing, which we implemented as described below.
+
+\section{Data Cleaning and Missing
+Values}\label{data-cleaning-and-missing-values}
+
+After completing the exploratory analysis, we examined the dataset for
+missing values. We found that the overall data quality was relatively
+high, with most predictors containing approximately 7--8\% missing
+values. No predictor exceeded 10\% missingness, so eliminating variables
+or observations would have resulted in unnecessary data loss. To address
+missing values in a consistent manner, we applied the following
+imputation strategy: Numerical variables were imputed using the median,
+which is robust to outliers. Categorical variables were imputed using
+the most frequent category (mode). This approach allowed us to preserve
+all 50,000 observations in the training dataset while ensuring that the
+data were suitable for modeling. After imputation, no missing values
+remained in the predictors used for analysis.
+
+\begin{table}
+
+\caption{\label{tbl-missing-panel}Top ten variables with the highest
+proportion of missing values.}
+
+\begin{minipage}{0.50\linewidth}
+
+\begin{ThreePartTable}
+\begin{TableNotes}
+\item (a) Training set variables.
+\end{TableNotes}
+\begin{longtable*}[t]{lr}
+\toprule
+Variable & Missing (\%)\\
+\midrule
+vitamin\_d\_supplement & 8.3\\
+phone\_brand & 8.2\\
+skin\_tone & 8.2\\
+sunscreen\_spf & 8.2\\
+preferred\_shoe\_type & 8.2\\
+\addlinespace
+sunscreen\_freq & 8.2\\
+residence\_lat & 8.2\\
+commute\_minutes & 8.1\\
+near\_high\_power\_cables & 8.1\\
+income & 8.1\\
+\bottomrule
+\insertTableNotes
+\end{longtable*}
+\end{ThreePartTable}
+
+\end{minipage}%
+%
+\begin{minipage}{0.50\linewidth}
+
+\begin{ThreePartTable}
+\begin{TableNotes}
+\item (b) Test set variables.
+\end{TableNotes}
+\begin{longtable*}[t]{lr}
+\toprule
+Variable & Missing (\%)\\
+\midrule
+residence\_lon & 8.5\\
+phone\_brand & 8.4\\
+preferred\_shoe\_type & 8.3\\
+uses\_smartwatch & 8.3\\
+skin\_tone & 8.3\\
+\addlinespace
+smoking\_status & 8.2\\
+income & 8.2\\
+near\_high\_power\_cables & 8.2\\
+lesion\_color & 8.2\\
+skin\_photosensitivity & 8.1\\
+\bottomrule
+\insertTableNotes
+\end{longtable*}
+\end{ThreePartTable}
+
+\end{minipage}%
+
+\end{table}%
+
+Using these association measures, all predictors were ranked from
+strongest to weakest. Variables with very weak association to the
+response variable were discarded, while stronger predictors were
+retained. This process reduced the dataset from 51 variables to 35 total
+variables, including the response variable. The final set consisted of
+20 numerical predictors and 14 categorical predictors, while maintaining
+all original observations. This variable selection process helped
+simplify the modeling stage, reduced multicollinearity, and improved
+model interpretability, while retaining the most informative predictors
+for classification.
+
+\pandocbounded{\includegraphics[keepaspectratio]{Example_files/figure-pdf/unnamed-chunk-5-1.pdf}}
+
+\section{Variable Selection}\label{variable-selection}
+
+Given the large number of predictors, variable selection was necessary
+to reduce dimensionality and eliminate weak predictors that could
+introduce noise and increase the risk of overfitting. For categorical
+predictors, we used Cramér's V to measure the strength of association
+between each categorical variable and the cancer outcome. Cramér's V is
+based on the chi-squared statistic and produces values between 0 and 1,
+with larger values indicating stronger association. Here is a sample of
+the first 10 variables: For numerical predictors, we computed the
+point-biserial correlation, which measures the strength of association
+between a continuous predictor and a binary response variable. Numerical
+variables were ranked based on the absolute value of this correlation.
+
+\begin{longtable}[t]{lr}
+\caption{\label{tab:unnamed-chunk-6}Top 10 Categorical Predictors Ranked by Cramér’s V (Training Data)}\\
+\toprule
+Variable & Cramér’s V\\
+\midrule
+family\_history & 0.104\\
+skin\_tone & 0.087\\
+sunscreen\_freq & 0.066\\
+immunosuppressed & 0.060\\
+occupation & 0.045\\
+\addlinespace
+tanning\_bed\_use & 0.041\\
+clothing\_protection & 0.036\\
+skin\_photosensitivity & 0.033\\
+hat\_use & 0.028\\
+lesion\_location & 0.011\\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[t]{lr}
+\caption{\label{tab:unnamed-chunk-6}Top 10 Numerical Predictors Ranked by Point-Biserial Correlation (Training Data)}\\
+\toprule
+Variable & Point-Biserial Correlation\\
+\midrule
+age & 0.1355\\
+avg\_daily\_uv & 0.0599\\
+number\_of\_lesions & 0.0513\\
+sunburns\_last\_year & 0.0457\\
+outdoor\_job & 0.0451\\
+\addlinespace
+lesion\_size\_mm & 0.0223\\
+sunscreen\_spf & -0.0174\\
+years\_lived\_at\_address & 0.0103\\
+income & 0.0088\\
+desk\_height\_cm & 0.0083\\
+\bottomrule
+\end{longtable}
+
+\begin{verbatim}
+[1] 35
+\end{verbatim}
+
+\newpage
+
+\begin{longtable}[t]{ccll}
+\caption{\label{tab:unnamed-chunk-7}Final Selected Predictors After Association-Based Variable Screening}\\
+\toprule
+No & Type & Variable & Selection Criterion\\
+\midrule
+\cellcolor{gray!10}{1} & \cellcolor{gray!10}{Categorical} & \cellcolor{gray!10}{family\_history} & \cellcolor{gray!10}{Cramér’s V > 0.05}\\
+2 & Categorical & skin\_tone & Cramér’s V > 0.05\\
+\cellcolor{gray!10}{3} & \cellcolor{gray!10}{Categorical} & \cellcolor{gray!10}{sunscreen\_freq} & \cellcolor{gray!10}{Cramér’s V > 0.05}\\
+4 & Categorical & immunosuppressed & Cramér’s V > 0.05\\
+\cellcolor{gray!10}{5} & \cellcolor{gray!10}{Categorical} & \cellcolor{gray!10}{occupation} & \cellcolor{gray!10}{Cramér’s V > 0.05}\\
+\addlinespace
+6 & Categorical & tanning\_bed\_use & Cramér’s V > 0.05\\
+\cellcolor{gray!10}{7} & \cellcolor{gray!10}{Categorical} & \cellcolor{gray!10}{clothing\_protection} & \cellcolor{gray!10}{Cramér’s V > 0.05}\\
+8 & Categorical & skin\_photosensitivity & Cramér’s V > 0.05\\
+\cellcolor{gray!10}{9} & \cellcolor{gray!10}{Categorical} & \cellcolor{gray!10}{hat\_use} & \cellcolor{gray!10}{Cramér’s V > 0.05}\\
+10 & Categorical & lesion\_location & Cramér’s V > 0.05\\
+\addlinespace
+\cellcolor{gray!10}{11} & \cellcolor{gray!10}{Categorical} & \cellcolor{gray!10}{favorite\_cuisine} & \cellcolor{gray!10}{Cramér’s V > 0.05}\\
+12 & Categorical & music\_genre & Cramér’s V > 0.05\\
+\cellcolor{gray!10}{13} & \cellcolor{gray!10}{Categorical} & \cellcolor{gray!10}{lesion\_color} & \cellcolor{gray!10}{Cramér’s V > 0.05}\\
+14 & Categorical & sunscreen\_brand & Cramér’s V > 0.05\\
+\cellcolor{gray!10}{1} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{age} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+\addlinespace
+2 & Numerical & avg\_daily\_uv & Abs. Point-Biserial Corr. > 0.02\\
+\cellcolor{gray!10}{3} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{number\_of\_lesions} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+4 & Numerical & sunburns\_last\_year & Abs. Point-Biserial Corr. > 0.02\\
+\cellcolor{gray!10}{5} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{outdoor\_job} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+6 & Numerical & lesion\_size\_mm & Abs. Point-Biserial Corr. > 0.02\\
+\addlinespace
+\cellcolor{gray!10}{7} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{sunscreen\_spf} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+8 & Numerical & years\_lived\_at\_address & Abs. Point-Biserial Corr. > 0.02\\
+\cellcolor{gray!10}{9} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{income} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+10 & Numerical & desk\_height\_cm & Abs. Point-Biserial Corr. > 0.02\\
+\cellcolor{gray!10}{11} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{residence\_lon} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+\addlinespace
+12 & Numerical & exercise\_freq\_per\_week & Abs. Point-Biserial Corr. > 0.02\\
+\cellcolor{gray!10}{13} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{zip\_code\_last\_digit} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+14 & Numerical & distance\_from\_beach\_km & Abs. Point-Biserial Corr. > 0.02\\
+\cellcolor{gray!10}{15} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{alcohol\_drinks\_per\_week} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+16 & Numerical & BMI & Abs. Point-Biserial Corr. > 0.02\\
+\addlinespace
+\cellcolor{gray!10}{17} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{commute\_minutes} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+18 & Numerical & frequency\_doctor\_visits\_per\_year & Abs. Point-Biserial Corr. > 0.02\\
+\cellcolor{gray!10}{19} & \cellcolor{gray!10}{Numerical} & \cellcolor{gray!10}{residence\_lat} & \cellcolor{gray!10}{Abs. Point-Biserial Corr. > 0.02}\\
+20 & Numerical & monthly\_screen\_time\_minutes & Abs. Point-Biserial Corr. > 0.02\\
+\bottomrule
+\end{longtable}
+
+\chapter{Model Selection}\label{model-selection}
+
+After preprocessing and feature selection, we proceeded to build
+predictive classification models on the reduced set of 34 predictors. We
+first fit a standard logistic regression model using all selected
+features as a baseline. The logistic regression model provides an
+interpretable baseline by estimating the odds of a lesion being
+malignant as a linear function of the predictors (with a logistic link).
+However, with 34 predictors, a basic logistic model can still risk
+overfitting and may include some predictors that contribute little to
+accuracy. All numeric features were standardized (centered to mean 0 and
+scaled to unit variance) prior to modeling so that they would be on
+comparable scales and to help the optimization of regularized models.
+Next, we applied regularization techniques to the logistic model to
+perform automatic variable selection and to improve generalization
+performance. In particular, we trained a LASSO logistic regression
+model, which is a logistic regression with an L1 penalty on the
+coefficients. The LASSO penalty tends to shrink the coefficients of less
+important features toward zero, effectively eliminating those features
+from the model if they are not strongly associated with the outcome.
+This can greatly simplify the model by selecting a sparse set of
+predictors. We expected the LASSO to be useful given the number of
+predictors and the likelihood that some of them, even after our
+filtering step, might still be only weakly related to the outcome.
+Finally, we trained an elastic net regularized logistic regression
+model, which generalizes the LASSO by using a combination of L1 and L2
+penalties. The elastic net has two hyperparameters to tune: the mixing
+parameter α (which controls the relative weight of L1 vs L2
+regularization) and the regularization strength parameter λ. We utilized
+cross-validation to tune these hyperparameters and to select the best
+model. Specifically, we performed 3-fold cross-validation on the
+training set with a model training pipeline that included the
+standardization step and the logistic model with a given regularization
+setting. During cross-validation, we evaluated model performance using a
+classification metric that takes into account both sensitivity and
+specificity. (In practice, we optimized for the ROC AUC metric on the
+validation folds, which balances true positive rate and false positive
+rate, rather than simply using raw accuracy, to account for the slight
+class imbalance.) We searched over a grid of λ values for the LASSO and
+elastic net models, and for the elastic net we also tried different
+values of α to find the optimal blend of L1 and L2 regularization. Based
+on the cross-validation results, the elastic net model achieved the best
+performance on the validation folds, outperforming both the baseline
+logistic regression and the purely L1-penalized model. The optimal
+hyperparameters found for the elastic net were a mixing parameter of
+approximately \(\alpha \approx 0.7\) (indicating that a 70\% L1 and 30\%
+L2 penalty mix gave the best result) and a certain regularization
+strength λ that maximized the model's discriminative ability. The fact
+that \(\alpha \approx 0.7\) was selected (rather than \(\alpha = 1\)
+corresponding to pure LASSO) suggested that including some L2 penalty
+provided a benefit, likely by stabilizing the coefficient estimates for
+correlated predictors. After determining the best parameters, we refit
+the elastic net logistic regression on the entire training set using
+those parameters. This final model was then used to predict
+probabilities of malignancy for the lesions in the hold-out test set. We
+used a default 0.5 probability cutoff to classify a lesion as
+``Malignant'' or ``Benign'' for the final submission. (We also briefly
+experimented with adjusting the classification threshold to maximize
+accuracy on the training data, but ultimately the standard 0.5 threshold
+was chosen for evaluating test outcomes.) The final submitted model,
+therefore, was an elastic net logistic regression with
+\(\alpha \approx 0.7\), applied to 34 selected features, predicting the
+probability of a lesion being malignant.
+
+\chapter{Results and Discussions}\label{results-and-discussions}
+
+The final elastic net logistic regression model achieved a public
+accuracy of 0.606, which is substantially better than random guessing
+(approximately 0.50) and indicates meaningful predictive signal from the
+structured variables. However, an accuracy in the low 60\% range remains
+modest for a medical diagnostic task, suggesting that non-image features
+alone provide limited discriminative power for skin cancer
+classification. This result highlights the inherent difficulty of
+distinguishing malignant from benign lesions using only demographic,
+environmental, and lifestyle variables, and suggests that incorporating
+lesion imaging or more informative clinical features would be necessary
+to achieve stronger predictive performance.
+
+\chapter{Conclusion and Limitations}\label{conclusion-and-limitations}
+
+Overall, despite our model ranking in the top 15 on the project
+leaderboard, this approach faced several important limitations. First,
+the model relied exclusively on structured, non-imaging variables and
+did not make use of any image-based features of the lesions. In
+real-world skin cancer detection, the appearance of the lesion (shape,
+color, border irregularity, etc.) is critical, and excluding that
+information severely limits diagnostic accuracy. Second, there was a
+class imbalance (fewer malignant cases than benign), which may have
+negatively impacted the model's ability to learn and detect the
+malignant class. Imbalanced data can lead models to favor the majority
+class (benign) and struggle to identify the minority class (malignant),
+as we observed with the lower sensitivity for malignancies. Finally,
+even after feature selection, we still included a couple dozen
+predictors that were derived from lifestyle and environmental data; many
+of these variables have only weak relationships with the outcome. The
+inclusion of numerous weak predictors can introduce noise and reduce the
+precision of the model's predictions, even with regularization to
+mitigate overfitting. This project demonstrates that supervised machine
+learning methods can be applied to distinguish between benign and
+malignant skin lesions using structured patient and lesion data.
+However, the moderate accuracy of the final model highlights the
+limitations of relying solely on non-image predictors for skin cancer
+classification. In future work, model performance could likely be
+improved by incorporating image data (such as dermoscopy or clinical
+photographs of the lesions) alongside the structured variables, since
+computer vision algorithms and dermatologists alike rely heavily on
+visual patterns to identify skin cancers. Additionally, exploring
+interaction terms or non-linear models (e.g.~decision tree ensembles or
+neural networks) might capture more complex relationships between risk
+factors. Careful handling of class imbalance (through techniques such as
+resampling, cost-sensitive learning, or adjusting decision thresholds)
+would also be important to improve malignant case detection.
+Nevertheless, this project provided valuable experience in the
+end-to-end process of predictive modeling with real-world data. We
+performed data cleaning and imputation to handle missing values, used
+statistical methods for feature selection, applied and tuned regularized
+logistic regression models, and evaluated the results on an independent
+test set. The exercise underscored the importance of domain knowledge
+(to understand what predictors might matter), the challenges of working
+with imperfect data, and the need to consider model limitations when
+interpreting results. Although our structured-data model alone is not
+ready for clinical use, it serves as a baseline and learning tool. It
+emphasizes that while non-image data can contribute some signal for skin
+cancer risk, truly effective skin cancer prediction will likely require
+integrating all available information --- including the rich visual data
+that was beyond the scope of this project. The insights gained here set
+the stage for more comprehensive approaches in the future, combining
+both data-driven modeling and clinical expertise to improve early
+detection of skin cancer.
+
+\chapter{Author Contributions.}\label{author-contributions.}
+
+All authors contributed equally to the conception and design of the
+study, data preprocessing and analysis, model development,
+interpretation of results, and writing and revision of the manuscript.
+All authors read and approved the final version of the manuscript.
+
+\chapter{Acknowledgments}\label{acknowledgments}
+
+\chapter{References}\label{references}
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{0}{0}
+\bibitem[\citeproctext]{ref-hhs_skin_cancer}
+\CSLLeftMargin{{[}1{]} }%
+\CSLRightInline{U.S. Department of Health and Human Services. Skin
+cancer: Quick facts from the surgeon general 2014.
+\url{https://www.hhs.gov/surgeongeneral/reports-and-publications/skin-cancer/fact-sheet/index.html}
+(accessed December 15, 2025).}
+
+\bibitem[\citeproctext]{ref-cdc_skin_cancer}
+\CSLLeftMargin{{[}2{]} }%
+\CSLRightInline{National Center for Chronic Disease Prevention and
+Health Promotion. Health and economic benefits of skin cancer
+interventions 2023.
+\url{https://www.cdc.gov/nccdphp/priorities/skin-cancer.html} (accessed
+December 15, 2025).}
+
+\bibitem[\citeproctext]{ref-skincancer_facts}
+\CSLLeftMargin{{[}3{]} }%
+\CSLRightInline{The Skin Cancer Foundation. Skin cancer facts \&
+statistics 2024.
+\url{https://www.skincancer.org/skin-cancer-information/skin-cancer-facts/}
+(accessed December 15, 2025).}
+
+\bibitem[\citeproctext]{ref-kaiser2020}
+\CSLLeftMargin{{[}4{]} }%
+\CSLRightInline{Kaiser I, Pfahlberg AB, Uter W, Heppt MV, Veierød MB,
+Gefeller O. Risk Prediction Models for Melanoma: A Systematic Review on
+the Heterogeneity in Model Development and Validation. International
+Journal of Environmental Research and Public Health 2020;17:7919.
+\url{https://doi.org/10.3390/ijerph17217919}.}
+
+\bibitem[\citeproctext]{ref-Zou2025}
+\CSLLeftMargin{{[}5{]} }%
+\CSLRightInline{Zou R, Lin Y, Da C, Liao G. Novel nomogram and decision
+curve analysis for predicting head and neck skin cancer risk. Scientific
+Reports 2025;15. \url{https://doi.org/10.1038/s41598-025-25427-0}.}
+
+\bibitem[\citeproctext]{ref-Whiteman2025}
+\CSLLeftMargin{{[}6{]} }%
+\CSLRightInline{Whiteman DC, Olsen CM, Wang H, Law MH, Neale RE, Pandeya
+N. A Risk Prediction Tool for Invasive Melanoma. JAMA Dermatology
+2025;161:1123. \url{https://doi.org/10.1001/jamadermatol.2025.3028}.}
+
+\bibitem[\citeproctext]{ref-Fontanillas2021}
+\CSLLeftMargin{{[}7{]} }%
+\CSLRightInline{Fontanillas P, Alipanahi B, Furlotte NA, Johnson M,
+Wilson CH, Agee M, et al. Disease risk scores for skin cancers. Nature
+Communications 2021;12.
+\url{https://doi.org/10.1038/s41467-020-20246-5}.}
+
+\end{CSLReferences}
+
+
+\backmatter
+
+
+\end{document}

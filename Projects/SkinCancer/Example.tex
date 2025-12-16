@@ -90,6 +90,39 @@
 % Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -389,19 +422,19 @@ limitations of relying on them alone for skin cancer detection.
 \chapter{Introduction}\label{introduction}
 
 Skin cancer is one of the most common and preventable forms of cancer in
-the United
-States\href{https://www.hhs.gov/surgeongeneral/reports-and-publications/skin-cancer/fact-sheet/index.html}{@hhs\_skin\_cancer},
+the United States {[}1{]}
+\href{https://www.hhs.gov/surgeongeneral/reports-and-publications/skin-cancer/fact-sheet/index.html}{@hhs\_skin\_cancer},
 yet early detection remains crucial for improving survival outcomes. In
 the U.S. alone, nearly six million individuals are treated for skin
-cancer
-annually\href{https://www.cdc.gov/nccdphp/priorities/skin-cancer.html\#:~:text=,and\%20improve\%20quality\%20of\%20life}{@cdc\_skin\_cancer},
+cancer annually
+{[}{[}2{]}{]}{[}@cdc\_skin\_cancer{]}(https://www.cdc.gov/nccdphp/priorities/skin-cancer.html\#:\textasciitilde:text=,and\%20improve\%20quality\%20of\%20life),
 with melanoma accounting for approximately 97,000 new cases and over
-8,000 deaths each
-year\href{https://www.cdc.gov/nccdphp/priorities/skin-cancer.html\#:~:text=,in\%20recent\%20years\%2C\%20about\%20900\%2C000}{@cdc\_skin\_cancer}.
+8,000 deaths each year
+{[}{[}2{]}{]}{[}@cdc\_skin\_cancer{]}(https://www.cdc.gov/nccdphp/priorities/skin-cancer.html\#:\textasciitilde:text=,in\%20recent\%20years\%2C\%20about\%20900\%2C000).
 Early detection greatly improves patient prognosis -- for example, the
 five-year survival rate for melanoma is over 99\% when detected at an
-early stage, compared to much lower survival if the cancer has
-advanced\href{https://www.skincancer.org/skin-cancer-information/skin-cancer-facts/\#:~:text=,2}{@skincancer\_facts}.
+early stage, compared to much lower survival if the cancer has advanced
+{[}{[}3{]}{]}{[}@skincancer\_facts{]}(https://www.skincancer.org/skin-cancer-information/skin-cancer-facts/\#:\textasciitilde:text=,2).
 While skin cancer can often be identified visually or through clinical
 examination, early diagnosis remains challenging due to the wide range
 of risk factors and lesion characteristics that must be considered.
@@ -432,23 +465,24 @@ features) for skin cancer risk prediction. For example, an XGBoost-based
 model using electronic health records and genetic/lifestyle factors from
 a 400,000-patient cohort achieved high accuracy in identifying skin
 cancer cases (\(F_1 \approx 0.90\) in European-ancestry patients) and
-leveraged SHAP values to interpret nonlinear risk factor effects
+leveraged SHAP values to interpret nonlinear risk factor effects {[}4{]}
 \href{http://dx.doi.org/10.3390/ijerph17217919}{@kaiser2020}. Another
 approach employed logistic regression to develop a nomogram with eight
 behavioral and dietary risk factors, showing good discrimination
 (\(\text{AUC} \approx 0.8\)) and clinical utility for head and neck skin
-cancer
-prevention\href{https://www.semanticscholar.org/paper/Novel-nomogram-and-decision-curve-analysis-for-head-Zou-Lin/d154c2b0a1b1e8c0b949b287562c223e09e9e3ad}{@Zou2025}.
-In melanoma-specific research, a new 16-factor risk model (MP16) was
+cancer prevention
+{[}{[}5{]}{]}{[}@Zou2025{]}(https://www.semanticscholar.org/paper/Novel-nomogram-and-decision-curve-analysis-for-head-Zou-Lin/d154c2b0a1b1e8c0b949b287562c223e09e9e3ad)
+. In melanoma-specific research, a new 16-factor risk model (MP16) was
 trained on a 41,000-person cohort and improved predictive accuracy
 (\(\text{C-index} \approx 0.74\)) compared to earlier tools, capturing
 \(\sim 74\%\) of of future melanomas by targeting the top 40\% high-risk
-group\href{https://pubmed.ncbi.nlm.nih.gov/40928797/}{@Whiteman2025}).
-Finally, a large 2021 study combined survey-derived risk variables with
-polygenic risk scores to create composite risk metrics for melanoma and
-non-melanoma skin cancers, identifying top-percentile individuals with
-over tenfold higher risk to inform targeted screening
-\href{https://www.nature.com/articles/s41467-020-20246-5}{@Fontanillas2021}).
+group
+{[}{[}6{]}{]}{[}@Whiteman2025{]}(https://pubmed.ncbi.nlm.nih.gov/40928797/))
+. Finally, a large 2021 study combined survey-derived risk variables
+with polygenic risk scores to create composite risk metrics for melanoma
+and non-melanoma skin cancers, identifying top-percentile individuals
+with over tenfold higher risk to inform targeted screening
+{[}{[}7{]}{]}{[}@Fontanillas2021{]}(https://www.nature.com/articles/s41467-020-20246-5)).
 
 \chapter{Data Analysis}\label{data-analysis}
 
@@ -820,6 +854,57 @@ All authors read and approved the final version of the manuscript.
 \chapter{References}\label{references}
 
 \phantomsection\label{refs}
+\begin{CSLReferences}{0}{0}
+\bibitem[\citeproctext]{ref-hhs_skin_cancer}
+\CSLLeftMargin{{[}1{]} }%
+\CSLRightInline{U.S. Department of Health and Human Services. Skin
+cancer: Quick facts from the surgeon general 2014.
+\url{https://www.hhs.gov/surgeongeneral/reports-and-publications/skin-cancer/fact-sheet/index.html}
+(accessed December 15, 2025).}
+
+\bibitem[\citeproctext]{ref-cdc_skin_cancer}
+\CSLLeftMargin{{[}2{]} }%
+\CSLRightInline{National Center for Chronic Disease Prevention and
+Health Promotion. Health and economic benefits of skin cancer
+interventions 2023.
+\url{https://www.cdc.gov/nccdphp/priorities/skin-cancer.html} (accessed
+December 15, 2025).}
+
+\bibitem[\citeproctext]{ref-skincancer_facts}
+\CSLLeftMargin{{[}3{]} }%
+\CSLRightInline{The Skin Cancer Foundation. Skin cancer facts \&
+statistics 2024.
+\url{https://www.skincancer.org/skin-cancer-information/skin-cancer-facts/}
+(accessed December 15, 2025).}
+
+\bibitem[\citeproctext]{ref-kaiser2020}
+\CSLLeftMargin{{[}4{]} }%
+\CSLRightInline{Kaiser I, Pfahlberg AB, Uter W, Heppt MV, Veierød MB,
+Gefeller O. Risk Prediction Models for Melanoma: A Systematic Review on
+the Heterogeneity in Model Development and Validation. International
+Journal of Environmental Research and Public Health 2020;17:7919.
+\url{https://doi.org/10.3390/ijerph17217919}.}
+
+\bibitem[\citeproctext]{ref-Zou2025}
+\CSLLeftMargin{{[}5{]} }%
+\CSLRightInline{Zou R, Lin Y, Da C, Liao G. Novel nomogram and decision
+curve analysis for predicting head and neck skin cancer risk. Scientific
+Reports 2025;15. \url{https://doi.org/10.1038/s41598-025-25427-0}.}
+
+\bibitem[\citeproctext]{ref-Whiteman2025}
+\CSLLeftMargin{{[}6{]} }%
+\CSLRightInline{Whiteman DC, Olsen CM, Wang H, Law MH, Neale RE, Pandeya
+N. A Risk Prediction Tool for Invasive Melanoma. JAMA Dermatology
+2025;161:1123. \url{https://doi.org/10.1001/jamadermatol.2025.3028}.}
+
+\bibitem[\citeproctext]{ref-Fontanillas2021}
+\CSLLeftMargin{{[}7{]} }%
+\CSLRightInline{Fontanillas P, Alipanahi B, Furlotte NA, Johnson M,
+Wilson CH, Agee M, et al. Disease risk scores for skin cancers. Nature
+Communications 2021;12.
+\url{https://doi.org/10.1038/s41467-020-20246-5}.}
+
+\end{CSLReferences}
 
 
 \backmatter

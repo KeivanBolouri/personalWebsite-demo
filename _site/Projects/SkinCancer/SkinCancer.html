@@ -181,7 +181,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">Literature Review</a></li>
   <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a>
   <ul class="collapse">
@@ -249,10 +250,13 @@ window.Quarto = {
 
 <p><img src="Skincancer.jpg" style="width:4cm;height:4cm"></p>
 <p><a href="./SkinnCancer.pdf" class="btn btn-primary">⬇ Download PDF</a></p>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
 <div class="text-right">
 <p>This project develops and evaluates statistical learning models to classify skin lesions as benign or malignant using structured (non-image) predictors. Using a skin cancer dataset with 50,000 training observations and 20,000 test observations, we performed exploratory analysis, handled missing values via median (numeric) and mode (categorical) imputation, standardized numerical features, and reduced dimensionality through association-based feature screening. We then trained and compared a baseline logistic regression model with regularized variants (LASSO and elastic net logistic regression), tuning hyperparameters via cross-validation to balance generalization and performance under slight class imbalance.</p>
 <p>The final model was an elastic net logistic regression with mixing parameter <span class="math inline">\(\alpha = 0.7\)</span> and 34 predictors, selected based on leaderboard performance. On the held-out test set, the model achieved 60.508% accuracy, outperforming naive baselines but remaining modest for a diagnostic setting. Overall, results suggest that structured demographic, behavioral, environmental, and clinical variables provide limited discriminative signal without lesion imaging features, highlighting both the potential utility of tabular predictors and the limitations of relying on them alone for skin cancer detection.</p>
 </div>
+</section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>Skin cancer is one of the most common and preventable forms of cancer in the United States <span class="citation" data-cites="hhs_skin_cancer">[<a href="#ref-hhs_skin_cancer" role="doc-biblioref">1</a>]</span> , yet early detection remains crucial for improving survival outcomes. In the U.S. alone, nearly six million individuals are treated for skin cancer annually<span class="citation" data-cites="cdc_skin_cancer">[<a href="#ref-cdc_skin_cancer" role="doc-biblioref">2</a>]</span> , with melanoma accounting for approximately 97,000 new cases and over 8,000 deaths each year <span class="citation" data-cites="cdc_skin_cancer">[<a href="#ref-cdc_skin_cancer" role="doc-biblioref">2</a>]</span>. Early detection greatly improves patient prognosis – for example, the five-year survival rate for melanoma is over 99% when detected at an early stage, compared to much lower survival if the cancer has advanced<span class="citation" data-cites="skincancer_facts">[<a href="#ref-skincancer_facts" role="doc-biblioref">3</a>]</span>. While skin cancer can often be identified visually or through clinical examination, early diagnosis remains challenging due to the wide range of risk factors and lesion characteristics that must be considered.</p>
@@ -261,7 +265,7 @@ window.Quarto = {
 </section>
 <section id="literature-review" class="level1">
 <h1>Literature Review</h1>
-<p>Recent studies have demonstrated the potential of machine learning models applied to structured clinical and demographic data (non-image features) for skin cancer risk prediction. For example, an XGBoost-based model using electronic health records and genetic/lifestyle factors from a 400,000-patient cohort achieved high accuracy in identifying skin cancer cases (<span class="math inline">\(F_1 \approx 0.90\)</span> in European-ancestry patients) and leveraged SHAP values to interpret nonlinear risk factor effects [@kaiser2020] . Another approach employed logistic regression to develop a nomogram with eight behavioral and dietary risk factors, showing good discrimination (<span class="math inline">\(\text{AUC} \approx 0.8\)</span>) and clinical utility for head and neck skin cancer prevention<span class="citation" data-cites="Zou2025">[<a href="#ref-Zou2025" role="doc-biblioref">4</a>]</span>. In melanoma-specific research, a new 16-factor risk model (MP16) was trained on a 41,000-person cohort and improved predictive accuracy (<span class="math inline">\(\text{C-index} \approx 0.74\)</span>) compared to earlier tools, capturing <span class="math inline">\(\sim 74\%\)</span> of of future melanomas by targeting the top 40% high-risk group <span class="citation" data-cites="Whiteman2025">[<a href="#ref-Whiteman2025" role="doc-biblioref">5</a>]</span>. Finally, a large 2021 study combined survey-derived risk variables with polygenic risk scores to create composite risk metrics for melanoma and non-melanoma skin cancers, identifying top-percentile individuals with over tenfold higher risk to inform targeted screening <a href="https://www.nature.com/articles/s41467-020-20246-5"><span class="citation" data-cites="Fontanillas2021">[<span>6</span>]</span></a>).</p>
+<p>Recent studies have demonstrated the potential of machine learning models applied to structured clinical and demographic data (non-image features) for skin cancer risk prediction. For example, an XGBoost-based model using electronic health records and genetic/lifestyle factors from a 400,000-patient cohort achieved high accuracy in identifying skin cancer cases (<span class="math inline">\(F_1 \approx 0.90\)</span> in European-ancestry patients) and leveraged SHAP values to interpret nonlinear risk factor effects <span class="citation" data-cites="kaiser2020">[<a href="#ref-kaiser2020" role="doc-biblioref">4</a>]</span> . Another approach employed logistic regression to develop a nomogram with eight behavioral and dietary risk factors, showing good discrimination (<span class="math inline">\(\text{AUC} \approx 0.8\)</span>) and clinical utility for head and neck skin cancer prevention<span class="citation" data-cites="Zou2025">[<a href="#ref-Zou2025" role="doc-biblioref">5</a>]</span>. In melanoma-specific research, a new 16-factor risk model (MP16) was trained on a 41,000-person cohort and improved predictive accuracy (<span class="math inline">\(\text{C-index} \approx 0.74\)</span>) compared to earlier tools, capturing <span class="math inline">\(\sim 74\%\)</span> of of future melanomas by targeting the top 40% high-risk group <span class="citation" data-cites="Whiteman2025">[<a href="#ref-Whiteman2025" role="doc-biblioref">6</a>]</span>. Finally, a large 2021 study combined survey-derived risk variables with polygenic risk scores to create composite risk metrics for melanoma and non-melanoma skin cancers, identifying top-percentile individuals with over tenfold higher risk to inform targeted screening <a href="https://www.nature.com/articles/s41467-020-20246-5">@Fontanillas2021</a>).</p>
 </section>
 <section id="data-analysis" class="level1">
 <h1>Data Analysis</h1>
@@ -783,14 +787,14 @@ Table&nbsp;1: Top ten variables with the highest proportion of missing values.
 <div id="ref-skincancer_facts" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[3] </div><div class="csl-right-inline">The Skin Cancer Foundation. Skin cancer facts &amp; statistics 2024. <a href="https://www.skincancer.org/skin-cancer-information/skin-cancer-facts/">https://www.skincancer.org/skin-cancer-information/skin-cancer-facts/</a> (accessed December 15, 2025).</div>
 </div>
+<div id="ref-kaiser2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">Kaiser I, Pfahlberg AB, Uter W, Heppt MV, Veierød MB, Gefeller O. Risk Prediction Models for Melanoma: A Systematic Review on the Heterogeneity in Model Development and Validation. International Journal of Environmental Research and Public Health 2020;17:7919. <a href="https://doi.org/10.3390/ijerph17217919">https://doi.org/10.3390/ijerph17217919</a>.</div>
+</div>
 <div id="ref-Zou2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">Zou R, Lin Y, Da C, Liao G. Novel nomogram and decision curve analysis for predicting head and neck skin cancer risk. Scientific Reports 2025;15. <a href="https://doi.org/10.1038/s41598-025-25427-0">https://doi.org/10.1038/s41598-025-25427-0</a>.</div>
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Zou R, Lin Y, Da C, Liao G. Novel nomogram and decision curve analysis for predicting head and neck skin cancer risk. Scientific Reports 2025;15. <a href="https://doi.org/10.1038/s41598-025-25427-0">https://doi.org/10.1038/s41598-025-25427-0</a>.</div>
 </div>
 <div id="ref-Whiteman2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Whiteman DC, Olsen CM, Wang H, Law MH, Neale RE, Pandeya N. A Risk Prediction Tool for Invasive Melanoma. JAMA Dermatology 2025;161:1123. <a href="https://doi.org/10.1001/jamadermatol.2025.3028">https://doi.org/10.1001/jamadermatol.2025.3028</a>.</div>
-</div>
-<div id="ref-Fontanillas2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">Fontanillas P, Alipanahi B, Furlotte NA, Johnson M, Wilson CH, Agee M, et al. Disease risk scores for skin cancers. Nature Communications 2021;12. <a href="https://doi.org/10.1038/s41467-020-20246-5">https://doi.org/10.1038/s41467-020-20246-5</a>.</div>
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">Whiteman DC, Olsen CM, Wang H, Law MH, Neale RE, Pandeya N. A Risk Prediction Tool for Invasive Melanoma. JAMA Dermatology 2025;161:1123. <a href="https://doi.org/10.1001/jamadermatol.2025.3028">https://doi.org/10.1001/jamadermatol.2025.3028</a>.</div>
 </div>
 </div>
 

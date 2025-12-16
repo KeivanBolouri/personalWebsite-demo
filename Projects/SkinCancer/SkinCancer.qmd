@@ -26,9 +26,11 @@ csl: elsevier-vancouver.csl
 cite-method: citeproc
 ---
 
-![](Skincancer.jpg){width="4cm" height="4cm"}   
+![](Skincancer.jpg){width="4cm" height="4cm"}
 
 [⬇ Download PDF](./SkinnCancer.pdf){.btn .btn-primary}
+
+# Abstract
 
 ::: text-right
 This project develops and evaluates statistical learning models to classify skin lesions as benign or malignant using structured (non-image) predictors. Using a skin cancer dataset with 50,000 training observations and 20,000 test observations, we performed exploratory analysis, handled missing values via median (numeric) and mode (categorical) imputation, standardized numerical features, and reduced dimensionality through association-based feature screening. We then trained and compared a baseline logistic regression model with regularized variants (LASSO and elastic net logistic regression), tuning hyperparameters via cross-validation to balance generalization and performance under slight class imbalance.
@@ -46,7 +48,7 @@ The goal of this project is to determine whether structured (tabular) data can b
 
 # Literature Review
 
-Recent studies have demonstrated the potential of machine learning models applied to structured clinical and demographic data (non-image features) for skin cancer risk prediction. For example, an XGBoost-based model using electronic health records and genetic/lifestyle factors from a 400,000-patient cohort achieved high accuracy in identifying skin cancer cases ($F_1 \approx 0.90$ in European-ancestry patients) and leveraged SHAP values to interpret nonlinear risk factor effects \[\@kaiser2020\] . Another approach employed logistic regression to develop a nomogram with eight behavioral and dietary risk factors, showing good discrimination ($\text{AUC} \approx 0.8$) and clinical utility for head and neck skin cancer prevention[@Zou2025]. In melanoma-specific research, a new 16-factor risk model (MP16) was trained on a 41,000-person cohort and improved predictive accuracy ($\text{C-index} \approx 0.74$) compared to earlier tools, capturing $\sim 74\%$ of of future melanomas by targeting the top 40% high-risk group [@Whiteman2025]. Finally, a large 2021 study combined survey-derived risk variables with polygenic risk scores to create composite risk metrics for melanoma and non-melanoma skin cancers, identifying top-percentile individuals with over tenfold higher risk to inform targeted screening [@Fontanillas2021](https://www.nature.com/articles/s41467-020-20246-5)).
+Recent studies have demonstrated the potential of machine learning models applied to structured clinical and demographic data (non-image features) for skin cancer risk prediction. For example, an XGBoost-based model using electronic health records and genetic/lifestyle factors from a 400,000-patient cohort achieved high accuracy in identifying skin cancer cases ($F_1 \approx 0.90$ in European-ancestry patients) and leveraged SHAP values to interpret nonlinear risk factor effects [@kaiser2020] . Another approach employed logistic regression to develop a nomogram with eight behavioral and dietary risk factors, showing good discrimination ($\text{AUC} \approx 0.8$) and clinical utility for head and neck skin cancer prevention[@Zou2025]. In melanoma-specific research, a new 16-factor risk model (MP16) was trained on a 41,000-person cohort and improved predictive accuracy ($\text{C-index} \approx 0.74$) compared to earlier tools, capturing $\sim 74\%$ of of future melanomas by targeting the top 40% high-risk group [@Whiteman2025]. Finally, a large 2021 study combined survey-derived risk variables with polygenic risk scores to create composite risk metrics for melanoma and non-melanoma skin cancers, identifying top-percentile individuals with over tenfold higher risk to inform targeted screening [\@Fontanillas2021](https://www.nature.com/articles/s41467-020-20246-5)).
 
 # Data Analysis
 

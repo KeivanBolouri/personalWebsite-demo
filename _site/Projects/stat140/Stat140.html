@@ -222,14 +222,13 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#result-for-hypothesis-3-reporting-uncertainty" id="toc-result-for-hypothesis-3-reporting-uncertainty" class="nav-link" data-scroll-target="#result-for-hypothesis-3-reporting-uncertainty">Result for Hypothesis 3: Reporting Uncertainty</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
-  <ul class="collapse">
   <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">Visualizations</a></li>
   <li><a href="#hypothesis-test-1" id="toc-hypothesis-test-1" class="nav-link" data-scroll-target="#hypothesis-test-1">Hypothesis Test 1</a></li>
   <li><a href="#hypothesis-test-2" id="toc-hypothesis-test-2" class="nav-link" data-scroll-target="#hypothesis-test-2">Hypothesis Test 2</a></li>
   <li><a href="#hypothesis-test-3" id="toc-hypothesis-test-3" class="nav-link" data-scroll-target="#hypothesis-test-3">Hypothesis Test 3</a></li>
   </ul></li>
+  <li><a href="#conlusion" id="toc-conlusion" class="nav-link" data-scroll-target="#conlusion">Conlusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -286,8 +285,7 @@ window.Quarto = {
 <p>Since 2002, the United States has waged a clandestine drone war in countries like Yemen and Somalia, often far from the public eye [1]. While these counterterrorism strikes aim to eliminate militant targets with minimal risk to U.S. forces, their humanitarian impacts remain a source of urgent concern. The cost to civilian lives can be high – for example, an investigation found that roughly one-third of those killed by U.S. drone strikes in Yemen in 2018 were likely civilians or pro-government allies [2].</p>
 <p>This research addresses a critical problem: <strong>do the patterns and human costs of U.S. strikes differ between Somalia and Yemen, and if so, how?</strong> Understanding this is important both theoretically and practically.</p>
 <p>Theoretically, comparing two distinct theaters of drone warfare can reveal how local context (from insurgent group dynamics to intelligence quality) influences strike outcomes. Practically, such analysis informs policy by identifying where drone operations are less effective in sparing civilians, guiding improvements to minimize collateral harm.</p>
-<p>These strikes are carried out “out of sight,” but their consequences are very real [1]. Official accounts have often underestimated civilian casualties, prompting independent organizations to step in [2]. For instance, the U.S. government once claimed only 64–116 civilian deaths in all drone strikes outside warzones from 2009–2015, whereas independent monitors estimated several times higher [2].</p>
-<p>Efforts to document the drone war’s toll have proliferated:<br>
+<p>These strikes are carried out “out of sight,” but their consequences are very real [1]. Official accounts have often underestimated civilian casualties, prompting independent organizations to step in [2]. For instance, the U.S. government once claimed only 64–116 civilian deaths in all drone strikes outside warzones from 2009–2015, whereas independent monitors estimated several times higher [2]. Efforts to document the drone war’s toll have proliferated:<br>
 - Pitch Interactive’s <em>Out of Sight, Out of Mind</em> visualization illustrated every CIA drone strike and casualty in Pakistan [1].<br>
 - <em>The Economist</em> published infographics showing discrepancies between official and independent death counts.<br>
 - UCLA’s Drone Wars project created a comparative dataset across Afghanistan, Pakistan, Somalia, and Yemen using Bureau of Investigative Journalism (BIJ) data [3,4].</p>
@@ -797,10 +795,6 @@ However, drone strikes show <strong>higher uncertainty</strong> (coef = 0.62, IR
 <strong>Conclusion:</strong> No regional difference in uncertainty → <em>H3 not supported</em>, though uncertainty varies by strike type.</p>
 </section>
 </section>
-</section>
-<section id="conclusion" class="level1">
-<h1>Conclusion</h1>
-<p>Our analysis shows clear and meaningful differences in the humanitarian impact of U.S. counterterrorism strikes in Somalia and Yemen. Using negative binomial regression to account for overdispersed count data, we find that strikes in Yemen are associated with nearly five times the civilian casualties of those in Somalia, even after controlling for drone use, confirmation status, and strike characteristics. Contrary to expectations, drone strikes do not have significantly different effects across the two countries, suggesting that broader regional factors—not simply weapon type—shape civilian outcomes. We also find no regional difference in reporting uncertainty, although uncertainty is higher for drone and unconfirmed strikes. Together, these results highlight the importance of transparent casualty reporting and the need to consider local conflict conditions when evaluating the effectiveness and humanitarian cost of U.S. strikes.</p>
 <section id="visualizations" class="level2">
 <h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
 </section>
@@ -878,10 +872,27 @@ H_{1}: &amp;\ \text{Reporting uncertainty differs between Somalia and Yemen.}
 </div>
 </div>
 </div>
-
-
-
 </section>
+</section>
+<section id="conlusion" class="level1">
+<h1>Conlusion</h1>
+<div class="text-right">
+<p>Our analysis shows clear and meaningful differences in the humanitarian impact of U.S. counterterrorism strikes in Somalia and Yemen. Using negative binomial regression to account for overdispersed count data, we find that strikes in Yemen are associated with nearly five times the civilian casualties of those in Somalia, even after controlling for drone use, confirmation status, and strike characteristics. Contrary to expectations, drone strikes do not have significantly different effects across the two countries, suggesting that broader regional factors—not simply weapon type—shape civilian outcomes. We also find no regional difference in reporting uncertainty, although uncertainty is higher for drone and unconfirmed strikes. Together, these results highlight the importance of transparent casualty reporting and the need to consider local conflict conditions when evaluating the effectiveness and humanitarian cost of U.S. strikes.</p>
+</div>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<div class="text-right">
+<p>[1] Currier, Cora. “Everything We Know So Far About Drone Strikes.” ProPublica, 5 Feb.&nbsp;2013.</p>
+<p>[2] Woods, Chris. “Why White House Civilian Casualty Figures Are a Wild Underestimate.” Bureau of Investigative Journalism, 1 July 2016.</p>
+<p>[3] Columbia Law School Human Rights Clinic. Counting Drone Strike Deaths. Human Rights Institute, Columbia Law School, Oct.&nbsp;2012.<br>
+[4] Bergen, Peter, David Sterman, and Melissa Salyk-Virk. “The Drone War in Somalia.” New America, 30 Mar.&nbsp;2020.</p>
+<p>[5] Bureau of Investigative Journalism. “Our Methodology.” BIJ.<br>
+[6] New America. “America’s Counterterrorism Wars: Methodology.” Future Security Program.</p>
+</div>
+
+
+
 </section>
 
 </main> <!-- /main -->

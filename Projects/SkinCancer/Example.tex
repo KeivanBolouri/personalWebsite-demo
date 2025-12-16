@@ -422,22 +422,17 @@ limitations of relying on them alone for skin cancer detection.
 \chapter{Introduction}\label{introduction}
 
 Skin cancer is one of the most common and preventable forms of cancer in
-the United States {[}1{]}
-\href{https://www.hhs.gov/surgeongeneral/reports-and-publications/skin-cancer/fact-sheet/index.html}{@hhs\_skin\_cancer},
-yet early detection remains crucial for improving survival outcomes. In
-the U.S. alone, nearly six million individuals are treated for skin
-cancer annually
-{[}{[}2{]}{]}{[}@cdc\_skin\_cancer{]}(https://www.cdc.gov/nccdphp/priorities/skin-cancer.html\#:\textasciitilde:text=,and\%20improve\%20quality\%20of\%20life),
-with melanoma accounting for approximately 97,000 new cases and over
-8,000 deaths each year
-{[}{[}2{]}{]}{[}@cdc\_skin\_cancer{]}(https://www.cdc.gov/nccdphp/priorities/skin-cancer.html\#:\textasciitilde:text=,in\%20recent\%20years\%2C\%20about\%20900\%2C000).
-Early detection greatly improves patient prognosis -- for example, the
-five-year survival rate for melanoma is over 99\% when detected at an
-early stage, compared to much lower survival if the cancer has advanced
-{[}{[}3{]}{]}{[}@skincancer\_facts{]}(https://www.skincancer.org/skin-cancer-information/skin-cancer-facts/\#:\textasciitilde:text=,2).
-While skin cancer can often be identified visually or through clinical
-examination, early diagnosis remains challenging due to the wide range
-of risk factors and lesion characteristics that must be considered.
+the United States {[}1{]} , yet early detection remains crucial for
+improving survival outcomes. In the U.S. alone, nearly six million
+individuals are treated for skin cancer annually {[}2{]}, with melanoma
+accounting for approximately 97,000 new cases and over 8,000 deaths each
+year {[}2{]}. Early detection greatly improves patient prognosis -- for
+example, the five-year survival rate for melanoma is over 99\% when
+detected at an early stage, compared to much lower survival if the
+cancer has advanced {[}3{]}. While skin cancer can often be identified
+visually or through clinical examination, early diagnosis remains
+challenging due to the wide range of risk factors and lesion
+characteristics that must be considered.
 
 In this project, we analyze a skin cancer dataset containing 50,000
 training observations and 20,000 test observations, with a binary
@@ -466,23 +461,19 @@ model using electronic health records and genetic/lifestyle factors from
 a 400,000-patient cohort achieved high accuracy in identifying skin
 cancer cases (\(F_1 \approx 0.90\) in European-ancestry patients) and
 leveraged SHAP values to interpret nonlinear risk factor effects {[}4{]}
-\href{http://dx.doi.org/10.3390/ijerph17217919}{@kaiser2020}. Another
-approach employed logistic regression to develop a nomogram with eight
-behavioral and dietary risk factors, showing good discrimination
-(\(\text{AUC} \approx 0.8\)) and clinical utility for head and neck skin
-cancer prevention
-{[}{[}5{]}{]}{[}@Zou2025{]}(https://www.semanticscholar.org/paper/Novel-nomogram-and-decision-curve-analysis-for-head-Zou-Lin/d154c2b0a1b1e8c0b949b287562c223e09e9e3ad)
-. In melanoma-specific research, a new 16-factor risk model (MP16) was
-trained on a 41,000-person cohort and improved predictive accuracy
+. Another approach employed logistic regression to develop a nomogram
+with eight behavioral and dietary risk factors, showing good
+discrimination (\(\text{AUC} \approx 0.8\)) and clinical utility for
+head and neck skin cancer prevention {[}5{]} . In melanoma-specific
+research, a new 16-factor risk model (MP16) was trained on a
+41,000-person cohort and improved predictive accuracy
 (\(\text{C-index} \approx 0.74\)) compared to earlier tools, capturing
 \(\sim 74\%\) of of future melanomas by targeting the top 40\% high-risk
-group
-{[}{[}6{]}{]}{[}@Whiteman2025{]}(https://pubmed.ncbi.nlm.nih.gov/40928797/))
-. Finally, a large 2021 study combined survey-derived risk variables
-with polygenic risk scores to create composite risk metrics for melanoma
-and non-melanoma skin cancers, identifying top-percentile individuals
-with over tenfold higher risk to inform targeted screening
-{[}{[}7{]}{]}{[}@Fontanillas2021{]}(https://www.nature.com/articles/s41467-020-20246-5)).
+group {[}6{]} . Finally, a large 2021 study combined survey-derived risk
+variables with polygenic risk scores to create composite risk metrics
+for melanoma and non-melanoma skin cancers, identifying top-percentile
+individuals with over tenfold higher risk to inform targeted screening
+{[}7{]}.
 
 \chapter{Data Analysis}\label{data-analysis}
 

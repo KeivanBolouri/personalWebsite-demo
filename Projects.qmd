@@ -14,6 +14,7 @@ listing:
       - "Ad.qmd"
       - "Stat140.qmd"
       - "SkinCancer.qmd"
+      - "Education.qmd"
     type: grid
     sort: false
     sort-ui: true

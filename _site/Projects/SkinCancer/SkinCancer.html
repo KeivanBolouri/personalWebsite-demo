@@ -249,7 +249,7 @@ window.Quarto = {
 
 
 <p><img src="Skincancer.jpg" style="width:4cm;height:4cm"></p>
-<p><a href="./SkinnCancer.pdf" class="btn btn-primary">⬇ Download PDF</a></p>
+<p><a href="./FinalReport.pdf" class="btn btn-primary">⬇ Download PDF</a></p>
 <section id="abstract" class="level1">
 <h1>Abstract</h1>
 <div class="text-right">
@@ -272,10 +272,134 @@ window.Quarto = {
 <section id="exploratory-data-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h2>
 <p>We began by examining the overall structure and distributions in the training dataset. The response variable (Cancer) is binary (Benign or Malignant), and we observed a slight class imbalance: benign lesions were more frequent than malignant lesions in the training data. This imbalance means that a naive classifier that predicts all cases as benign would achieve a non-trivial accuracy, so careful model evaluation is necessary. We also inspected the distribution of key predictors. For example, the average age of patients with malignant lesions appeared higher than that of patients with benign lesions, consistent with the fact that skin cancer risk increases with age. We explored categorical risk factors as well: certain exposure-related factors (such as indicators of high UV exposure or tanning habits) were somewhat more prevalent in malignant cases, though there was significant overlap between the benign and malignant groups for most individual predictors. Overall, no single predictor showed a dramatic separation between malignant and benign lesions in isolation, suggesting that multiple factors in combination would be needed for effective prediction. In addition, we checked for missing data and outliers during the exploratory phase. We found that the dataset’s overall quality was high, with only a moderate amount of missing values (on the order of 7–8% missing per predictor). There was no evidence of extreme outliers that would require removal or transformation beyond standardization. The presence of some missing values and the lack of obvious one-variable predictors of cancer underlined the need for a robust modeling approach with proper data preprocessing, which we implemented as described below.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Cancer Type</th>
+<th style="text-align: center;">Number of Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Benign</td>
+<td style="text-align: center;">23868</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Malignant</td>
+<td style="text-align: center;">26132</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1440"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="data-cleaning-and-missing-values" class="level2">
 <h2 class="anchored" data-anchor-id="data-cleaning-and-missing-values">Data Cleaning and Missing Values</h2>
 <p>After completing the exploratory analysis, we examined the dataset for missing values. We found that the overall data quality was relatively high, with most predictors containing approximately 7–8% missing values. No predictor exceeded 10% missingness, so eliminating variables or observations would have resulted in unnecessary data loss. To address missing values in a consistent manner, we applied the following imputation strategy: Numerical variables were imputed using the median, which is robust to outliers. Categorical variables were imputed using the most frequent category (mode). This approach allowed us to preserve all 50,000 observations in the training dataset while ensuring that the data were suitable for modeling. After imputation, no missing values remained in the predictors used for analysis.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>zeroGrob[NULL] </code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <div id="tbl-missing-panel" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-missing-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -412,7 +536,149 @@ Table&nbsp;1: Top ten variables with the highest proportion of missing values.
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="SkinCancer_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" data-fig-pos="H" width="768"></p>
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" data-fig-pos="H" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-11.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-12.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-13.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-14.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-15.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-16.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-17.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-18.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-19.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SkinCancer_files/figure-html/unnamed-chunk-11-20.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -758,7 +1024,7 @@ Table&nbsp;1: Top ten variables with the highest proportion of missing values.
 </section>
 <section id="model-selection" class="level1">
 <h1>Model Selection</h1>
-<p>After preprocessing and feature selection, we proceeded to build predictive classification models on the reduced set of 34 predictors. We first fit a standard logistic regression model using all selected features as a baseline. The logistic regression model provides an interpretable baseline by estimating the odds of a lesion being malignant as a linear function of the predictors (with a logistic link). However, with 34 predictors, a basic logistic model can still risk overfitting and may include some predictors that contribute little to accuracy. All numeric features were standardized (centered to mean 0 and scaled to unit variance) prior to modeling so that they would be on comparable scales and to help the optimization of regularized models. Next, we applied regularization techniques to the logistic model to perform automatic variable selection and to improve generalization performance. In particular, we trained a LASSO logistic regression model, which is a logistic regression with an L1 penalty on the coefficients. The LASSO penalty tends to shrink the coefficients of less important features toward zero, effectively eliminating those features from the model if they are not strongly associated with the outcome. This can greatly simplify the model by selecting a sparse set of predictors. We expected the LASSO to be useful given the number of predictors and the likelihood that some of them, even after our filtering step, might still be only weakly related to the outcome. Finally, we trained an elastic net regularized logistic regression model, which generalizes the LASSO by using a combination of L1 and L2 penalties. The elastic net has two hyperparameters to tune: the mixing parameter α (which controls the relative weight of L1 vs L2 regularization) and the regularization strength parameter λ. We utilized cross-validation to tune these hyperparameters and to select the best model. Specifically, we performed 3-fold cross-validation on the training set with a model training pipeline that included the standardization step and the logistic model with a given regularization setting. During cross-validation, we evaluated model performance using a classification metric that takes into account both sensitivity and specificity. (In practice, we optimized for the ROC AUC metric on the validation folds, which balances true positive rate and false positive rate, rather than simply using raw accuracy, to account for the slight class imbalance.) We searched over a grid of λ values for the LASSO and elastic net models, and for the elastic net we also tried different values of α to find the optimal blend of L1 and L2 regularization. Based on the cross-validation results, the elastic net model achieved the best performance on the validation folds, outperforming both the baseline logistic regression and the purely L1-penalized model. The optimal hyperparameters found for the elastic net were a mixing parameter of approximately <span class="math inline">\(\alpha \approx 0.7\)</span> (indicating that a 70% L1 and 30% L2 penalty mix gave the best result) and a certain regularization strength λ that maximized the model’s discriminative ability. The fact that <span class="math inline">\(\alpha \approx 0.7\)</span> was selected (rather than <span class="math inline">\(\alpha = 1\)</span> corresponding to pure LASSO) suggested that including some L2 penalty provided a benefit, likely by stabilizing the coefficient estimates for correlated predictors. After determining the best parameters, we refit the elastic net logistic regression on the entire training set using those parameters. This final model was then used to predict probabilities of malignancy for the lesions in the hold-out test set. We used a default 0.5 probability cutoff to classify a lesion as “Malignant” or “Benign” for the final submission. (We also briefly experimented with adjusting the classification threshold to maximize accuracy on the training data, but ultimately the standard 0.5 threshold was chosen for evaluating test outcomes.) The final submitted model, therefore, was an elastic net logistic regression with <span class="math inline">\(\alpha \approx 0.7\)</span>, applied to 34 selected features, predicting the probability of a lesion being malignant.</p>
+<p>After preprocessing and feature selection, we proceeded to build predictive classification models on the reduced set of 34 predictors. We first fit a standard logistic regression model using all selected features as a baseline. The logistic regression model provides an interpretable baseline by estimating the odds of a lesion being malignant as a linear function of the predictors (with a logistic link). However, with 34 predictors, a basic logistic model can still risk overfitting and may include some predictors that contribute little to accuracy. All numeric features were standardized (centered to mean 0 and scaled to unit variance) prior to modeling so that they would be on comparable scales and to help the optimization of regularized models. Next, we applied regularization techniques to the logistic model to perform automatic variable selection and to improve generalization performance. In particular, we trained a LASSO logistic regression model, which is a logistic regression with an L1 penalty on the coefficients. The LASSO penalty tends to shrink the coefficients of less important features toward zero, effectively eliminating those features from the model if they are not strongly associated with the outcome. This can greatly simplify the model by selecting a sparse set of predictors. We expected the LASSO to be useful given the number of predictors and the likelihood that some of them, even after our filtering step, might still be only weakly related to the outcome. Finally, we trained an elastic net regularized logistic regression model, which generalizes the LASSO by using a combination of L1 and L2 penalties. The elastic net has two hyperparameters to tune: the mixing parameter α (which controls the relative weight of L1 vs L2 regularization) and the regularization strength parameter λ. We utilized cross-validation to tune these hyperparameters and to select the best model. Specifically, we performed 25-fold cross-validation on the training set with a model training pipeline that included the standardization step and the logistic model with a given regularization setting. During cross-validation, we evaluated model performance using a classification metric that takes into account both sensitivity and specificity. (In practice, we optimized for the ROC AUC metric on the validation folds, which balances true positive rate and false positive rate, rather than simply using raw accuracy, to account for the slight class imbalance.) We searched over a grid of λ values for the LASSO and elastic net models, and for the elastic net we also tried different values of α to find the optimal blend of L1 and L2 regularization. Based on the cross-validation results, the elastic net model achieved the best performance on the validation folds, outperforming both the baseline logistic regression and the purely L1-penalized model. The optimal hyperparameters found for the elastic net were a mixing parameter of approximately <span class="math inline">\(\alpha \approx 0.7\)</span> (indicating that a 70% L1 and 30% L2 penalty mix gave the best result) and a certain regularization strength λ that maximized the model’s discriminative ability. The fact that <span class="math inline">\(\alpha \approx 0.7\)</span> was selected (rather than <span class="math inline">\(\alpha = 1\)</span> corresponding to pure LASSO) suggested that including some L2 penalty provided a benefit, likely by stabilizing the coefficient estimates for correlated predictors. After determining the best parameters, we refit the elastic net logistic regression on the entire training set using those parameters. This final model was then used to predict probabilities of malignancy for the lesions in the hold-out test set. We used a default 0.5 probability cutoff to classify a lesion as “Malignant” or “Benign” for the final submission. (We also briefly experimented with adjusting the classification threshold to maximize accuracy on the training data, but ultimately the standard 0.5 threshold was chosen for evaluating test outcomes.) The final submitted model, therefore, was an elastic net logistic regression with <span class="math inline">\(\alpha \approx 0.7\)</span>, applied to 34 selected features, predicting the probability of a lesion being malignant.</p>
 </section>
 <section id="results-and-discussions" class="level1">
 <h1>Results and Discussions</h1>

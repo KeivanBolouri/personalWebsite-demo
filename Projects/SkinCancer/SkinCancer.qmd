@@ -28,7 +28,7 @@ cite-method: citeproc
 
 ![](Skincancer.jpg){width="4cm" height="4cm"}
 
-[⬇ Download PDF](./SkinnCancer.pdf){.btn .btn-primary}
+[⬇ Download PDF](./FinalReport.pdf){.btn .btn-primary}
 
 # Abstract
 
@@ -54,11 +54,479 @@ Recent studies have demonstrated the potential of machine learning models applie
 
 ## Exploratory Data Analysis
 
-We began by examining the overall structure and distributions in the training dataset. The response variable (Cancer) is binary (Benign or Malignant), and we observed a slight class imbalance: benign lesions were more frequent than malignant lesions in the training data. This imbalance means that a naive classifier that predicts all cases as benign would achieve a non-trivial accuracy, so careful model evaluation is necessary. We also inspected the distribution of key predictors. For example, the average age of patients with malignant lesions appeared higher than that of patients with benign lesions, consistent with the fact that skin cancer risk increases with age. We explored categorical risk factors as well: certain exposure-related factors (such as indicators of high UV exposure or tanning habits) were somewhat more prevalent in malignant cases, though there was significant overlap between the benign and malignant groups for most individual predictors. Overall, no single predictor showed a dramatic separation between malignant and benign lesions in isolation, suggesting that multiple factors in combination would be needed for effective prediction. In addition, we checked for missing data and outliers during the exploratory phase. We found that the dataset’s overall quality was high, with only a moderate amount of missing values (on the order of 7–8% missing per predictor). There was no evidence of extreme outliers that would require removal or transformation beyond standardization. The presence of some missing values and the lack of obvious one-variable predictors of cancer underlined the need for a robust modeling approach with proper data preprocessing, which we implemented as described below.
+We began by examining the overall structure and distributions in the training dataset. The response variable (Cancer) is binary (Benign or Malignant), and we observed a slight class imbalance: benign lesions were more frequent than malignant lesions in the training data. This imbalance means that a naive classifier that predicts all cases as benign would achieve a non-trivial accuracy, so careful model evaluation is necessary. We also inspected the distribution of key predictors. For example, the average age of patients with malignant lesions appeared higher than that of patients with benign lesions, consistent with the fact that skin cancer risk increases with age. We explored categorical risk factors as well: certain exposure-related factors (such as indicators of high UV exposure or tanning habits) were somewhat more prevalent in malignant cases, though there was significant overlap between the benign and malignant groups for most individual predictors. Overall, no single predictor showed a dramatic separation between malignant and benign lesions in isolation, suggesting that multiple factors in combination would be needed for effective prediction. In addition, we checked for missing data and outliers during the exploratory phase. We found that the dataset’s overall quality was high, with only a moderate amount of missing values (on the order of 7–8% missing per predictor). There was no evidence of extreme outliers that would require removal or transformation beyond standardization. The presence of some missing values and the lack of obvious one-variable predictors of cancer underlined the need for a robust modeling approach with proper data preprocessing, which we implemented as described below.  
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| error: false
+library(readr)
+library(dplyr)
+library(knitr)
+
+# Read training dataset
+train_clean <- read_csv("SkinCancerTrain_Clean.csv", show_col_types = FALSE)
+
+# Ensure Cancer is a factor
+train_clean <- train_clean %>%
+  mutate(Cancer = factor(Cancer, levels = c("Benign", "Malignant")))
+
+# Create count table
+cancer_table <- train_clean %>%
+  count(Cancer) %>%
+  rename(
+    `Cancer Type` = Cancer,
+    `Number of Samples` = n
+  )
+
+# Display as formatted table
+kable(cancer_table, align = "lc")
+
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| error: false
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+
+# -------------------------
+# Read training dataset
+# -------------------------
+train_clean <- read_csv(
+  "SkinCancerTrain_Clean.csv",
+  show_col_types = FALSE
+)
+
+# -------------------------
+# Ensure Cancer is a factor
+# -------------------------
+train_clean <- train_clean %>%
+  mutate(
+    Cancer = factor(Cancer, levels = c("Benign", "Malignant"))
+  )
+
+# -------------------------
+# Create count table (optional)
+# -------------------------
+cancer_table <- train_clean %>%
+  count(Cancer)
+
+# -------------------------
+# Plot Benign vs Malignant
+# -------------------------
+ggplot(train_clean, aes(x = Cancer, fill = Cancer)) +
+  geom_bar(width = 0.6) +
+  scale_fill_manual(
+    values = c(
+      "Benign" = "#F8766D",
+      "Malignant" = "#00BFC4"
+    )
+  ) +
+  labs(
+    x = "",
+    y = "Count"
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    legend.position = "none"
+  )
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| error: false
+#| fig-width: 15
+#| fig-height: 18
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(scales)
+
+# -------------------------
+# Read CLEAN training data
+# -------------------------
+train_clean <- read_csv("SkinCancerTrain_Clean.csv")
+
+# -------------------------
+# Variables to plot (categorical removed)
+# -------------------------
+vars_to_plot <- c(
+  "age",
+  "avg_daily_uv",
+  "number_of_lesions",
+  "sunburns_last_year",
+  "lesion_size_mm",
+  "sunscreen_spf",
+  "years_lived_at_address",
+  "income",
+  "desk_height_cm",
+  "residence_lon",
+  "exercise_freq_per_week",
+  "zip_code_last_digit",
+  "distance_from_beach_km",
+  "alcohol_drinks_per_week",
+  "BMI",
+  "commute_minutes",
+  "frequency_doctor_visits_per_year",
+  "residence_lat",
+  "monthly_screen_time_minutes"
+)
+
+# -------------------------
+# Long format + log only for income
+# -------------------------
+train_long <- train_clean %>%
+  select(all_of(vars_to_plot), Cancer) %>%
+  pivot_longer(
+    cols = all_of(vars_to_plot),
+    names_to = "variable",
+    values_to = "value"
+  ) %>%
+  mutate(
+    value_plot = if_else(
+      variable == "income",
+      log10(value + 1),
+      value
+    )
+  )
+
+# -------------------------
+# Wilcoxon p-values per variable
+# -------------------------
+pvals <- train_long %>%
+  group_by(variable) %>%
+  summarise(
+    p_value = wilcox.test(value ~ Cancer)$p.value,
+    .groups = "drop"
+  ) %>%
+  mutate(
+    p_label = case_when(
+      p_value < 0.001 ~ "p < 0.001",
+      TRUE ~ paste0("p = ", signif(p_value, 3))
+    )
+  )
+
+# -------------------------
+# Merge p-values back
+# -------------------------
+train_long <- train_long %>%
+  left_join(pvals, by = "variable")
+
+# -------------------------
+# Final plot (3 columns → no empty space)
+# -------------------------
+ggplot(train_long, aes(x = Cancer, y = value_plot, fill = Cancer)) +
+  geom_boxplot(
+    alpha = 0.75,
+    width = 0.6,
+    outlier.alpha = 0
+  ) +
+  facet_wrap(~variable, ncol = 3, scales = "free_y") +
+  geom_text(
+    data = pvals,
+    aes(x = 1.5, y = Inf, label = p_label),
+    inherit.aes = FALSE,
+    vjust = 1.4,
+    size = 3.5
+  ) +
+  labs(
+    title = "Clean Training Data: Malignant vs Benign (Wilcoxon Test)",
+    x = "Cancer Type",
+    y = "Value (log scale for Income)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(size = 12, face = "bold"),
+    axis.text.x = element_text(size = 11),
+    axis.text.y = element_text(size = 10),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank()
+  ) +
+  scale_y_continuous(
+    labels = label_number(scale_cut = cut_si(""))
+  )
+
+```
+
+
+
+
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| error: false
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(scales)
+
+# -------------------------
+# Read data
+# -------------------------
+train_clean <- read_csv("SkinCancerTrain_Clean.csv", show_col_types = FALSE)
+
+# -------------------------
+# Ensure correct types
+# -------------------------
+train_clean <- train_clean %>%
+  mutate(
+    Cancer = factor(Cancer, levels = c("Benign", "Malignant")),
+    participates_outdoor_sports = factor(participates_outdoor_sports,
+                                         levels = c("No", "Yes")),
+    vitamin_d_supplement = factor(vitamin_d_supplement,
+                                  levels = c("No", "Yes")),
+    immunosuppressed = factor(immunosuppressed,
+                              levels = c("No", "Yes")),
+    outdoor_job = factor(outdoor_job,
+                         levels = c(0, 1),
+                         labels = c("No", "Yes"))
+  )
+
+# -------------------------
+# Prepare data
+# -------------------------
+plot_data <- train_clean %>%
+  select(
+    participates_outdoor_sports,
+    vitamin_d_supplement,
+    immunosuppressed,
+    outdoor_job,
+    Cancer
+  ) %>%
+  pivot_longer(
+    cols = -Cancer,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+# -------------------------
+# BEAUTIFUL plot (percent stacked)
+# -------------------------
+ggplot(plot_data, aes(x = value, fill = Cancer)) +
+  geom_bar(position = "fill", width = 0.7) +
+  facet_wrap(
+    ~variable,
+    nrow = 1,
+    labeller = as_labeller(c(
+      participates_outdoor_sports = "Outdoor Sports",
+      vitamin_d_supplement       = "Vitamin D Sup",
+      immunosuppressed           = "Immuno-suppr",
+      outdoor_job                = "Outdoor Job"
+    ))
+  ) +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(
+    values = c(
+      "Benign" = "#F8766D",
+      "Malignant" = "#00BFC4"
+    )
+  ) +
+  labs(
+    x = NULL,
+    y = "Proportion"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "bottom",
+    strip.text = element_text(face = "bold"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Data Cleaning and Missing Values
 
 After completing the exploratory analysis, we examined the dataset for missing values. We found that the overall data quality was relatively high, with most predictors containing approximately 7–8% missing values. No predictor exceeded 10% missingness, so eliminating variables or observations would have resulted in unnecessary data loss. To address missing values in a consistent manner, we applied the following imputation strategy: Numerical variables were imputed using the median, which is robust to outliers. Categorical variables were imputed using the most frequent category (mode). This approach allowed us to preserve all 50,000 observations in the training dataset while ensuring that the data were suitable for modeling. After imputation, no missing values remained in the predictors used for analysis.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| error: false
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(cowplot)
+
+# -------------------------
+# Read data
+# -------------------------
+train_not_clean <- read_csv("SkinCancerTrain.csv")
+train_clean     <- read_csv("SkinCancerTrain_Clean.csv")
+
+test_not_clean  <- read_csv("SkinCancerTestNoY.csv")
+test_clean      <- read_csv("SkinCancerTestNoY_Clean.csv")
+
+# -------------------------
+# Variables to plot
+# -------------------------
+vars_to_plot <- c(
+  "age", "avg_daily_uv", "number_of_lesions", "sunburns_last_year",
+  "outdoor_job", "lesion_size_mm", "sunscreen_spf",
+  "years_lived_at_address", "income", "desk_height_cm",
+  "residence_lon", "exercise_freq_per_week", "zip_code_last_digit",
+  "distance_from_beach_km", "alcohol_drinks_per_week", "BMI",
+  "commute_minutes", "frequency_doctor_visits_per_year",
+  "residence_lat", "monthly_screen_time_minutes"
+)
+
+# -------------------------
+# Human-readable labels
+# -------------------------
+var_labels <- c(
+  age = "Age (years)",
+  avg_daily_uv = "Average Daily UV Exposure",
+  number_of_lesions = "Number of Skin Lesions",
+  sunburns_last_year = "Sunburns Last Year",
+  outdoor_job = "Outdoor Job",
+  lesion_size_mm = "Lesion Size (mm)",
+  sunscreen_spf = "Sunscreen SPF",
+  years_lived_at_address = "Years Lived at Address",
+  income = "Annual Income",
+  desk_height_cm = "Desk Height (cm)",
+  residence_lon = "Residence Longitude",
+  exercise_freq_per_week = "Exercise Frequency (per week)",
+  zip_code_last_digit = "ZIP Code (Last Digit)",
+  distance_from_beach_km = "Distance from Beach (km)",
+  alcohol_drinks_per_week = "Alcohol Drinks per Week",
+  BMI = "Body Mass Index (BMI)",
+  commute_minutes = "Commute Time (minutes)",
+  frequency_doctor_visits_per_year = "Doctor Visits per Year",
+  residence_lat = "Residence Latitude",
+  monthly_screen_time_minutes = "Monthly Screen Time (minutes)"
+)
+
+# -------------------------
+# Fixed colors (IMPORTANT)
+# -------------------------
+status_colors <- c(
+  "Clean" = "#F8766D",
+  "Not Clean" = "#00BFC4"
+)
+
+# -------------------------
+# Keep only selected variables
+# -------------------------
+train_num_not_clean <- train_not_clean %>% select(all_of(vars_to_plot))
+train_num_clean     <- train_clean     %>% select(all_of(vars_to_plot))
+
+test_num_not_clean  <- test_not_clean  %>% select(all_of(vars_to_plot))
+test_num_clean      <- test_clean      %>% select(all_of(vars_to_plot))
+
+# -------------------------
+# PRINT LEGEND ONCE (BEFORE PLOTS)
+# -------------------------
+legend_plot <- ggplot(
+  tibble(x = c(1, 2), y = c(1, 1), status = c("Clean", "Not Clean")),
+  aes(x = x, y = y, fill = status, color = status)
+) +
+  geom_tile(width = 0.4, height = 0.4) +
+  scale_fill_manual(values = status_colors) +
+  scale_color_manual(values = status_colors) +
+  theme_void() +
+  theme(
+    legend.position = "top",
+    legend.justification = "center",
+    legend.title = element_blank()
+  )
+
+print(get_legend(legend_plot))
+
+# -------------------------
+# Function: plots WITHOUT legend
+# -------------------------
+compare_distribution_4up <- function(not_clean, clean, sample_n = 2000) {
+
+  plots <- list()
+
+  for (v in vars_to_plot) {
+
+    x1 <- not_clean[[v]]
+    x2 <- clean[[v]]
+
+    if (length(x1) > sample_n) x1 <- sample(x1, sample_n)
+    if (length(x2) > sample_n) x2 <- sample(x2, sample_n)
+
+    df <- tibble(
+      value  = c(x1, x2),
+      status = rep(c("Not Clean", "Clean"),
+                   c(length(x1), length(x2)))
+    )
+
+    p <- ggplot(df, aes(x = value, fill = status, color = status)) +
+      geom_density(alpha = 0.3, adjust = 1.2, na.rm = TRUE) +
+      scale_fill_manual(values = status_colors) +
+      scale_color_manual(values = status_colors) +
+      labs(
+        x = var_labels[v],
+        y = "Density"
+      ) +
+      theme_minimal(base_size = 12) +
+      theme(
+        legend.position = "none"
+      )
+
+    plots[[length(plots) + 1]] <- p
+  }
+
+  # Print 4 plots per page
+  for (i in seq(1, length(plots), by = 4)) {
+    print(
+      plot_grid(
+        plotlist = plots[i:min(i + 3, length(plots))],
+        ncol = 2
+      )
+    )
+  }
+}
+
+# -------------------------
+# RUN
+# -------------------------
+set.seed(123)
+
+compare_distribution_4up(train_num_not_clean, train_num_clean)
+compare_distribution_4up(test_num_not_clean,  test_num_clean)
+
+
+```
+
+
+
 
 ```{r}
 #| echo: false
@@ -273,6 +741,78 @@ p3 <- missing_report %>%
 (p1 | p2) / p3
 ```
 
+
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| error: false
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+# Train data
+train_not_clean <- read_csv("SkinCancerTrain.csv")
+train_clean     <- read_csv("SkinCancerTrain_Clean.csv")
+
+# Test data (NO target variable)
+test_not_clean  <- read_csv("SkinCancerTestNoY.csv")
+test_clean      <- read_csv("SkinCancerTestNoY_Clean.csv")
+train_num_not_clean <- train_not_clean %>% select(where(is.numeric))
+train_num_clean     <- train_clean %>% select(where(is.numeric))
+
+test_num_not_clean  <- test_not_clean %>% select(where(is.numeric))
+test_num_clean      <- test_clean %>% select(where(is.numeric))
+compare_distribution <- function(not_clean, clean, dataset_name) {
+
+  num_vars <- intersect(names(not_clean), names(clean))
+
+  for (var in num_vars) {
+
+    plot_data <- tibble(
+      value = c(not_clean[[var]], clean[[var]]),
+      status = rep(c("Not Clean", "Clean"),
+                   c(length(not_clean[[var]]),
+                     length(clean[[var]])))
+    )
+
+    p <- ggplot(plot_data, aes(x = value, color = status, fill = status)) +
+      geom_density(alpha = 0.3, na.rm = TRUE) +
+      labs(
+        title = paste(dataset_name, "-", var),
+        x = var,
+        y = "Density"
+      ) +
+      theme_minimal()
+
+    print(p)
+  }
+}
+# Compare training data distributions
+compare_distribution(
+  not_clean = train_num_not_clean,
+  clean     = train_num_clean,
+  dataset_name = "TRAIN"
+)
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Variable Selection
 
 Given the large number of predictors, variable selection was necessary to reduce dimensionality and eliminate weak predictors that could introduce noise and increase the risk of overfitting. For categorical predictors, we used Cramér’s V to measure the strength of association between each categorical variable and the cancer outcome. Cramér’s V is based on the chi-squared statistic and produces values between 0 and 1, with larger values indicating stronger association. Here is a sample of the first 10 variables: For numerical predictors, we computed the point-biserial correlation, which measures the strength of association between a continuous predictor and a binary response variable. Numerical variables were ranked based on the absolute value of this correlation.
@@ -429,6 +969,7 @@ length(c(outcome_var, selected_predictors))
 
 ```
 
+
 \newpage
 
 ```{r}
@@ -483,7 +1024,7 @@ final_vars_table %>%
 
 # Model Selection
 
-After preprocessing and feature selection, we proceeded to build predictive classification models on the reduced set of 34 predictors. We first fit a standard logistic regression model using all selected features as a baseline. The logistic regression model provides an interpretable baseline by estimating the odds of a lesion being malignant as a linear function of the predictors (with a logistic link). However, with 34 predictors, a basic logistic model can still risk overfitting and may include some predictors that contribute little to accuracy. All numeric features were standardized (centered to mean 0 and scaled to unit variance) prior to modeling so that they would be on comparable scales and to help the optimization of regularized models. Next, we applied regularization techniques to the logistic model to perform automatic variable selection and to improve generalization performance. In particular, we trained a LASSO logistic regression model, which is a logistic regression with an L1 penalty on the coefficients. The LASSO penalty tends to shrink the coefficients of less important features toward zero, effectively eliminating those features from the model if they are not strongly associated with the outcome. This can greatly simplify the model by selecting a sparse set of predictors. We expected the LASSO to be useful given the number of predictors and the likelihood that some of them, even after our filtering step, might still be only weakly related to the outcome. Finally, we trained an elastic net regularized logistic regression model, which generalizes the LASSO by using a combination of L1 and L2 penalties. The elastic net has two hyperparameters to tune: the mixing parameter α (which controls the relative weight of L1 vs L2 regularization) and the regularization strength parameter λ. We utilized cross-validation to tune these hyperparameters and to select the best model. Specifically, we performed 3-fold cross-validation on the training set with a model training pipeline that included the standardization step and the logistic model with a given regularization setting. During cross-validation, we evaluated model performance using a classification metric that takes into account both sensitivity and specificity. (In practice, we optimized for the ROC AUC metric on the validation folds, which balances true positive rate and false positive rate, rather than simply using raw accuracy, to account for the slight class imbalance.) We searched over a grid of λ values for the LASSO and elastic net models, and for the elastic net we also tried different values of α to find the optimal blend of L1 and L2 regularization. Based on the cross-validation results, the elastic net model achieved the best performance on the validation folds, outperforming both the baseline logistic regression and the purely L1-penalized model. The optimal hyperparameters found for the elastic net were a mixing parameter of approximately $\alpha \approx 0.7$ (indicating that a 70% L1 and 30% L2 penalty mix gave the best result) and a certain regularization strength λ that maximized the model’s discriminative ability. The fact that $\alpha \approx 0.7$ was selected (rather than $\alpha = 1$ corresponding to pure LASSO) suggested that including some L2 penalty provided a benefit, likely by stabilizing the coefficient estimates for correlated predictors. After determining the best parameters, we refit the elastic net logistic regression on the entire training set using those parameters. This final model was then used to predict probabilities of malignancy for the lesions in the hold-out test set. We used a default 0.5 probability cutoff to classify a lesion as “Malignant” or “Benign” for the final submission. (We also briefly experimented with adjusting the classification threshold to maximize accuracy on the training data, but ultimately the standard 0.5 threshold was chosen for evaluating test outcomes.) The final submitted model, therefore, was an elastic net logistic regression with $\alpha \approx 0.7$, applied to 34 selected features, predicting the probability of a lesion being malignant.
+After preprocessing and feature selection, we proceeded to build predictive classification models on the reduced set of 34 predictors. We first fit a standard logistic regression model using all selected features as a baseline. The logistic regression model provides an interpretable baseline by estimating the odds of a lesion being malignant as a linear function of the predictors (with a logistic link). However, with 34 predictors, a basic logistic model can still risk overfitting and may include some predictors that contribute little to accuracy. All numeric features were standardized (centered to mean 0 and scaled to unit variance) prior to modeling so that they would be on comparable scales and to help the optimization of regularized models. Next, we applied regularization techniques to the logistic model to perform automatic variable selection and to improve generalization performance. In particular, we trained a LASSO logistic regression model, which is a logistic regression with an L1 penalty on the coefficients. The LASSO penalty tends to shrink the coefficients of less important features toward zero, effectively eliminating those features from the model if they are not strongly associated with the outcome. This can greatly simplify the model by selecting a sparse set of predictors. We expected the LASSO to be useful given the number of predictors and the likelihood that some of them, even after our filtering step, might still be only weakly related to the outcome. Finally, we trained an elastic net regularized logistic regression model, which generalizes the LASSO by using a combination of L1 and L2 penalties. The elastic net has two hyperparameters to tune: the mixing parameter α (which controls the relative weight of L1 vs L2 regularization) and the regularization strength parameter λ. We utilized cross-validation to tune these hyperparameters and to select the best model. Specifically, we performed 25-fold cross-validation on the training set with a model training pipeline that included the standardization step and the logistic model with a given regularization setting. During cross-validation, we evaluated model performance using a classification metric that takes into account both sensitivity and specificity. (In practice, we optimized for the ROC AUC metric on the validation folds, which balances true positive rate and false positive rate, rather than simply using raw accuracy, to account for the slight class imbalance.) We searched over a grid of λ values for the LASSO and elastic net models, and for the elastic net we also tried different values of α to find the optimal blend of L1 and L2 regularization. Based on the cross-validation results, the elastic net model achieved the best performance on the validation folds, outperforming both the baseline logistic regression and the purely L1-penalized model. The optimal hyperparameters found for the elastic net were a mixing parameter of approximately $\alpha \approx 0.7$ (indicating that a 70% L1 and 30% L2 penalty mix gave the best result) and a certain regularization strength λ that maximized the model’s discriminative ability. The fact that $\alpha \approx 0.7$ was selected (rather than $\alpha = 1$ corresponding to pure LASSO) suggested that including some L2 penalty provided a benefit, likely by stabilizing the coefficient estimates for correlated predictors. After determining the best parameters, we refit the elastic net logistic regression on the entire training set using those parameters. This final model was then used to predict probabilities of malignancy for the lesions in the hold-out test set. We used a default 0.5 probability cutoff to classify a lesion as “Malignant” or “Benign” for the final submission. (We also briefly experimented with adjusting the classification threshold to maximize accuracy on the training data, but ultimately the standard 0.5 threshold was chosen for evaluating test outcomes.) The final submitted model, therefore, was an elastic net logistic regression with $\alpha \approx 0.7$, applied to 34 selected features, predicting the probability of a lesion being malignant.
 
 # Results and Discussions
 

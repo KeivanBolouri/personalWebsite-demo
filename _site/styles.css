@@ -326,3 +326,19 @@ ul, ol {
   transform: translateY(-1px);
   opacity: 0.95;
 }
+
+/* ============================= */
+/*        END OF FILE           */
+/* ============================= */ .tableau-small {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.tableau-small iframe,
+.tableau-small object {
+  width: 100% !important;
+}
+
+
+
+

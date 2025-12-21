@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nadine Cetinyan">
+<meta name="author" content="Eli Sepulveda">
+<meta name="author" content="Quentin Mei">
+<meta name="author" content="Keivan Bolouri">
+<meta name="author" content="Nithya Iyer">
+<meta name="author" content="Katie Lai">
+<meta name="dcterms.date" content="2025-12-15">
+<meta name="description" content="EducA+tors is a digital humanities project that examines how variations in public school funding across U.S. states influence teacher retention and student academic performance. Using historical and contemporary datasets from the National Education Association and state departments of education, the project analyzes changes in teacher salaries, state rankings, and percent salary growth from the 2021–22 to 2022–23 school years. Through interactive data visualization, GIS mapping, and narrative analysis, the project highlights systemic, policy-driven, and regional inequities in how states prioritize public education.">
+
+<title>EducA+tors: Mapping Public School Funding and Educational Equity in the United States</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Courses.html"> 
+<span class="menu-text">Coursework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Certificates.html"> 
+<span class="menu-text">Certificates</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">EducA+tors: Mapping Public School Funding and Educational Equity in the United States</h1>
+<p class="subtitle lead">Teacher Salaries, Retention, and Student Outcomes as Policy-Driven Indicators of Inequality</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Digital Humanities</div>
+    <div class="quarto-category">Education Policy</div>
+    <div class="quarto-category">Public School Funding</div>
+    <div class="quarto-category">Educational Equity</div>
+    <div class="quarto-category">Data Analysis</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>EducA+tors is a digital humanities project that examines how variations in public school funding across U.S. states influence teacher retention and student academic performance. Using historical and contemporary datasets from the National Education Association and state departments of education, the project analyzes changes in teacher salaries, state rankings, and percent salary growth from the 2021–22 to 2022–23 school years. Through interactive data visualization, GIS mapping, and narrative analysis, the project highlights systemic, policy-driven, and regional inequities in how states prioritize public education.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nadine Cetinyan </p>
+             <p>Eli Sepulveda </p>
+             <p>Quentin Mei </p>
+             <p>Keivan Bolouri </p>
+             <p>Nithya Iyer </p>
+             <p>Katie Lai </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 15, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div style="display:inline-block">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Scan Me
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="qr.jpg" width="180"></p>
+</div>
+</div>
+</div>
+<div class="narrow-text">
+<section id="introduction" class="level1" style="text-align: justify;">
+<h1>Introduction</h1>
+<p>Teachers shape the minds of growing generations, they provide for, question, guide, and in the end, mold children into the future professionals and citizens. Despite their significant role in the American educational system, teachers are consistently underappreciated and in most cases underpaid. Although average teacher salaries in the United States rose to $69,544 in 2023, this figure represents only a 2% increase over the past decade when adjusted for inflation, according to the National Education Association. In fact, teachers in over half the states have seen their real earnings decline since 2013, even as the cost of living—especially housing and healthcare—has risen sharply. This project investigates how these stagnating or declining real wages impact teacher retention, recruitment, and educational quality across different states. Additionally this project addresses the effects of teacher salary on student achievement and state ranking in education. Using data from the NEA’s 2024 Educator Pay Report and U.S. Census Bureau cost-of-living indices, this analysis compares states like Mississippi, where starting teacher pay remains among the lowest nationally, with states like Massachusetts, which offer higher salaries but face steep living costs, which can offset the benefits of a higher salary. Specific state ranking information is provided to the NEA from the state level education census’. These sources are critical for understanding how financial incentives—or the lack thereof—shape the teacher workforce. By using data from the NEA there is a more accurate comparison between salary and ranking because of the data specified by year. Using the year by year data a clear pattern and consistent phenomena can be deduced from the data, which is especially important since ideas regarding the relationship between funding and educational results have often been varied, with different groups attributing success and failure respectively to different factors. Additionally, this research will help us specify the tools needed to improve student outcomes throughout the country. By highlighting disparities in compensation and contextualizing them within broader economic conditions, this project argues that insufficient salary growth is undermining educational equity and student performance in underfunded regions.</p>
+</section>
+</div>
+<section id="literature" class="level2">
+<h2 class="anchored" data-anchor-id="literature">Literature</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="narrow-text">
+<div style="text-align: justify;">
+<p>Existing literature on teacher pay reveals a strong consensus that teacher pay disparities are both real and significant. Multiple studies documented that teachers earn 14% less than comparably educated professionals (Allegretto et al.) and low compensation harms teacher retention and recruitment. There is also agreement within the literature that school finance structures can impact teacher pay inequities, with property wealth–dependent funding systems advantaging wealthy districts while disadvantaging high-poverty areas (Baker &amp; Weber, Brunner et al., Roza &amp; Miles). Emerging evidence supports that school funding reforms can increase teacher salaries, though these benefits may take up to a decade to materialize (Nguyen et al., Jackson &amp; Morgan). However, contradictions remain regarding whether increased funding automatically equates to higher teacher pay, as Haskinsworth-Lutzow &amp; Rose found that even large revenue infusions to high-poverty districts did not lead to salary increases beyond recession recovery levels. Currently, limited research focuses on the relationship between teacher pay and education quality, with only García &amp; Han demonstrating a positive correlation between higher teacher base salaries and student performance in math and English assessments.</p>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="figure">
+<p><img src="Picone.jpg" class="img-fluid" alt="Young Indigenous Navajo teacher checking her students' work."> <span style="display:block; text-align:center; color:#777; font-size:0.85em;"> A classroom in the Navajo Nation. </span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="which-u.s.-regions-have-the-highest-and-lowest-median-household-incomes-for-families-with-public-school-children" class="level2">
+<h2 class="anchored" data-anchor-id="which-u.s.-regions-have-the-highest-and-lowest-median-household-incomes-for-families-with-public-school-children">Which U.S. regions have the highest and lowest median household incomes for families with public school children?</h2>
+<div class="tableauPlaceholder" id="viz1766202271379" style="position: relative"><noscript><a href="#"><img alt="Dashboard 1 " src="https://public.tableau.com/static/images/Bo/Book25_17487104536670/Dashboard1/1_rss.png" style="border: none"></a></noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="site_root" value=""><param name="name" value="Book25_17487104536670/Dashboard1"><param name="tabs" value="no"><param name="toolbar" value="yes"><param name="static_image" value="https://public.tableau.com/static/images/Bo/Book25_17487104536670/Dashboard1/1.png"> <param name="animate_transition" value="yes"><param name="display_static_image" value="yes"><param name="display_spinner" value="yes"><param name="display_overlay" value="yes"><param name="display_count" value="yes"><param name="language" value="en-US"></object></div>                <script type="text/javascript">                    var divElement = document.getElementById('viz1766202271379');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+<div class="narrow-text">
+<div style="text-align: justify;">
+<p>We chose a box plot for this visualization because it clearly highlights median household income, while also revealing outliers and regional patterns across the United States. This is important for our project, as we examine how median household income correlates with state education expenditures and, in turn, student outcomes. The visualization shows that the Northeast has the highest median household income overall, with the Middle Atlantic division (including New York, New Jersey, and Pennsylvania) ranking at the top. In contrast, the South has the lowest median household income, particularly the East South Central division (including Alabama, Kentucky, Mississippi, and Tennessee). These regional disparities underscore how economic conditions vary substantially across the country and help explain differences in educational funding and resources.</p>
+</div>
+</div>
+</section>
+<section id="how-did-teacher-salaries-change-across-the-united-states-from-202122-to-202223-and-do-states-with-lower-average-salaries-tend-to-have-higher-percent-increases-in-salary" class="level2">
+<h2 class="anchored" data-anchor-id="how-did-teacher-salaries-change-across-the-united-states-from-202122-to-202223-and-do-states-with-lower-average-salaries-tend-to-have-higher-percent-increases-in-salary">How did teacher salaries change across the United States from 2021–22 to 2022–23, and do states with lower average salaries tend to have higher percent increases in salary?</h2>
+<div class="tableauPlaceholder" id="viz1766255286813" style="position: relative"><noscript><a href="#"><img alt="Percent Change in Teacher Salaries (2021–22 vs. 2022–23), Highlighted by 2021–22 Salary Level " src="https://public.tableau.com/static/images/Bo/Book23_17486867295830/Sheet3/1_rss.png" style="border: none"></a></noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="path" value="views/Book23_17486867295830/Sheet3?:language=en-US&amp;:embed=true&amp;:sid=&amp;:redirect=auth"> <param name="toolbar" value="yes"><param name="static_image" value="https://public.tableau.com/static/images/Bo/Book23_17486867295830/Sheet3/1.png"> <param name="animate_transition" value="yes"><param name="display_static_image" value="yes"><param name="display_spinner" value="yes"><param name="display_overlay" value="yes"><param name="display_count" value="yes"><param name="language" value="en-US"></object></div>                <script type="text/javascript">                    var divElement = document.getElementById('viz1766255286813');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+</section>
+<section id="how-do-states-differ-in-their-expenditures-for-education" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-states-differ-in-their-expenditures-for-education">How do states differ in their expenditures for education?</h2>
+<div class="tableauPlaceholder" id="viz1766252544251" style="position: relative"><noscript><a href="#"><img alt="Dashboard 1 " src="https://public.tableau.com/static/images/Pe/PerStateExpenditures23-24/Dashboard1/1_rss.png" style="border: none"></a></noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="site_root" value=""><param name="name" value="PerStateExpenditures23-24/Dashboard1"><param name="tabs" value="no"><param name="toolbar" value="yes"><param name="static_image" value="https://public.tableau.com/static/images/Pe/PerStateExpenditures23-24/Dashboard1/1.png"> <param name="animate_transition" value="yes"><param name="display_static_image" value="yes"><param name="display_spinner" value="yes"><param name="display_overlay" value="yes"><param name="display_count" value="yes"><param name="language" value="en-US"></object></div>                <script type="text/javascript">                    var divElement = document.getElementById('viz1766252544251');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+<div class="narrow-text">
+<div style="text-align: justify;">
+<p>This chart supports our project by highlighting each state’s public expenditures, which is a foundational factor in understanding educational funding disparities. States with higher total expenditures are not necessarily those with the highest teacher salaries or strongest education outcomes, highlighting that how funds are prioritized, not just how much they have, matters deeply. This visualization helps identify patterns in resource allocation that may correlate with regional trends in teacher pay and student performance. It reinforces the idea that systemic and policy-driven decisions shape public education funding across the U.S., contributing to unequal educational outcomes.</p>
+<p>This data on regional household income and per state expenditures directly support the thesis by showing how broader economic and policy-driven disparities influence education funding. The Northeast, with the highest median household incomes, tends to allocate more resources toward public education, contributing to higher teacher salaries. In contrast, the South, particularly the East South-Central division, has the lowest household incomes, which correlates with lower public school teacher salaries and reduced education funding overall. This reveals systemic disparities in which students that have a lower median household income may consequently receive lower quality education. These patterns reveal how regional economic conditions can result in systemic inequities due to how states value public education.</p>
+</div>
+</div>
+</section>
+<section id="which-state-spent-the-longest-total-time-on-teachersalary-legislation-tasks-between-2019-and-2024" class="level2">
+<h2 class="anchored" data-anchor-id="which-state-spent-the-longest-total-time-on-teachersalary-legislation-tasks-between-2019-and-2024">Which state spent the longest total time on teacher‐salary legislation tasks between 2019 and 2024?</h2>
+<div class="tableauPlaceholder" id="viz1766275898091" style="position: relative"><noscript><a href="#"><img alt="Teacher Salary Reform Durations by State, 2019–2024 " src="https://public.tableau.com/static/images/Bo/Book7_17486416011480/Sheet1/1_rss.png" style="border: none"></a></noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="site_root" value=""><param name="name" value="Book7_17486416011480/Sheet1"><param name="tabs" value="no"><param name="toolbar" value="yes"><param name="static_image" value="https://public.tableau.com/static/images/Bo/Book7_17486416011480/Sheet1/1.png"> <param name="animate_transition" value="yes"><param name="display_static_image" value="yes"><param name="display_spinner" value="yes"><param name="display_overlay" value="yes"><param name="display_count" value="yes"><param name="language" value="en-US"></object></div>                <script type="text/javascript">                    var divElement = document.getElementById('viz1766275898091');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+<div class="narrow-text">
+<div style="text-align: justify;">
+<p>The Gantt chart displays the timeline of key legislative tasks—such as Preliminary Research, Draft Legislation, Committee Hearings, and Implementation Phases—for three states (Alabama, California, and New York). By noting the start and end dates of each task, we see which state took longer overall to enact teacher‐salary reforms. California appears to have some of the longest cumulative task durations, especially during Draft Legislation and Implementation. New York shows extended time spans during Committee Hearings and Review/Evaluation. Alabama has shorter durations in some phases but a lengthy Implementation window into 2024.</p>
+<p>Why Might These Differences Exist? Legislative Complexity &amp; Stakeholder Input: Longer durations can reflect complex negotiations.</p>
+<p>Political &amp; Economic Factors: Multiple committee reviews or separate House/Senate approvals can slow legislation (NEA, 2022). States under fiscal strain might need extra budget hearings, delaying passage.</p>
+<p>Meaning Within the Project Context: Within our project on multi‐year teacher‐salary reforms, this Gantt chart highlights differences in how each state navigated the legislative process. A longer total duration may indicate more complex legislative procedures, prolonged committee debates, or staggered implementation timelines. Conversely, a shorter duration suggests a more streamlined or expedited approach. Understanding these disparities can inform policymakers and education stakeholders about potential bottlenecks or best practices when implementing multi‐year salary reforms.</p>
+</div>
+</div>
+</section>
+<section id="does-political-affiliation-correlate-with-education-ranking-and-teacher-salary" class="level2">
+<h2 class="anchored" data-anchor-id="does-political-affiliation-correlate-with-education-ranking-and-teacher-salary">Does Political Affiliation Correlate with Education Ranking and Teacher Salary?</h2>
+<div class="tableauPlaceholder" id="viz1766276272932" style="position: relative"><noscript><a href="#"><img alt="Dashboard 2 " src="https://public.tableau.com/static/images/Pe/PerStateExpenditures23-24/Dashboard2/1_rss.png" style="border: none"></a></noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="site_root" value=""><param name="name" value="PerStateExpenditures23-24/Dashboard2"><param name="tabs" value="no"><param name="toolbar" value="yes"><param name="static_image" value="https://public.tableau.com/static/images/Pe/PerStateExpenditures23-24/Dashboard2/1.png"> <param name="animate_transition" value="yes"><param name="display_static_image" value="yes"><param name="display_spinner" value="yes"><param name="display_overlay" value="yes"><param name="display_count" value="yes"><param name="language" value="en-US"></object></div>                <script type="text/javascript">                    var divElement = document.getElementById('viz1766276272932');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+<div class="narrow-text">
+<div style="text-align: justify;">
+<p>This chart type was chosen for its clarity in allowing side-by-side comparison of performance disparities, making it easy to observe which states significantly exceed or fall below the national average. Each bar represents the deviation in average score from the national public school score baseline, allowing viewers to quickly identify geographic patterns and performance trends. The visualization shows how academic outcomes vary by state and relates to other financial data on state-level education funding.</p>
+<p>This visualization relates to our project because performance gaps revealed in this chart suggest that educational outcomes are not solely determined by student ability or local conditions, but are linked to how much and how equitably states invest in their public education systems. States that underperform relative to the national average may also be those offering lower teacher salaries and allocating fewer resources to education overall, reinforcing systemic inequities. By combining salary data with performance metrics, this chart strengthens the argument that funding disparities contribute to uneven educational outcomes nationwide.</p>
+<p>By comparing the Tableau visualizations of state-by-state teacher salary data and student performance metrics, patterns of the relationship between compensation, retention, and educational outcomes becomes apparent. The data reveals that states investing more in educator pay generally see higher student performance. For example, states like Massachusetts, Connecticut, Minnesota, and New Jersey rank within the top 10 in both teacher salary and average student scores. For each of these states, over 30% of their students are achieving proficiency or higher. These states also tend to experience higher stability and competitive recruitment, which likely contributes to continuing the cycle of having consistent educational quality and student success. On the other hand, states like Mississippi, New Mexico, and West Virginia appear on the lower end of the salary and performance spectrum, with low proficiency rates and average scores more than 10 points below the national average. It is also important to note that there were also some discrepancies found between salary increases and student achievement. For example, although New Mexico implemented a significant percent increase in salary, student scores did not reflect this as their performance did not rank in the top 10. This suggests that improvement in performance is not immediate and likely depends on factors such as how salary increases are impacted by broader systemic changes like training, resources, and school infrastructure. Overall, the data shows a moderate to strong positive trend between salary and performance. On average, higher salaries correlate with better performance from students. For example, there are some outliers like Florida that have relatively low salaries but mid range performance. This can be due to factors like cost of living, teacher-student ratios, and state education policy. Ultimately, supporting the conclusion that teacher salary is heavily correlated with educational performance. The outliers support our thesis that systemic inequities drive how states fund their educational systems, directly impacting student achievement and future success. As a result, if states want to improve student outcomes, they should consider investing more in teacher compensation.</p>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<div class="narrow-text">
+<div style="text-align: justify;">
+<p>While it may be easy to say that increasing salaries and funding will lead to better student outcomes, the truth is really not that simple. Increasing salaries, for example, is typically done in locations where the cost of living is increasing as well – so the benefit of a salary increase is offset. When it comes to political solutions, it appears that Democrat-run states tend to have better student outcomes, but they also tend to have wealthier students and populations, which is highly correlated with positive academic outcomes. Ultimately, the true cause of student achievement cannot be determined; but, some factors can be determined to affect student achievement, like the ones mentioned in this project: state funding, teacher salaries, and political alignment (of the state).</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>© 2025 Keivan Bolouri</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

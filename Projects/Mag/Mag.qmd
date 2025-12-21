@@ -4,7 +4,7 @@ description: "A comprehensive review of magnetic nanocomposites and their biomed
 author: "Mina Naghdi, Mahsa Ghovvati, Navid Rabiee, Sepideh Ahmadi, Nikzad Abbariki, Soheil Sojdeh, Amirhossein Ojaghi, Mojtaba Bagherzadeh, Omid Akhavan, Esmaeel Sharifi, Mohammad Rabiee, Mohammad Reza Saeb, Keivan Bolouri, Thomas J. Webster, Ehsan Nazarzadeh Zare, Ali Zarrabi"
 date: 2022-01-01
 categories: [Nanocomposites, Biomaterials, Biomedical Applications]
-image: "colid.jpg"
+image: "ColidCover.jpg"
 ---
 
 ![](Colid.jpg){width="4cm" height="4cm"}

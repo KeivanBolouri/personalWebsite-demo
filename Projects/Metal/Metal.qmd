@@ -11,15 +11,14 @@ image: "MeCover.jpg"
 
 
 ::: text-justify
-Abstract
-:::
+**Abstract**
+
 
 The occurrence of traumatic bone defects caused by accidents, diseases, and surgeries has become increasingly common. Consequently, there has been a noticeable increase in the overall number of bone defects reported. Treating bone defects is characterized by long treatment periods, high costs, and unpredictable outcomes, often accompanied by complications like infections and bone discontinuity. Consequently, this situation significantly impacts the physical, mental, and financial well-being of patients and poses a challenge to orthopedic surgeons. This has piqued a considerable interest in the realm of bone therapy and repair. Materials other than autogenous bone have not yet achieved the ability to offer ideal biocompatibility, osteogenesis, osteoconductivity, and osteoinduction properties simultaneously. Moreover, the scarcity of autologous bone sources has necessitated the search for new replacement materials. Metal-organic frameworks (MOFs) represent a novel class of functional materials that have gained extensive attention in the biomedical field in recent years. This is attributed to their porous nature, large specific surface area, tailorable chemistry, and their potential for drug loading. As bone treatment and repair research progresses, more investigators are exploring the potential of using MOFs for bone therapy and repair applications. Taking all these aspects into account, this chapter summarizes the current utilization of MOFs in bone therapy and regeneration, while also providing an outlook on the potential prospects of MOFs in this field.\
-::::
-::: text-justify
-Literature
+
+**Literature**  
+
 Existing literature on teacher pay reveals a strong consensus that teacher pay disparities are both real and significant. Multiple studies documented that teachers earn 14% less than comparably educated professionals (Allegretto et al.) and low compensation harms teacher retention and recruitment. There is also agreement within the literature that school finance structures can impact teacher pay inequities, with property wealth dependent funding systems advantaging wealthy districts while disadvantaging high poverty areas (Baker & Weber, Brunner et al., Roza & Miles). Emerging evidence supports that school funding reforms can increase teacher salaries, though these benefits may take up to a decade to materialize (Nguyen et al., Jackson & Morgan). However, there are contradictions regarding whether increased funding automatically equates to higher teacher pay, as Hawksworth-Lutzow & Rose found that even large revenue infusions to high-poverty districts didn’t lead to salary increases beyond recession recovery levels. Currently, limited research focuses on the relationship between teacher pay and education quality, with only García & Han demonstrating a positive correlation between higher teacher base salaries and student performance in math and English assessments. This leaves questions around the extent to which teacher compensation and education quality are correlated.
-:::
-![](Picone.png){fig-alt="Young indigenous Navajo Young teacher checking her students work."}
+::::
 
 <a href="https://doi.org/10.1021/bk-2024-1463.ch011" target="_blank"> View Book Chapter</a>

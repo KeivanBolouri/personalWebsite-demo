@@ -771,61 +771,6 @@ p3 <- missing_report %>%
 
 
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| error: false
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(tidyr)
-# Train data
-train_not_clean <- read_csv("SkinCancerTrain.csv")
-train_clean     <- read_csv("SkinCancerTrain_Clean.csv")
-
-# Test data (NO target variable)
-test_not_clean  <- read_csv("SkinCancerTestNoY.csv")
-test_clean      <- read_csv("SkinCancerTestNoY_Clean.csv")
-train_num_not_clean <- train_not_clean %>% select(where(is.numeric))
-train_num_clean     <- train_clean %>% select(where(is.numeric))
-
-test_num_not_clean  <- test_not_clean %>% select(where(is.numeric))
-test_num_clean      <- test_clean %>% select(where(is.numeric))
-compare_distribution <- function(not_clean, clean, dataset_name) {
-
-  num_vars <- intersect(names(not_clean), names(clean))
-
-  for (var in num_vars) {
-
-    plot_data <- tibble(
-      value = c(not_clean[[var]], clean[[var]]),
-      status = rep(c("Not Clean", "Clean"),
-                   c(length(not_clean[[var]]),
-                     length(clean[[var]])))
-    )
-
-    p <- ggplot(plot_data, aes(x = value, color = status, fill = status)) +
-      geom_density(alpha = 0.3, na.rm = TRUE) +
-      labs(
-        title = paste(dataset_name, "-", var),
-        x = var,
-        y = "Density"
-      ) +
-      theme_minimal()
-
-    print(p)
-  }
-}
-# Compare training data distributions
-compare_distribution(
-  not_clean = train_num_not_clean,
-  clean     = train_num_clean,
-  dataset_name = "TRAIN"
-)
-
-
-```
 
 
 

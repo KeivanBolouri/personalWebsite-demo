@@ -15,6 +15,7 @@ listing:
       - "Stat140.qmd"
       - "SkinCancer.qmd"
       - "Education.qmd"
+      - "shiny.qmd"
     type: grid
     sort: false
     sort-ui: true

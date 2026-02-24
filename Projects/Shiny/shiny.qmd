@@ -1,0 +1,165 @@
+---
+title: "Shiny"
+description: "**"
+author: "Keivan Bolouri"
+date: 2026-09-01
+categories: [Stat 140, Shiny App]
+format:
+  html:
+    page-layout: full
+filters:
+  - shinylive
+---
+
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 600
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Hello Shinylive"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("n", "Number:", min = 0, max = 100, value = 50)
+    ),
+    mainPanel(
+      verbatimTextOutput("val")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$val <- renderText({
+    paste("You chose:", input$n)
+  })
+}
+
+shinyApp(ui, server)
+```
+
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 1200
+
+library(shiny)
+library(bslib)
+
+theme <- bs_theme(font_scale = 1.5)
+
+# Define UI for app that draws a histogram ----
+ui <- page_sidebar(theme = theme,
+  sidebar = sidebar(open = "open",
+    numericInput("n", "Sample count", 100),
+    checkboxInput("pause", "Pause", FALSE),
+  ),
+  plotOutput("plot", width=1100)
+)
+
+server <- function(input, output, session) {
+  data <- reactive({
+    input$resample
+    if (!isTRUE(input$pause)) {
+      invalidateLater(1000)
+    }
+    rnorm(input$n)
+  })
+  
+  output$plot <- renderPlot({
+    hist(data(),
+      breaks = 40,
+      xlim = c(-2, 2),
+      ylim = c(0, 1),
+      lty = "blank",
+      xlab = "value",
+      freq = FALSE,
+      main = ""
+    )
+    
+    x <- seq(from = -2, to = 2, length.out = 500)
+    y <- dnorm(x)
+    lines(x, y, lwd=1.5)
+    
+    lwd <- 5
+    abline(v=0, col="red", lwd=lwd, lty=2)
+    abline(v=mean(data()), col="blue", lwd=lwd, lty=1)
+
+    legend(legend = c("Normal", "Mean", "Sample mean"),
+      col = c("black", "red", "blue"),
+      lty = c(1, 2, 1),
+      lwd = c(1, lwd, lwd),
+      x = 1,
+      y = 0.9
+    )
+  }, res=140)
+}
+
+# Create Shiny app ----
+shinyApp(ui = ui, server = server)
+
+```
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 1200
+
+library(shiny)
+library(bslib)
+library(ggplot2)
+library(dplyr)
+
+ui <- page_fillable(
+  theme = bs_theme(
+    version = 5,
+    bootswatch = "litera",
+    base_font = "system-ui",
+    heading_font = "system-ui"
+  ),
+
+  layout_sidebar(
+    sidebar = sidebar(
+      width = 340,
+      h3("🧪 Mini Lab: Simulate + Explore"),
+      sliderInput("n", "Sample size", min = 50, max = 2000, value = 400, step = 50),
+      sliderInput("noise", "Noise", min = 0, max = 5, value = 1, step = 0.1),
+      sliderInput("slope", "Slope", min = -5, max = 5, value = 1.2, step = 0.1),
+      selectInput("shape", "Relationship", choices = c("Linear", "Quadratic", "Sine")),
+      actionButton("regen", "🔄 Regenerate", class = "btn-primary w-100")
+    ),
+
+    card(
+      full_screen = TRUE,
+      card_header("📈 Scatter + Model"),
+      plotOutput("plot", height = 650)
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  seed <- reactiveVal(1)
+  observeEvent(input$regen, seed(sample.int(1e9, 1)), ignoreInit = TRUE)
+
+  dat <- reactive({
+    set.seed(seed())
+    x <- rnorm(input$n)
+    eps <- rnorm(input$n, sd = input$noise)
+    y <- switch(
+      input$shape,
+      "Linear"    = input$slope * x + eps,
+      "Quadratic" = input$slope * (x^2 - mean(x^2)) + eps,
+      "Sine"      = input$slope * sin(2 * x) + eps
+    )
+    tibble(x = x, y = y)
+  })
+
+  output$plot <- renderPlot({
+    df <- dat()
+    ggplot(df, aes(x, y)) +
+      geom_point(size = 2.6, alpha = 0.75) +
+      geom_smooth(method = "lm", se = FALSE, linewidth = 1) +
+      theme_minimal(base_size = 15)
+  })
+}
+
+shinyApp(ui, server)
+```

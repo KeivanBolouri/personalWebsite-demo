@@ -38,7 +38,7 @@ I enjoy building projects, exploring new tools, and applying what I learn to rea
 
 ## Education
 
--   **University of California, Los Angeles (UCLA)**
+-   **University of California, Los Angeles (UCLA!)**
 
     ::: text-justify
     I’m currently pursuing a B.S. in Statistics and Data Science at UCLA, where I focus on turning complex data into clear, actionable insights. Alongside core training in statistical modeling and algorithmic thinking, I’m especially interested in **statistical genetics** and **computational biology**—fields that let me explore how data can reveal the patterns and mechanisms behind biological systems.

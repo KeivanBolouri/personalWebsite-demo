@@ -18,7 +18,7 @@
     "href": "index.html#education",
     "title": "Keivan Bolouri",
     "section": "Education",
-    "text": "Education\n\nUniversity of California, Los Angeles (UCLA)\n\nI’m currently pursuing a B.S. in Statistics and Data Science at UCLA, where I focus on turning complex data into clear, actionable insights. Alongside core training in statistical modeling and algorithmic thinking, I’m especially interested in statistical genetics and computational biology—fields that let me explore how data can reveal the patterns and mechanisms behind biological systems.\n\n\n\nOutside of academics, I enjoy hiking, running, and staying active outdoors.\nFeel free to explore my links above to learn more about my work and interests. ✨"
+    "text": "Education\n\nUniversity of California, Irvine (UCI)\nM.S. in Statistics — Focus: Causal Machine Learning\nUniversity of California, Los Angeles (UCLA)\n\nB.S. in Statistics and Data Science — I focus on turning complex data into clear, actionable insights, with core training in statistical modeling and algorithmic thinking. I’m especially interested in statistical genetics and computational biology—fields that let me explore how data can reveal the patterns and mechanisms behind biological systems.\n\n\n\nOutside of academics, I enjoy hiking, running, and staying active outdoors.\nFeel free to explore my links above to learn more about my work and interests. ✨"
   },
   {
     "objectID": "Projects/CellTypes/CellTypes.html",
@@ -257,5 +257,26 @@
     "title": "Abou",
     "section": "",
     "text": "About this site\n\n1 + 778\n\n[1] 779\n\n\n\nrunif(100)\n\n  [1] 0.99546727 0.72298778 0.94176076 0.13770343 0.33307467 0.11241496\n  [7] 0.70553522 0.26843895 0.03870485 0.47851903 0.12182052 0.84757280\n [13] 0.89207390 0.72993555 0.20982456 0.35328236 0.66506811 0.57507611\n [19] 0.50096693 0.22781392 0.41435372 0.51752512 0.31417113 0.33328091\n [25] 0.70746344 0.94043412 0.90296554 0.80925548 0.80814326 0.94365817\n [31] 0.63205388 0.15390263 0.40731647 0.16364063 0.07258268 0.71185111\n [37] 0.33030833 0.25204236 0.99444561 0.77353812 0.20421345 0.35551585\n [43] 0.14448693 0.22469808 0.09453113 0.33185158 0.36768014 0.72205113\n [49] 0.23103505 0.71801069 0.81337352 0.07336271 0.23860499 0.86990330\n [55] 0.05723832 0.83664239 0.43655927 0.73373894 0.54223064 0.74868556\n [61] 0.33044331 0.20385806 0.64932830 0.16233369 0.90902070 0.12440778\n [67] 0.85642172 0.95255022 0.46267396 0.14613435 0.14720407 0.19356520\n [73] 0.21756003 0.92259845 0.62576623 0.21167314 0.56369795 0.27776118\n [79] 0.71957933 0.20119905 0.44492493 0.82335981 0.10438689 0.67587476\n [85] 0.50472613 0.29669822 0.01237058 0.94773687 0.45222189 0.21383237\n [91] 0.19061805 0.67850440 0.42923727 0.30538029 0.87993144 0.49983028\n [97] 0.64095913 0.06755872 0.86208157 0.85105469\n\n\n\nset.seed(123)\nplot(1:20, runif(20))\n\n\n\n\n\n\n\n\n\nplot(1:40,runif(40))\n\n\n\n\n\n\n\n\n\nx &lt;- seq(0, 2*pi, length.out = 100)  # 100 points from 0 to 2π\ny &lt;- sin(x)                          # sine of each x\nplot(x, y, type = \"l\")               # 'l' means line plot\n\n\n\n\n\n\n\nplot(x, y, \n     type = \"l\", \n     col = \"blue\", \n     lwd = 2,\n     main = \"Plot of sin(x)\",\n     xlab = \"x (radians)\",\n     ylab = \"sin(x)\")\nlines(x, cos(x), col = \"red\", lwd = 2)\nlegend(\"topright\", legend = c(\"sin(x)\", \"cos(x)\"),\n       col = c(\"blue\", \"red\"), lwd = 2)"
+  },
+  {
+    "objectID": "index1.html",
+    "href": "index1.html",
+    "title": "Keivan Bolouri",
+    "section": "",
+    "text": "Welcome to my page!"
+  },
+  {
+    "objectID": "index1.html#about-me",
+    "href": "index1.html#about-me",
+    "title": "Keivan Bolouri",
+    "section": "About me",
+    "text": "About me\nHello! My name is Keivan Bolouri. I am passionate about technology, data, and continuous learning.\nI enjoy building projects, exploring new tools, and applying what I learn to real-world problems."
+  },
+  {
+    "objectID": "index1.html#education",
+    "href": "index1.html#education",
+    "title": "Keivan Bolouri",
+    "section": "Education",
+    "text": "Education\n\nUniversity of California, Los Angeles (UCLA)\n\nI’m currently pursuing a B.S. in Statistics and Data Science at UCLA, where I focus on turning complex data into clear, actionable insights. Alongside core training in statistical modeling and algorithmic thinking, I’m especially interested in statistical genetics and computational biology—fields that let me explore how data can reveal the patterns and mechanisms behind biological systems.\n\n\n\nOutside of academics, I enjoy hiking, running, and staying active outdoors.\nFeel free to explore my links above to learn more about my work and interests. ✨"
   }
 ]
